@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 沿Windows/Linux生成器主线，3D/模型保护补装及中断保护代表回归已完成；下一步用当前源码重新打包，复验Windows/Linux安装后的包入口并整理下一版本候选，不扩展业务查看器。macOS原生验收待设备可用后补充；后续npm/Release发布仍需明确授权，不复用已完成的0.1.2授权。
+1. 沿Windows/Linux生成器主线，0.1.3本地候选的实际安装、命令入口、混合工程及模型构建代表验收已通过。下一步可在明确发布授权后准备0.1.3人工发布；当前不上传npm、不建新标签/Release，不扩展业务查看器。macOS原生验收待设备可用后补充，不复用已完成的0.1.2发布授权。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -992,3 +992,17 @@ Windows Node22.18.0、Linux Node26.13.0完整测试各301/301，无跳过。Linu
 当前改动继续Unreleased，npm0.1.2与GitHub既有标签/Release不变。下一步仅准备本地候选与两端包入口回归，不执行发布，不增加CI。
 
 最终检查：两端文档静态校验与完整vp check通过，221份格式文件、161份代码文件无格式或lint问题；修复与回归工具提交为a263907。模型测试临时工程均已清理，专用Linux容器核对随机名称、初始ID、官方镜像与源码只读挂载后已删除，未触及用户项目、Docker Desktop或其他容器。结构化证据与清理记录分别见dist/verification/model-regression-evidence.json、model-regression-cleanup.json。
+
+## 2026-11-03 0.1.3本地候选与安装后验收
+
+收尾结果：候选源码提交1d2c2ae，提交后重新打包SHA-512与已验收归档一致；两端文档检查及vp check通过（223份格式文件、162份代码文件）。最终Linux文档检查前Docker服务曾退出，隐藏启动恢复环境后只重启本轮专用容器并完成检查；核对名称、初始ID、官方镜像和源码只读挂载后，该容器已删除，未操作其他容器或用户项目。安装/生成/负向测试临时目录均已确认清理；候选与证据保留，详见v013-cleanup.json及v013-registry-clean-check.json。
+
+用户继续当前源码打包及Windows/Linux安装后入口验收。CLI源版本准备为0.1.3，根仍0.0.0/private，依赖与锁文件不升级；README区分本地候选与公开包，CHANGELOG继续Unreleased。没有npm上传、GitHub新标签或Release。
+
+新增手动verify-cli-package：先校验tgz与侧车完整性、源版本及包名，禁用安装脚本隔离安装，直接检查npm CMD/POSIX命令shim帮助及两组预览，再传已安装CLI路径复用模型代表回归。verify-repeat-guards原命令行不变、内部cli参数默认源码；包验收实际生成器/资源/子CLI来自安装目录，验证器留在工具仓库。
+
+实际Windows候选为dist/cli/pack-1KlK5n/adui-viteplus-starter-0.1.3.tgz，92文件、101909字节，SHA-512见docs/CANDIDATE_0_1_3。Linux同一源码快照本地pack完整性一致，实际安装使用Windows的同一归档。公开0.1.2原归档完整性核对后比较，8份文件变化、84份原字节相同。发布dry-run通过，未上传；npm官方registry只读结果仍latest0.1.2且无0.1.3。
+
+两端单元测试各301/301无跳过。安装后各建立官方Monorepo、Vue TS/React JS及AdScreen，补装Three embedded/external，两个最小GLB双入口/base/密文校验、8/8完整ready及构建后check通过；8项重复保护保持179份文件内容和修改时间。两端额外验证损坏包在安装前拒绝、受控安装返回23后清理自建安装根。普通和负向证据明确分开，不计浏览器、全部组合或macOS原生验收。
+
+日志/侧车/结构化证据位于忽略目录dist/verification/v013-*；候选归档保留于dist/cli，安装和测试工程均已由finally清理。仓库最终检查、源提交和专用Linux容器清理结果收尾后补记。
