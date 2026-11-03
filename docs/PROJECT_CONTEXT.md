@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 沿Windows/Linux生成器主线，下一步补已有应用3D/模型保护插件的重复执行及中断恢复代表回归，优先定位具体问题，不扩展业务查看器；macOS原生验收待设备可用后补充。后续npm/Release版本仍需明确授权，不复用已完成的0.1.2授权。
+1. 沿Windows/Linux生成器主线，3D/模型保护补装及中断保护代表回归已完成；下一步用当前源码重新打包，复验Windows/Linux安装后的包入口并整理下一版本候选，不扩展业务查看器。macOS原生验收待设备可用后补充；后续npm/Release发布仍需明确授权，不复用已完成的0.1.2授权。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -978,3 +978,17 @@ Linux普通用户实测发现空操作仍无条件调用pnpm-workspace.yaml格�
 本轮修改保持Unreleased，不修改公开0.1.2或其标签，不发布新npm/Release。下一步优先已有应用3D/模型保护补装的重复执行与中断恢复代表回归，保持生成器主线。
 
 修复、单元用例与手动回归脚本已提交f5ab912。Linux专用容器核对随机名称、初始ID、官方镜像与源码只读挂载后已删除，未停止Docker Desktop或触及其他容器。Windows及Linux脚本自建临时工程均已清理；清理证据见dist/verification/regression-cleanup.json。公开npm与已有Release保持原状。
+
+## 2026-11-03 3D / 模型补装重复与中断保护
+
+继续Windows/Linux生成器主线。真实CLI受控回归复现：Vite配置已有aduiModels或adui-model-build引用、但常规生成文件不在时，原先补装预检未阻塞，仍进入Three集成。现由model-security/setup.modelPluginConfig统一重复配置检查及增量生成，预检与实际写入共用；不改变原有保守拒绝规则，也不自动迁移旧配置。
+
+新增4个单元用例，覆盖Vue TS/React JS的已有配置提前阻塞，以及模型格式化返回29后保留KEY、三份配置原件备份和业务入口；再次执行在预检拒绝且所有文件内容/修改时间不变。该中断为受控子进程边界，不声称真实网络或操作系统强杀恢复。
+
+手动verify-repeat-guards增加--models独立模式。两端各创建官方Monorepo和已有AdScreen的Vue TS、React JS成员，分别补装Three + embedded/external。首次依赖命令受控返回23且工作区不变，随后真实安装/补装重试成功；显式保留验收页，使用脚本自建最小GLB复用verify-model-app完成双入口/base/密文解密、无原模型与原始KEY字面量检查。各端完整ready为8/8，构建后check通过；各8次重复模型/模式切换/Three页/空补装调用零子进程，179份文件内容与修改时间保持，两个业务App哈希在两系统一致。不是全引擎矩阵或浏览器/WebGL验收。
+
+Windows Node22.18.0、Linux Node26.13.0完整测试各301/301，无跳过。Linux沿用官方Vite+1.4.0 Debian12 x64隔离镜像、源码只读挂载和UID1000普通用户。原有peer范围、TypeScript7实验性及模型大分块提示保留，不修改上游依赖或压低警告阈值。临时工程由脚本finally清理；日志保留于忽略目录dist/verification/model-regression-*。
+
+当前改动继续Unreleased，npm0.1.2与GitHub既有标签/Release不变。下一步仅准备本地候选与两端包入口回归，不执行发布，不增加CI。
+
+最终检查：两端文档静态校验与完整vp check通过，221份格式文件、161份代码文件无格式或lint问题；修复与回归工具提交为a263907。模型测试临时工程均已清理，专用Linux容器核对随机名称、初始ID、官方镜像与源码只读挂载后已删除，未触及用户项目、Docker Desktop或其他容器。结构化证据与清理记录分别见dist/verification/model-regression-evidence.json、model-regression-cleanup.json。
