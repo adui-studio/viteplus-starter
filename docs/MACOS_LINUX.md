@@ -1,8 +1,8 @@
 # macOS / Linux 使用与验收
 
-本指南针对当前源码及重新打包的 CLI。公开 npm 0.1.2 尚未包含本轮跨平台修复；旧 tgz 不会随源码更新。源码仍委托 Vite+ 官方 Application/Monorepo 模板，不单独维护系统专用工程模板。
+本指南适用于当前源码与公开0.1.3。该版本已包含POSIX指引、临时路径及补装保护修复；旧tgz不会随源码更新。源码仍委托Vite+官方Application/Monorepo模板，不单独维护系统专用工程模板。
 
-当前0.1.3本地候选已在Windows/Linux验证实际tgz安装、命令shim、官方混合工程及模型构建；尚未发布。具体归档及范围见[候选验收](CANDIDATE_0_1_3.md)。
+0.1.3已于2026-11-04正式发布，实际归档和公开核验见[发布记录](NPM_RELEASE.md)。Windows/Linux实际tgz安装、命令shim、官方混合工程及模型构建证据见[历史候选验收](CANDIDATE_0_1_3.md)；正式包仅README文字与该候选不同，其余91份文件一致。
 
 ## 当前验证范围
 
@@ -79,7 +79,7 @@ vp dlx -- "$tarball" --help
 vp dlx -- "$tarball"
 ```
 
-已发布包可以按包名调用，但当前0.1.2不包含本轮源码修复：
+已发布0.1.3可以按包名调用：
 
 ```sh
 vp dlx -- @adui/viteplus-starter

@@ -1,6 +1,6 @@
 # npm 分发与发布记录
 
-包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为 0.1.2，latest 指向 0.1.2**；[GitHub Release v0.1.2](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.2) 已公开。0.1.0 于 2026-11-03 首发。CLI 清单为 private:false，开发工作区根继续保留 0.0.0/private。
+包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为0.1.3，latest指向0.1.3**；[GitHub Release v0.1.3](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.3) 已公开。0.1.0于2026-11-03首发。CLI清单为private:false，开发工作区根继续保留0.0.0/private。
 
 2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，0.1.2公开包已同步新地址及作者ADui。npm包名保持不变；0.1.1及以前的元信息和归档保持发布时内容。
 
@@ -11,6 +11,14 @@
 正式包另行隔离安装，Windows命令shim帮助、Vue/React预览、元信息、调用路径与临时目录清理通过；publish dry-run返回同一版本、大小和integrity。当前源码Windows301项测试、文档和vp check通过；Linux候选301项及双端模型构建记录继续保留，不把本次文案变更视为新增浏览器验收。
 
 npm登录原先返回401，用户已在官方网页完成安全密钥验证，npm whoami确认为adui；没有在日志或聊天保存凭据。接下来上传该具体归档，registry和GitHub公开结果在成功后另记。
+
+### 0.1.3公开发布完成
+
+用户另行完成npm发布验证后，同一正式tgz的上传退出0。非交互请求此前返回EOTP，没有成功上传；交互验证后仅一次成功上传，registry处理期间没有重复提交。公开registry已确认version/latest均为0.1.3，作者ADui、新仓库与20个关键词一致；公开下载101911字节与正式包原字节及上述SHA-512完全相同。
+
+显式版本的`vp dlx -- @adui/viteplus-starter@0.1.3 --help`、`pnpm dlx @adui/viteplus-starter@0.1.3 --help`均退出0。发布源码提交为`53f18148a5efe5fe1e2b8377bca5e64b76c5d35d`，签注标签v0.1.3固定该提交并已推送；GitHub Release通过已登录浏览器人工发布。公开API确认非草稿、非预发布，网页显示Latest及正确提交。Release保留GitHub默认源码归档，npm提供已验收CLI包。
+
+证据位于忽略目录dist/verification/v013-publish-evidence.json、v013-github-release-evidence.json、公开包名帮助日志及v013-github-release.png。本次0.1.3授权已完成，后续版本不自动发布；未新增CI/CD。
 
 ## 0.1.0 首发结果
 
@@ -29,7 +37,7 @@ npm登录原先返回401，用户已在官方网页完成安全密钥验证，np
 
 ## 本轮候选包
 
-当前源码清单为0.1.3本地候选，尚未发布；公开0.1.2及其标签保持。运行包名命令不能取得未发布候选，需使用本轮重新生成的完整tgz路径。
+0.1.3正式包已完成公开发布，源码可继续本地打包；实际发布归档为上文pack-XOSqvx产物。11月3日候选归档与正式包仅README不同，候选记录保留作历史验收证据，不再作为待上传产物。
 
 具体产物身份、两端安装与构建范围见[0.1.3候选验收](CANDIDATE_0_1_3.md)。
 

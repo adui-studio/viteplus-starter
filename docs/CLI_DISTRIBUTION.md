@@ -2,11 +2,11 @@
 
 GitHub 来源的 `vp create github:adui-studio/viteplus-starter` 下载工具仓库，再由 `vp run create` 启动向导。要直接进入 UI/CSS、大屏和引擎选择，使用本地 CLI 安装包入口。
 
-当前公开包为 `@adui/viteplus-starter@0.1.2`，命令名 `viteplus-starter`，latest 指向 0.1.2。CLI 清单 private:false，发布及包名验收结果见 [发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器。运行环境为 Windows、已安装的 `vp` 和受支持 Node；基础工程仍委托 Vite+ 官方模板。
+当前公开包为`@adui/viteplus-starter@0.1.3`，命令名`viteplus-starter`，latest指向0.1.3。CLI清单private:false，发布及包名验收结果见[发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器；需要已安装的vp和受支持Node，系统验证范围见[跨平台指南](MACOS_LINUX.md)。基础工程仍委托Vite+官方模板。
 
-源码当前准备0.1.3本地候选，尚未发布；包名入口仍取得公开版本。打包结果提供contents路径，对应实际文件清单pack-contents.json，包含MIT LICENSE、关键词、包元信息与integrity，清单不进入tarball。
+0.1.3已公开，包名入口可直接使用；也可继续本地打包。打包结果提供contents路径，对应实际文件清单pack-contents.json，包含MIT LICENSE、关键词、包元信息与integrity，清单不进入tarball。
 
-源码已追加macOS/Linux适配，尚未发布到npm。当前源码的POSIX操作见 [跨平台指南](MACOS_LINUX.md)；下面Windows路径示例需在其他系统替换为实际路径，并使用引号。旧tgz不会获得源码更新。
+0.1.3包含POSIX命令与路径适配，Windows/Linux代表验收已通过；macOS原生验证待补，详情见[跨平台指南](MACOS_LINUX.md)。下面Windows路径示例需在其他系统替换为实际路径并使用引号；旧tgz不会获得源码更新。
 
 ## 构建本地包
 
@@ -49,7 +49,7 @@ vp dlx -- $bundle.tarball
 若把 tgz 交给另一台已安装 Vite+ 的 Windows 电脑，也可以直接运行：
 
 ```powershell
-vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
+vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.3.tgz'
 ```
 
 不需要先下载生成器仓库。无参数进入向导，选择项目类型、Vue/React、TS/JS、UI、CSS、大屏、引擎和模型保护。与 Vite+ 使用同款方向键选项和回车确认，3D 引擎用空格勾选，可多选，空列表表示不启用；名称直接输入。最终选择 No 或任意步骤 Ctrl+C 均取消，不创建项目。目标位置依据调用目录，和 dlx 缓存或包安装目录无关。
@@ -83,7 +83,7 @@ pnpm dlx $bundle.tarball
 
 公开 0.1.1 已通过 `vp dlx` 实际创建 Vue TS/Element Plus/Tailwind 与 React JS/Ant Design/UnoCSS 混合工作区，均接入正式首页和 AdScreen；根 ready 8/8、构建后检查及五张代表页面的浏览器验收通过。只读结构检查和重复创建保护通过；依赖存在官方 TypeScript 7 与 Volar 的 peer 范围警告，详见 [批量验收记录](BATCH_CONFIG.md#验证状态)。这些结果来自公开包的实际创建，与此前的帮助和 dry-run 验证分开记录。
 
-包名已按用户要求确定为 @adui/viteplus-starter，当前0.1.2已公开发布并包含作者、新仓库及Keywords；本地打包入口不会自动发布或创建流水线。
+包名已按用户要求确定为@adui/viteplus-starter，当前0.1.3已公开发布并保留作者、新仓库及Keywords；本地打包入口不会自动发布或创建流水线。
 
 ## 2026-11-02 本地包实测
 

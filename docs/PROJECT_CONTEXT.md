@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：用户选择优先Windows/Linux开发与回归，macOS原生验收暂缓。源码补齐POSIX与临时路径兼容，Windows/Linux重复补装及业务入口保护代表回归已通过。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，但尚不包含这些Unreleased改动。平台证据分别记录；自定义布局、覆盖式恢复仍不在本阶段范围。
+- 当前阶段：Windows/Linux兼容与补装保护已随@adui/viteplus-starter@0.1.3及GitHub Release v0.1.3正式公开，registry完整性、包名入口及标签提交已核对。继续生成器代表回归，macOS原生验收暂缓；平台证据分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 用户已确认本次0.1.3 npm与GitHub Release人工发布，正在准备正式README、归档及发布验证；成功后核对公开结果并记录，不扩展业务查看器。macOS原生验收仍待设备可用后补充，不复用已完成的0.1.2发布授权。
+1. 0.1.3 npm与GitHub Release发布已完成。下一步优先补Vue JS、React TS的公开包代表验收，按实际问题修复生成器，不扩展业务查看器；macOS原生验收待设备可用后补充，后续版本不自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1014,3 +1014,13 @@ Windows Node22.18.0、Linux Node26.13.0完整测试各301/301，无跳过。Linu
 正式归档为dist/cli/pack-XOSqvx/adui-viteplus-starter-0.1.3.tgz，92文件、101911字节，完整性见NPM_RELEASE。本轮逐文件比较确认仅README与已验收候选不同，其余91份文件一致；正式包隔离安装、元信息、Windows shim帮助和两框架预览通过，安装目录已清理。新一轮Windows301项测试无跳过，文档及vp check通过；双端生成/模型构建证据继承原字节未变的候选，不重复扩大范围。
 
 npm登录过期返回401，用户已在官方安全密钥页面完成验证，CLI whoami返回adui。registry发布前latest为0.1.2，尚无0.1.3；远程main为6e29d00且不存在v0.1.3标签，GitHub仅有v0.1.2公开Release。正式包publish dry-run通过；上传及公开核对尚待执行。GitHub连接器仅支持Release读取，写入将使用用户已登录浏览器。
+
+## 2026-11-04 0.1.3公开发布完成
+
+发布源码以53f18148a5efe5fe1e2b8377bca5e64b76c5d35d提交推送，提交后重打包与pack-XOSqvx正式归档完整性一致。非交互上传先返回EOTP，未成功；用户在官方网页单独完成发布安全密钥验证后，交互命令退出0并由registry处理。本轮未修改安全设置、读取凭据或在处理期间重复上传。
+
+registry公开确认version/latest均0.1.3，作者ADui、新仓库元信息与20个关键词一致。公开下载101911字节与正式tgz原字节及SHA-512完全相同。显式版本vp dlx与pnpm dlx帮助均退出0。正式包隔离安装及两框架预览、Windows301项测试、文档与vp check通过；原字节未变的91份运行时/清单/资源沿用Linux候选301项与双端实际生成、模型构建保护回归。
+
+签注标签v0.1.3固定53f1814并已推送；GitHub经已登录浏览器人工发布，公开API确认draft:false、prerelease:false，页面显示Latest与Commit53f1814。默认源码归档保留，未额外上传用户模型或密钥。GitHub截图保存为dist/verification/v013-github-release.png，并保留公开下载、registry、GitHub API与命令入口证据。
+
+两份README及CHANGELOG已随源码准备提交；主分支指南、npm记录、需求状态与历史候选说明在公开确认后更新，不移动已发布标签。当前0.1.3授权已经完成，后续版本与发布仍按用户新指令处理，无CI/CD。
