@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：用户已追加macOS/Linux要求，源码补齐POSIX提示与临时路径兼容，继续验证已有应用补装和业务入口保护。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，但尚不包含本轮跨平台改动。Windows/Linux原生与macOS受控验证范围分开记录；自定义布局、覆盖式恢复仍不在本阶段范围。
+- 当前阶段：用户选择优先Windows/Linux开发与回归，macOS原生验收暂缓。源码补齐POSIX与临时路径兼容，Windows/Linux重复补装及业务入口保护代表回归已通过。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，但尚不包含这些Unreleased改动。平台证据分别记录；自定义布局、覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 完成本轮跨平台源码与已有应用补装验收，下一步补macOS实机的安装、TTY、创建/补装及完整构建；已有Windows证据保留。依据具体问题修复生成器，不扩展业务查看器。后续npm/Release版本仍需明确授权，不复用已完成的0.1.2授权。
+1. 沿Windows/Linux生成器主线，下一步补已有应用3D/模型保护插件的重复执行及中断恢复代表回归，优先定位具体问题，不扩展业务查看器；macOS原生验收待设备可用后补充。后续npm/Release版本仍需明确授权，不复用已完成的0.1.2授权。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -961,3 +961,20 @@ OS临时根通过scripts/temp-directory规范为物理路径，供pack、两个�
 日志、Linux结构化结果和本地候选位于忽略目录dist/verification/cross-platform-*。本轮不改公开0.1.2、标签或Release，不据上一轮已完成授权发布新版本。文档和最终本地检查、容器清理结果另记。
 
 最终收尾：两端完整vp check均通过（218份格式文件、158代码文件），文档校验通过；指南9段sh代码仅做语法检查且通过，Issue操作系统选项YAML解析通过。Windows最终R6EUkf与Linux原生xnkXHv包均92文件，实际字节及SHA-512完全一致；本地候选保留，不上传。Linux临时容器核对随机名称、初始ID、官方镜像和源码只读挂载后已删除，测试工作区/应用/隔离安装随容器清理；Windows临时别名验证目录亦已清理，用户原有工程未改。下一步补macOS原生验收；当前只能交付其兼容代码及受控证据，不声称macOS已实机通过。
+
+## 2026-11-03 Windows / Linux普通用户与重复补装回归
+
+用户选择先继续Windows/Linux，macOS实机暂缓。新增手动scripts/verify-repeat-guards.mjs，以实际官方Monorepo模板创建Vue TS及React JS应用；在含中文、空格、&和单引号的临时父目录中添加业务标记，补装Element Plus/Tailwind或Ant Design/UnoCSS、AdScreen和显式UI页。脚本完成根ready和构建后check，再分别验证重复插件、重复CSS、重复UI页和无新增插件的基础样式空操作。
+
+Linux普通用户实测发现空操作仍无条件调用pnpm-workspace.yaml格式化。CLI现仅在内容与快照不同时格式化该文件，成功后刷新快照；根Vue声明忽略规则仍按实际变化单独处理。新增两个真实CLI单元用例，保护Vue/React空补装不调用安装/格式化、不改文件内容及修改时间。
+
+本轮实际结果：
+
+- Windows Node22.18.0与Linux Node26.13.0均297/297单元测试通过，无跳过；文档校验和完整vp check通过（220份格式文件、160份代码文件）。依赖及锁文件不升级。
+- 两端各完成一次真实混合工作区补装和8/8完整ready；随后各8次保护调用均符合退出码预期，子进程探针零调用，113份文件内容/修改时间不变。两个业务App补装前后精确哈希保持，且两系统哈希相同。真实安装构建与保护分支探针明确分开，不扩大为全部插件矩阵或浏览器验收。
+- Linux使用官方Vite+1.4.0 Debian12 x64容器，源码只读挂载，实际工程位于容器独立可写目录，全流程UID1000。原生TTY中，名称输入时Ctrl+C、完成React JS/UI/CSS/大屏/多引擎/外置密钥选择后选No，均退出0且未创建目标；取消选择不算对应工程构建。
+- 手动脚本正常结束和负向中断均清理自建临时工程；额外注入初始化mkdir失败，两端也确认临时根已删除。无用户业务目录输入、无CI或后台任务。日志与结构化证据保存在忽略目录dist/verification/regression-*。
+
+本轮修改保持Unreleased，不修改公开0.1.2或其标签，不发布新npm/Release。下一步优先已有应用3D/模型保护补装的重复执行与中断恢复代表回归，保持生成器主线。
+
+修复、单元用例与手动回归脚本已提交f5ab912。Linux专用容器核对随机名称、初始ID、官方镜像与源码只读挂载后已删除，未停止Docker Desktop或触及其他容器。Windows及Linux脚本自建临时工程均已清理；清理证据见dist/verification/regression-cleanup.json。公开npm与已有Release保持原状。
