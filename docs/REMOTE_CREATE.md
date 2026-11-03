@@ -2,15 +2,15 @@
 
 Vite+ 支持 github:user/repo 和 https://github.com/user/repo。当前 1.4.0 通过下载仓库创建目录，再做安装/配置，不会执行仓库 package.json 的 bin。此仓库按官方流程分发工具，下载后显式启动原 CLI，不在安装生命周期自动创建项目。
 
-若希望直接进入 UI/CSS、大屏等配置向导，可使用 [本地 CLI 包](CLI_DISTRIBUTION.md) 的 vp dlx -- <tgz> 入口。两者复用同一个生成器；GitHub 模板下载模式不会因此自动运行向导，当前也未发布 npm 包。
+若希望直接进入 UI/CSS、大屏等配置向导，可使用 [CLI 包](CLI_DISTRIBUTION.md) 的 `vp dlx -- @adui/viteplus-starter` 入口，也支持本地 tgz。两者复用同一个生成器；GitHub 模板下载模式不会因此自动运行向导。当前公开版本为0.1.1。
 
 ## 使用
 
 在已有工作区之外的项目父目录运行，两种命令任选其一：
 
 ```powershell
-vp create github:adui-dev/viteplus-starter
-# 或：vp create https://github.com/adui-dev/viteplus-starter
+vp create github:adui-studio/viteplus-starter
+# 或：vp create https://github.com/adui-studio/viteplus-starter
 Set-Location -LiteralPath viteplus-starter
 vp run create
 ```
@@ -48,6 +48,8 @@ vp run create --config $batchConfig
 原 node packages/create/bin/cli.mjs 入口保持原 cwd。新入口复用官方 Application/Monorepo 模板和已有文件保护；完整检查、构建及限制见 [Windows 指南](WINDOWS_GUIDE.md)。
 
 ## 验证范围
+
+2026-11-03 项目迁至 `adui-studio/viteplus-starter`，上面的日常使用命令已更新。以下2026-11-02及以前的实测地址、命令与提交号保留迁移前记录；不将旧地址的下载验收直接视为新地址已实测。
 
 本地已验证参数/退出码转发、中文空格及元字符目录、任意调用 cwd、帮助/预览和 Windows TTY 取消无写入。
 

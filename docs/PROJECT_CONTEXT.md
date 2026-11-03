@@ -6,7 +6,7 @@
 
 ## 项目定位与约束
 
-- 仓库：`adui-dev/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
+- 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
 - 当前阶段：Windows V1 CLI 公开分发后的实际使用验收与问题修复。@adui/viteplus-starter@0.1.1 已公开发布，latest、20 个关键词及下载完整性已核验；继续使用公开包验证真实创建、正式首页和混合工作区。现有恢复、三引擎及代表大屏专项范围见文末及 GENERATOR_STATUS；自定义布局、其他操作系统与覆盖式恢复不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
@@ -917,3 +917,13 @@ registry处理后已公开提供0.1.1，latest指向0.1.1。版本清单keywords
 按用户要求，根工作区与 CLI 清单添加作者 ADui；根同时补齐项目描述、MIT、仓库、主页及反馈地址，沿用 CLI 已有来源信息。独立包构造器和侧车报告保留 author，现有回归核对实际暂存清单的作者及公开元信息，防止打包时遗漏。未填写未经提供的邮箱或个人站点，未修改生成应用、依赖、版本和发布状态。检查与本地打包核验结果另记；此修改尚未进入 npm 已发布的0.1.1。
 
 本轮291/291测试通过，无跳过；文档校验、改动文件格式及155份代码文件lint通过。完整 `vp check` 因用户新安装 Skills 中20份文件的格式问题退出1，这些原文与安装锁文件保留。本地打包 `dist/cli/pack-a6Scbw/adui-viteplus-starter-0.1.1.tgz` 共92文件，实际读取归档中的 package.json 与侧车报告均确认作者 ADui，integrityVerified:true；结构化结果见 `dist/verification/author-evidence.json`。这是未发布的本地核验产物，不可覆盖同版本公开包；后续发布需新版本和明确授权。下一步继续公开 CLI 对已有应用的补装及业务入口保护验收。
+
+## 2026-11-03 仓库迁至 adui-studio
+
+用户指定新地址 `https://github.com/adui-studio/viteplus-starter`。目标初始为公开空仓库，账号具备推送权限；根和CLI清单的 repository/homepage/bugs、README源码与原图链接、GitHub下载说明及打包回归切换到新地址，历史实测的旧地址与提交号保留并标注。Git origin的fetch/push均已切换至 `git@github.com:adui-studio/viteplus-starter.git`，首次推送 `781add9` 成功并设置main上游。现有main是唯一分支，无标签；通过新HTTPS地址独立克隆后，154个提交的完整历史序列及HEAD与本地完全一致。不删除或归档原仓库，不迁移Issue/PR等平台数据。
+
+npm包名仍为 `@adui/viteplus-starter`，作者ADui；未改版本、依赖、预设或已发布npm内容。公开0.1.1中的旧项目链接不会随本地修改更新，须在后续明确授权的新版本中同步。本轮不发布npm或Release，不添加流水线。用户Skill安装改动保持。
+
+本轮291/291测试、文档校验、155代码文件lint和13份改动文件格式检查通过；全仓 `vp check` 仍因已安装Skills的20份文件格式问题退出1，原文和锁文件未改。实际本地tgz `dist/cli/pack-3z4p6V/adui-viteplus-starter-0.1.1.tgz` 共92文件，归档清单的仓库/主页/反馈、作者与包内README链接均通过新地址核验，完整性通过。GitHub连接器实际读取新仓库的README、横幅与原始Logo成功，克隆Logo的SHA-256与用户原件一致。未将Git克隆等同新地址的Vite+远程创建实测；记录见 `dist/verification/migration-*`。下一步继续公开CLI的已有应用补装与入口保护验收。
+
+本轮独立临时克隆已按自有路径、系统临时父目录、非链接和真实路径核验后清理，迁移日志与结构化证据保留。

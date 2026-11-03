@@ -362,6 +362,8 @@ keywords 同样从 CLI 源清单复制到真正打包的 package.json，并进�
 
 author 同样显式继承 CLI 源清单并进入侧车报告，当前作者为 ADui；根开发清单补齐自身的描述、许可及项目链接，继续保持 private:true。已有打包回归核对真实暂存 JSON 的 author、description、license、homepage、bugs、repository，避免仅修改源清单而在独立分发时遗漏。作者元信息不注入用户应用，也不触发版本变更或发布。
 
+仓库迁至 adui-studio/viteplus-starter 后，根/CLI项目链接与包内README统一使用新地址；打包继承源清单，无需改变运行时定位。现有回归同时核对根和真实暂存清单的作者、许可及仓库/主页/反馈地址，确保新来源信息一致。历史实测文档保留迁移前地址，不更改已发布归档或npm作用域。
+
 cli-pack-report 只接收 npm pack 的元信息，核对包名/版本/标准 scoped 文件名和实际 files。允许固定顶层文件、normalize 静态资源、既有六个运行时源码树的已知类型；拒绝隐藏/越界路径、测试/依赖目录、模型、未知类型、重复项和缺少许可/入口的候选。pack-cli 在写侧车报告前计算实际 tarball SHA-512 并与 npm integrity 比较，成功后标记 integrityVerified；报告包含逐文件路径/字节数/模式及打包大小，位于产物目录，不进入 tarball。
 
 打包流程仍仅执行 npm pack --offline --ignore-scripts，不执行 publish/stage/login，不提供任何自动发布任务。目标目录独立、写入无覆盖、临时暂存清理保持原有保护。JSON 原有字段保留，新增 contents 路径供核对；审查报告的 publicationPerformed 固定为 false，不能代替账户/版本/内容的最终人工确认。
