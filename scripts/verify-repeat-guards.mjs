@@ -17,7 +17,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { runWorkspaceVp } from "../packages/create/src/workspace.mjs";
 import { tmpdir } from "./temp-directory.mjs";
 
-const cli = fileURLToPath(new URL("../packages/create/bin/cli.mjs", import.meta.url));
+const sourceCli = fileURLToPath(new URL("../packages/create/bin/cli.mjs", import.meta.url));
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 
 async function snapshot(directory) {
@@ -45,7 +45,7 @@ async function snapshot(directory) {
 
 // Real tools create and build the fixtures. Only negative/no-op commands load a
 // child-process probe: an unexpected installer or formatter must fail the check.
-export async function verifyRepeatGuards({ models = false } = {}) {
+export async function verifyRepeatGuards({ models = false, cli = sourceCli } = {}) {
   const parent = tmpdir(),
     root = await mkdtemp(join(parent, "adui-repeat-guards-"));
   assert.equal(dirname(root), parent);

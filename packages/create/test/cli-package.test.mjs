@@ -30,7 +30,15 @@ test("CLI 本地包保留资源与官方提示依赖，不带测试或生命周�
     ),
   );
   assert.equal(packedManifest.author, "ADui");
-  for (const field of ["author", "description", "license", "homepage", "bugs", "repository"])
+  for (const field of [
+    "version",
+    "author",
+    "description",
+    "license",
+    "homepage",
+    "bugs",
+    "repository",
+  ])
     assert.deepEqual(packedManifest[field], sourceManifest[field]);
   assert.deepEqual(packedManifest.keywords, sourceManifest.keywords);
   assert.ok(Array.isArray(packedManifest.keywords) && packedManifest.keywords.length > 0);

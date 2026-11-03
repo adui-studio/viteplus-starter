@@ -393,3 +393,9 @@ workspace-noop.test以Vue TS和React JS业务夹具调用真实CLI，用子进�
 model-security/setup.modelPluginConfig集中检查已有aduiModels或adui-model-build引用，并生成实际配置增量；create/model-protection预检与setupModelPlugin写入复用它，避免两阶段条件不一致导致引擎已安装后才发现重复配置。保留原有保守拒绝规则，不自动迁移或覆盖既有注册。
 
 model-addon-recovery.test通过真实CLI和受控子进程边界验证：Vue TS/React JS的两类配置标记在安装前阻塞；模型格式化返回29时保留.env.local、三份配置原件备份及业务入口，重试于预检拒绝且全部文件内容/修改时间不变。手动重复保护工具增加--models模式，真实补装和双入口加密构建与负向探针分开；首次依赖返回23的受控失败不生成预设，随后真实工具重试成功。
+
+## 实际CLI候选验收
+
+verify-cli-package接收本地tgz及同目录pack-contents.json，先核对SHA-512、版本和包名，再使用当前Node的npm JS入口在唯一临时根隔离安装，固定ignore-scripts且不保存锁文件。直接执行npm创建的Windows CMD / POSIX bin检查帮助与两种框架预览，调用目录含中文、空格、&和单引号；Windows工具shim路径中的百分号等CMD扩展字符提前拒绝，调用目录作为cwd数据传递。
+
+verify-repeat-guards的内部函数新增可选cli路径参数，默认仍为工作区源码入口，原命令行保持不变。包验收工具传入已安装包内CLI，以同一模型代表回归完成真实官方创建、补装及构建；配置、资源与子CLI相对路径均来自安装包。加密产物校验仍复用仓库验证工具，不把这些工具打进npm包。两个工具各自清理拥有的临时根，候选tgz和侧车清单保留于dist/cli。

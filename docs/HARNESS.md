@@ -256,3 +256,23 @@ node scripts/verify-repeat-guards.mjs --models
 它仍创建两个官方成员，初始启用AdScreen；分别补装Three + embedded/external模型保护，并显式保留验收页。首次Three依赖命令由探针返回23，断言未改工作区；随后正常重试，使用实际工具安装依赖、生成KEY与备份，并为每应用构建首页/模型双入口。模型夹具为脚本自建的最小自包含GLB，不读取用户模型。复用verify-model-app检查部署base、.adui解密一致性以及产物无原模型和原始KEY字面量，再执行完整ready及check。
 
 两应用各执行重复模型补装、切换保护模式、重复Three验收页及空补装，共8项保护检查；179份文件（本轮实际值）的哈希和修改时间不变，包含KEY及原件备份。JSON增加modelBuilds和controlledInstallFailures；受控首次失败不等于真实网络中断验收。写入后格式化中断的拒绝覆盖边界由model-addon-recovery单元用例验证，不自动删除部分文件恢复。
+
+## 实际tgz隔离安装回归
+
+打包后使用同目录带pack-contents.json的实际tgz，Windows示例：
+
+```powershell
+$bundle = npm --silent run cli:pack | ConvertFrom-Json
+if ($LASTEXITCODE -ne 0) { throw 'CLI 打包失败' }
+node scripts/verify-cli-package.mjs $bundle.tarball
+```
+
+POSIX示例（将路径替换为打包JSON中的实际值）：
+
+```sh
+node scripts/verify-cli-package.mjs '/path/to/pack-xxxx/adui-viteplus-starter-0.1.3.tgz'
+```
+
+工具先校验SHA-512、源清单版本和包名，随后在自建临时安装目录中执行npm install --ignore-scripts。直接调用安装器创建的命令shim，检查帮助、Vue/React预览及特殊字符调用目录，再用安装包内CLI执行--models代表场景；需要网络、Vite+及带npm的Node，耗时数分钟。npm入口从npm_execpath或当前Node标准布局读取，不经Shell查找或拼接安装命令。
+
+最终JSON记录包身份、integrity、binHelp/binPreviews及嵌套regression。temporaryInstallRemoved和regression.temporaryRootRemoved均在对应finally清理完成后才返回；实际tgz和侧车不会删除。没有默认测试、CI、发布或后台执行入口。安装后的普通/负向调用与工作区源码单元测试分开记录。

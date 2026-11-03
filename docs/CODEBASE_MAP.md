@@ -11,6 +11,7 @@
 - scripts/verify-repeat-guards.mjs：自建真实官方混合工程，补装/构建后验证8次重复与空操作，限定临时目录清理；手动运行说明见HARNESS。
 - model-security/src/setup.mjs、create/src/model-protection.mjs：modelPluginConfig统一已有模型配置检查与增量生成，补装预检提前阻塞。
 - create/test/model-addon-recovery.test.mjs：Vue/React预检零子进程及模型格式化中断后的KEY/备份/业务文件保护；verify-repeat-guards --models复验真实Three/模型补装与密文构建。
+- scripts/verify-cli-package.mjs：实际tgz完整性、隔离安装、原生命令shim及安装后生成器回归；verify-repeat-guards内部可选cli参数复用同一代表场景。
 
 ## 社区与发布
 

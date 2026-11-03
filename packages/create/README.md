@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **项目生成 CLI · v0.1.2**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。源码新增macOS/Linux适配，公开0.1.2尚未包含本轮修复；当前源码的使用方式与验收范围见 [跨平台指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md)。
+> **项目生成 CLI · v0.1.3 本地候选，尚未发布**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。候选包含macOS/Linux兼容与补装保护修复；包名命令仍取得公开版本。当前源码的使用方式与验收范围见 [跨平台指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md)。
 
 ## 快速开始
 
@@ -23,16 +23,16 @@
 从希望存放新项目的父目录任选一种命令，替换为实际 tgz 路径：
 
 ```powershell
-vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
+vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.3.tgz'
 # 或
-pnpm dlx 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
+pnpm dlx 'C:\Downloads\adui-viteplus-starter-0.1.3.tgz'
 ```
 
 <details>
 <summary>使用 npm 运行本地 tgz</summary>
 
 ```powershell
-npm exec --yes --package 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz' -- viteplus-starter
+npm exec --yes --package 'C:\Downloads\adui-viteplus-starter-0.1.3.tgz' -- viteplus-starter
 ```
 
 </details>
