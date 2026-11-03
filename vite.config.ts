@@ -11,6 +11,12 @@ export default defineConfig({
   },
   fmt: {
     // Keep imported Skills identical to their upstream source and installation hashes.
-    ignorePatterns: [".agents/skills/git-commit/**", ".agents/skills/gitmoji/**"],
+    ignorePatterns: [
+      ".agents/skills/git-commit/**",
+      ".agents/skills/gitmoji/**",
+      ".agents/skills/create-readme/**",
+      ".agents/skills/github-issues/**",
+      ".agents/skills/github-release/**",
+    ],
   },
 });

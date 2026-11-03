@@ -253,3 +253,9 @@ NFR-003：根开发工作区和 CLI 源清单的作者均为 ADui；根补齐项
 ## 2026-11-03 仓库地址迁移
 
 NFR-003：项目当前仓库为 `adui-studio/viteplus-starter`。源清单及实际分发清单的仓库、主页、反馈地址和日常下载文档统一使用新地址，npm包名保持 `@adui/viteplus-starter`。本地Git远程及现有main完整提交历史迁至新仓库；历史验收记录保留原地址并注明日期。此要求不包含删除原仓库、迁移Issue/PR、npm/Release发布或任何流水线。
+
+## 2026-11-03 社区模板与0.1.2发布授权
+
+用户现已明确要求增加Release、Issue/PR模板、整理新增Skills、分步提交推送及发布新版npm。本轮采用补丁版本0.1.2，同步此前作者和新仓库元信息；授权包含此版本人工npm及GitHub Release发布，不包含流水线、自动部署或发布以后版本。
+
+NFR-003：提供中文Bug/Feature/Chore表单、默认PR模板、手动发布说明分类和CHANGELOG。模板聚焦Windows生成器场景、配置、复现与实际验证，不批量创建示例Issue/PR。Skills保留实际使用的6项，移除重复或无场景项，保留导入原文及来源哈希。公开发布结果必须经registry与GitHub实际返回确认。

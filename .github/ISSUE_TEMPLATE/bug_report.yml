@@ -1,0 +1,38 @@
+name: 问题反馈
+description: 报告 Windows 创建、补装、检查或构建问题。
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 问题与预期行为
+      description: 说明实际结果，以及你希望得到的结果。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境和项目配置
+      description: 填写 Windows、Node、Vite+、包管理器和 Starter 版本，以及框架、语言、UI/CSS、大屏和引擎选项。
+      placeholder: Windows 11 / Node 22.18.0 / Vite+ 1.4.0 / pnpm / Vue TS / Element Plus / Tailwind
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 提供完整命令或最小批量 JSON，说明是新建、补装还是已有工作区操作。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志与截图
+      description: 提供失败阶段和相关输出；请先移除密钥、令牌及其他私人信息。
+      render: shell
+  - type: textarea
+    id: existing-files
+    attributes:
+      label: 已有项目情况
+      description: 如涉及补装，说明业务入口是否自定义、已安装的插件，以及执行前后的文件变化。

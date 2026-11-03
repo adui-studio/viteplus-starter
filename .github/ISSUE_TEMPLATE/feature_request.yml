@@ -1,0 +1,31 @@
+name: 功能建议
+description: 建议生成器能力、预设或使用体验改进。
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 使用场景与问题
+      description: 说明当前生成或补装流程遇到了什么问题。
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 期望方案
+      description: 说明受影响的 Application/Monorepo、Vue/React、语言或插件组合。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 列出可观察的完成条件和需要保护的已有文件。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案与相关需求
+      description: 可附需求编号、示例配置、设计或相关 Issue。
