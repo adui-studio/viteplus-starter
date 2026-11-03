@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm, mkdir, writeFile, readFile, readdir, stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { join, resolve, dirname, basename } from "node:path";
 import { validateProjectOptions } from "../src/options.mjs";
 import { runMultiEngine } from "../src/multi-engine.mjs";

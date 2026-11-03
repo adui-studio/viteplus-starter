@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, readFile, writeFile, readdir, rm } from "node:fs/promises";
 import { join, resolve, dirname, basename } from "node:path";
-import { tmpdir } from "node:os";
+import { tmpdir } from "./temp-directory.mjs";
 import { build, createServer } from "vite-plus";
 import { aduiModels } from "../packages/model-security/src/vite.mjs";
 import { decryptAdui } from "../packages/model-security/src/adui.mjs";

@@ -1,2 +1,6 @@
 # Preserve the user-provided brand asset byte-for-byte on every checkout.
 packages/create/assets/adui-studio-logo.svg -text
+
+# POSIX launchers need an LF shebang, including when packed on Windows.
+packages/create/bin/cli.mjs text eol=lf
+scripts/create.mjs text eol=lf

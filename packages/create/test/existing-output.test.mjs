@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, readFile, writeFile, readdir, rm, symlink, stat } from "node:fs/promises";
 import { join, dirname } from "node:path";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
 import { validateProjectOptions } from "../src/options.mjs";
@@ -336,7 +336,7 @@ test("显式 Three 验收 CLI 同样归档新增运行时并保留独立页面",
     preload,
     `import childProcess from 'node:child_process';
 import {syncBuiltinESMExports} from 'node:module';
-childProcess.spawnSync = command => { if (!String(command).startsWith('vp fmt ')) throw Error('unexpected child'); return {status:0}; };
+childProcess.spawnSync = (command, args) => { const invocation = Array.isArray(args) ? [command, ...args].join(' ') : String(command); if (!invocation.startsWith('vp fmt ')) throw Error('unexpected child'); return {status:0}; };
 syncBuiltinESMExports();\n`,
   );
   const result = spawnSync(

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { spawnSync } from "node:child_process";
 import { mkdtemp, readdir, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseCliArgs } from "../src/cli-args.mjs";

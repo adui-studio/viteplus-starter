@@ -12,7 +12,9 @@ export async function inspectPath(path, label = "生成器目标") {
         throw new Error(label + " 父路径不是目录：" + current);
       if (current === target) result = stat;
     } catch (error) {
-      if (error.code !== "ENOENT") throw error;
+      // Linux/macOS report ENOTDIR for descendants of a file; keep walking so
+      // the actual occupied ancestor gets the same explicit rejection on every OS.
+      if (error.code !== "ENOENT" && error.code !== "ENOTDIR") throw error;
     }
     if (dirname(current) === current) break;
   }

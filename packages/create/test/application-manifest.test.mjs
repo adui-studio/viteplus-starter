@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, readFile, writeFile, readdir, lstat, rm, unlink } from "node:fs/promises";
 import { join, dirname, basename, resolve } from "node:path";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { addScreenPreset } from "../src/screen.mjs";
 import { preflightUiSmoke } from "../src/ui-smoke.mjs";
 import { validateThreeTarget } from "../src/three-smoke.mjs";

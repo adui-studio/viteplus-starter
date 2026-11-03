@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, readFile, writeFile, rm, symlink } from "node:fs/promises";
 import { join } from "node:path";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { setupModelPlugin } from "../src/setup.mjs";
 test("安装器增量配置、保留原件、拒绝重复与覆盖或链接", async (t) => {
   const root = await mkdtemp(join(tmpdir(), "adui-setup-"));

@@ -1,5 +1,5 @@
 import { applicationInvocations } from "./application-invocations.mjs";
-import { pendingRecovery, recoveryAdvice } from "./recovery.mjs";
+import { pendingRecovery, recoveryAdvice, formatPendingRecovery } from "./recovery.mjs";
 import { lstat, readFile, realpath, stat } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -281,9 +281,7 @@ export async function executeBatch(plan, runner = runStep, report = console.log)
       "\n" +
       recoveryAdvice +
       "\n若根目录已存在，不要重跑相同 batch；若不存在，确认无残留后重新规划。修复失败阶段并确认工作区完整后，按顺序处理以下未执行步骤；以下命令未经现场可执行性确认：\n" +
-      recovery
-        .map((step) => step.label + "\n工作目录：" + step.cwd + "\nPowerShell：" + step.powershell)
-        .join("\n");
+      formatPendingRecovery(recovery);
     throw error;
   }
   return { workspaceRoot: current.workspaceRoot, completed };

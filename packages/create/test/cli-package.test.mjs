@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { stageCliPackage } from "../../../scripts/cli-package.mjs";
@@ -24,6 +24,11 @@ test("CLI 本地包保留资源与官方提示依赖，不带测试或生命周�
     await readFile(new URL("../package.json", import.meta.url), "utf8"),
   );
   const packedManifest = JSON.parse(await readFile(join(directory, "package.json"), "utf8"));
+  assert.ok(
+    (await readFile(join(directory, "packages/create/bin/cli.mjs"), "utf8")).startsWith(
+      "#!/usr/bin/env node\n",
+    ),
+  );
   assert.equal(packedManifest.author, "ADui");
   for (const field of ["author", "description", "license", "homepage", "bugs", "repository"])
     assert.deepEqual(packedManifest[field], sourceManifest[field]);

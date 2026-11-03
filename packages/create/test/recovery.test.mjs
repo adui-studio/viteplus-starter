@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, writeFile, readFile, readdir, rm, stat } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
-import { createStageRunner, pendingRecovery } from "../src/recovery.mjs";
+import { createStageRunner, pendingRecovery, formatPendingRecovery } from "../src/recovery.mjs";
 
 test("阶段报告只计入成功步骤，保留原因/退出码，不重试失败动作", async () => {
   const run = createStageRunner("D:/workspace/app");
@@ -53,6 +53,40 @@ test("待执行指引保留 argv，PowerShell 单引号转义空格、引号及�
   );
   hint.args.push("changed");
   assert.equal(steps[0].args.length, 3);
+});
+
+test("POSIX 指引保留引号、空参数及元字符，在 POSIX 本机验证参数往返", () => {
+  const args = ["a'b", "", "name & $HOME; `printf changed`", "$(printf expanded)", "line\nbreak"];
+  const [hint] = pendingRecovery([
+    {
+      label: "参数检查",
+      cwd: "/work/中文 路径",
+      command: process.execPath,
+      args: ["-e", "process.stdout.write(JSON.stringify(process.argv.slice(1)))", ...args],
+    },
+  ]);
+  assert.ok(hint.posix.includes("'a'\\''b'"));
+  assert.ok(hint.posix.includes("''"));
+  assert.ok(hint.posix.includes("'$(printf expanded)'"));
+  assert.ok(!hint.posix.startsWith("& "));
+  if (process.platform !== "win32") {
+    const result = spawnSync("/bin/sh", ["-c", hint.posix], { encoding: "utf8" });
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout), args);
+  }
+});
+
+test("失败摘要按 Windows/macOS/Linux 选择本机命令，保留双格式 JSON 指引", () => {
+  const steps = pendingRecovery([
+    { label: "应用 app", cwd: "/work/space 'quote", command: "node", args: ["a'b.mjs"] },
+  ]);
+  assert.match(formatPendingRecovery(steps, "win32"), /PowerShell：& 'node' 'a''b.mjs'/);
+  for (const platform of ["darwin", "linux"]) {
+    const formatted = formatPendingRecovery(steps, platform);
+    assert.ok(formatted.includes("sh/zsh：" + steps[0].posix));
+    assert.ok(!formatted.includes("PowerShell："));
+    assert.ok(formatted.includes(steps[0].cwd));
+  }
 });
 
 test("真实 CLI 验收失败打印阶段与目标，退出非零且保留已有文件", async (t) => {

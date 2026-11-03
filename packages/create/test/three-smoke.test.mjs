@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { symlinkSync } from "node:fs";
 import { mkdtemp, mkdir, writeFile, readFile, rm, symlink } from "node:fs/promises";
 import { join } from "node:path";
-import { tmpdir } from "node:os";
+import { tmpdir } from "../../../scripts/temp-directory.mjs";
 import { parseCliArgs } from "../src/cli-args.mjs";
 import { planThreeSmoke, addThreeSmoke } from "../src/three-smoke.mjs";
 

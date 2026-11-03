@@ -25,11 +25,27 @@ export function createStageRunner(target) {
 // These are reviewable instructions, never shell-executed by the recovery code.
 export function pendingRecovery(steps) {
   const quote = (value) => "'" + String(value).replaceAll("'", "''") + "'";
+  const quotePosix = (value) => "'" + String(value).replaceAll("'", "'\\''") + "'";
   return steps.map((step) => ({
     label: step.label,
     cwd: step.cwd,
     command: step.command,
     args: [...step.args],
     powershell: "& " + [step.command, ...step.args].map(quote).join(" "),
+    posix: [step.command, ...step.args].map(quotePosix).join(" "),
   }));
+}
+
+export function formatPendingRecovery(steps, platform = process.platform) {
+  const windows = platform === "win32";
+  return steps
+    .map(
+      (step) =>
+        step.label +
+        "\n工作目录：" +
+        step.cwd +
+        "\n" +
+        (windows ? "PowerShell：" + step.powershell : "sh/zsh：" + step.posix),
+    )
+    .join("\n");
 }
