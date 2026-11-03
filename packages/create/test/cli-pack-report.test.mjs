@@ -9,7 +9,7 @@ const manifest = {
   license: "MIT",
   author: "ADui",
   keywords: ["vite-plus", "vue", "react"],
-  repository: { type: "git", url: "git+https://github.com/adui-dev/viteplus-starter.git" },
+  repository: { type: "git", url: "git+https://github.com/adui-studio/viteplus-starter.git" },
 };
 function metadata() {
   return {

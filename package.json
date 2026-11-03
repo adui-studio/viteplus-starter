@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "description": "ADui Vite+ 交互式项目生成器开发工作区",
-  "homepage": "https://github.com/adui-dev/viteplus-starter#readme",
+  "homepage": "https://github.com/adui-studio/viteplus-starter#readme",
   "bugs": {
-    "url": "https://github.com/adui-dev/viteplus-starter/issues"
+    "url": "https://github.com/adui-studio/viteplus-starter/issues"
   },
   "license": "MIT",
   "author": "ADui",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adui-dev/viteplus-starter.git"
+    "url": "git+https://github.com/adui-studio/viteplus-starter.git"
   },
   "type": "module",
   "scripts": {

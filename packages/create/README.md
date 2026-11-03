@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/adui-dev/viteplus-starter/main/docs/assets/readme-banner.svg" alt="ADui Vite+ Starter：Vue、React 与 Monorepo 官方模板及插件预设" width="1280" />
+  <img src="https://raw.githubusercontent.com/adui-studio/viteplus-starter/main/docs/assets/readme-banner.svg" alt="ADui Vite+ Starter：Vue、React 与 Monorepo 官方模板及插件预设" width="1280" />
 </p>
 
 <h1 align="center">ADui Vite+ Starter</h1>
 
 <p align="center">
   基于 Vite+ 官方模板，按需组合 UI、CSS、大屏与 3D。<br />
-  <a href="https://github.com/adui-dev/viteplus-starter">源码</a> ·
-  <a href="https://github.com/adui-dev/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md">使用指南</a> ·
-  <a href="https://github.com/adui-dev/viteplus-starter/issues">问题反馈</a>
+  <a href="https://github.com/adui-studio/viteplus-starter">源码</a> ·
+  <a href="https://github.com/adui-studio/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md">使用指南</a> ·
+  <a href="https://github.com/adui-studio/viteplus-starter/issues">问题反馈</a>
 </p>
 
 > [!NOTE]
@@ -132,11 +132,11 @@ Monorepo 根不指定框架、语言或插件，各应用独立配置。全部�
 
 ## 文档
 
-| 主题       | 入口                                                                                                                                                                                       |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 使用与接入 | [Windows 指南](https://github.com/adui-dev/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md) · [目录与补装](https://github.com/adui-dev/viteplus-starter/blob/main/docs/PROJECT_LAYOUT.md) |
-| 批量与模型 | [批量配置](https://github.com/adui-dev/viteplus-starter/blob/main/docs/BATCH_CONFIG.md) · [模型构建](https://github.com/adui-dev/viteplus-starter/blob/main/docs/MODEL_BUILD.md)           |
-| 分发与范围 | [CLI 分发](https://github.com/adui-dev/viteplus-starter/blob/main/docs/CLI_DISTRIBUTION.md) · [验收范围](https://github.com/adui-dev/viteplus-starter/blob/main/docs/V1_ACCEPTANCE.md)     |
+| 主题       | 入口                                                                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 使用与接入 | [Windows 指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md) · [目录与补装](https://github.com/adui-studio/viteplus-starter/blob/main/docs/PROJECT_LAYOUT.md) |
+| 批量与模型 | [批量配置](https://github.com/adui-studio/viteplus-starter/blob/main/docs/BATCH_CONFIG.md) · [模型构建](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MODEL_BUILD.md)           |
+| 分发与范围 | [CLI 分发](https://github.com/adui-studio/viteplus-starter/blob/main/docs/CLI_DISTRIBUTION.md) · [验收范围](https://github.com/adui-studio/viteplus-starter/blob/main/docs/V1_ACCEPTANCE.md)     |
 
 <details>
 <summary>从源码生成本地 CLI 包</summary>

@@ -43,13 +43,15 @@ test("CLI 本地包保留资源与官方提示依赖，不带测试或生命周�
   );
   assert.equal(rootManifest.private, true);
   assert.equal(rootManifest.author, "ADui");
+  for (const field of ["author", "license", "homepage", "bugs", "repository"])
+    assert.deepEqual(rootManifest[field], packedManifest[field]);
   assert.deepEqual(manifest.publishConfig, {
     access: "public",
     registry: "https://registry.npmjs.org/",
   });
   assert.equal(manifest.license, "MIT");
-  assert.equal(manifest.repository.url, "git+https://github.com/adui-dev/viteplus-starter.git");
-  assert.equal(manifest.bugs.url, "https://github.com/adui-dev/viteplus-starter/issues");
+  assert.equal(manifest.repository.url, "git+https://github.com/adui-studio/viteplus-starter.git");
+  assert.equal(manifest.bugs.url, "https://github.com/adui-studio/viteplus-starter/issues");
   assert.equal(manifest.bin["viteplus-starter"], "packages/create/bin/cli.mjs");
   assert.deepEqual(manifest.dependencies, { "@voidzero-dev/vite-plus-prompts": "1.4.0" });
   assert.equal(manifest.scripts, undefined);

@@ -45,12 +45,12 @@
 **从 GitHub 下载。** 在项目父目录执行，工具目录 `viteplus-starter` 须不存在：
 
 ```powershell
-vp create github:adui-dev/viteplus-starter
+vp create github:adui-studio/viteplus-starter
 Set-Location -LiteralPath viteplus-starter
 vp run create
 ```
 
-也支持 `vp create https://github.com/adui-dev/viteplus-starter`。GitHub 命令下载生成器仓库，`vp run create` 才会启动配置向导，新应用与工具仓库并列生成。
+也支持 `vp create https://github.com/adui-studio/viteplus-starter`。GitHub 命令下载生成器仓库，`vp run create` 才会启动配置向导，新应用与工具仓库并列生成。
 
 **已有本地 tgz：直接运行。** 在项目父目录任选一种，替换为实际包路径：
 
@@ -225,7 +225,7 @@ Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App
 <summary>本地开发与 CLI 打包</summary>
 
 ```powershell
-git clone https://github.com/adui-dev/viteplus-starter.git
+git clone https://github.com/adui-studio/viteplus-starter.git
 Set-Location -LiteralPath viteplus-starter
 vp install --frozen-lockfile
 node packages/create/bin/cli.mjs --help
