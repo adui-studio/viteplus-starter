@@ -45,6 +45,8 @@ node packages/model-security/bin/cli.mjs keygen-env --out ../my-three-app/.env.l
 
 安装器增量添加 adui-model-build、虚拟模块声明、独立 model-smoke 页面、密钥脚本与 Git 忽略规则，并向官方 Vite 插件列表追加 aduiModels。已有 Vite、package.json 和 .gitignore 原件保存在相应 `.before-adui-models` 备份，其他配置保留；正式首页、App/main、大屏和已有引擎源码不覆盖。已有输出/备份、链接路径或旧运行时不匹配时拒绝。不会安装依赖或自动迁移旧快照；失败保留现场，不自动回滚。
 
+使用创建器的 `--apply-existing --engine three --model-protection embedded` 补装时，引擎依赖由创建器安装；已有模型插件注册或构建引用现会在补装预检提前拒绝。若失败时尚未写入预设，可修复依赖安装原因后重试。若已写入模型配置、KEY或备份，重复执行会拒绝覆盖；先按错误阶段核对Git diff和原件备份，保留.env.local及业务文件，不通过删除KEY或清空插件目录强行重跑。工具不提供部分模型安装的自动续跑。
+
 在 `.env.local` 中配置：
 
 ```dotenv

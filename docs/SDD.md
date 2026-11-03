@@ -387,3 +387,9 @@ scripts/temp-directory.mjs只对OS提供的临时根realpath；本地pack与两�
 CLI保留预检时的pnpm-workspace.yaml原文快照。工作区整理阶段仅在当前内容与快照不同时调用该文件的fmt，并在成功后刷新快照，避免同次创建的后续整理重复格式化。Vue声明忽略规则仍独立按实际变更格式化根Vite配置；首次peer/catalog变更照常处理。无需补装时不写文件、不启动子进程。
 
 workspace-noop.test以Vue TS和React JS业务夹具调用真实CLI，用子进程探针阻止安装/格式化，并比较全部文件原字节和修改时间。手动verify-repeat-guards使用实际官方模板创建、安装和构建两个成员，随后对重复插件、重复CSS、重复UI页和基础样式空操作验证同一保护边界。
+
+## 模型配置预检与中断边界
+
+model-security/setup.modelPluginConfig集中检查已有aduiModels或adui-model-build引用，并生成实际配置增量；create/model-protection预检与setupModelPlugin写入复用它，避免两阶段条件不一致导致引擎已安装后才发现重复配置。保留原有保守拒绝规则，不自动迁移或覆盖既有注册。
+
+model-addon-recovery.test通过真实CLI和受控子进程边界验证：Vue TS/React JS的两类配置标记在安装前阻塞；模型格式化返回29时保留.env.local、三份配置原件备份及业务入口，重试于预检拒绝且全部文件内容/修改时间不变。手动重复保护工具增加--models模式，真实补装和双入口加密构建与负向探针分开；首次依赖返回23的受控失败不生成预设，随后真实工具重试成功。

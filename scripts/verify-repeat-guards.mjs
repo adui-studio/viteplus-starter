@@ -45,7 +45,7 @@ async function snapshot(directory) {
 
 // Real tools create and build the fixtures. Only negative/no-op commands load a
 // child-process probe: an unexpected installer or formatter must fail the check.
-export async function verifyRepeatGuards() {
+export async function verifyRepeatGuards({ models = false } = {}) {
   const parent = tmpdir(),
     root = await mkdtemp(join(parent, "adui-repeat-guards-"));
   assert.equal(dirname(root), parent);
@@ -58,7 +58,8 @@ export async function verifyRepeatGuards() {
   }
   const probe = join(root, "probe.mjs"),
     probeLog = join(root, "spawn.jsonl");
-  const cases = [];
+  const cases = [],
+    installFailures = [];
   try {
     await mkdir(cwd);
     await writeFile(
@@ -79,8 +80,13 @@ syncBuiltinESMExports();\n`,
         version: 1,
         name: "repeat-workspace",
         apps: [
-          { name: "admin", framework: "vue" },
-          { name: "portal", framework: "react", language: "js" },
+          { name: "admin", framework: "vue", ...(models ? { screen: true } : {}) },
+          {
+            name: "portal",
+            framework: "react",
+            language: "js",
+            ...(models ? { screen: true } : {}),
+          },
         ],
       }),
     );
@@ -108,41 +114,117 @@ syncBuiltinESMExports();\n`,
         "--language",
         language,
       ];
-      const install = [...base, "--ui", ui, "--css", css, "--screen", "--apply-existing"];
+      const mode = framework === "vue" ? "embedded" : "external";
+      const install = models
+        ? [
+            ...base,
+            "--engine",
+            "three",
+            "--model-protection",
+            mode,
+            "--smoke-pages",
+            "--apply-existing",
+          ]
+        : [...base, "--ui", ui, "--css", css, "--screen", "--apply-existing"];
       const smoke = [...base, "--ui", ui, "--css", css, "--ui-smoke"];
+      if (models) {
+        const before = await snapshot(workspace);
+        const preload = join(root, name + "-install.mjs"),
+          calls = join(root, name + "-install.log");
+        await writeFile(
+          preload,
+          `import childProcess from 'node:child_process';
+import {writeFileSync} from 'node:fs';
+import {syncBuiltinESMExports} from 'node:module';
+childProcess.spawnSync = (command,args) => {
+  const invocation=Array.isArray(args)?[command,...args].join(' '):String(command);
+  writeFileSync(${JSON.stringify(calls)},invocation,{flag:'wx'});
+  return {status:23};
+};
+syncBuiltinESMExports();\n`,
+        );
+        const failed = spawnSync(
+          process.execPath,
+          ["--import", pathToFileURL(preload).href, cli, ...install],
+          { cwd, encoding: "utf8", timeout: 30000 },
+        );
+        if (failed.error) throw failed.error;
+        assert.equal(failed.status, 23, failed.stderr);
+        assert.match(failed.stderr, /阶段：Three 集成/);
+        assert.match(await readFile(calls, "utf8"), /^vp add three@0\.186\.1 --save-exact$/);
+        assert.deepEqual(await snapshot(workspace), before, "受控安装失败后改写了工作区");
+        installFailures.push({ app: name, exitCode: 23, toolCalls: 1, unchanged: true });
+      }
       run(install);
-      run(smoke);
+      if (models) {
+        // Minimal self-contained GLB: pipeline fixture only, no browser rendering claim.
+        const json = Buffer.from('{"asset":{"version":"2.0"}}'.padEnd(28, " "));
+        const glb = Buffer.alloc(20 + json.length);
+        glb.writeUInt32LE(0x46546c67);
+        glb.writeUInt32LE(2, 4);
+        glb.writeUInt32LE(glb.length, 8);
+        glb.writeUInt32LE(json.length, 12);
+        glb.writeUInt32LE(0x4e4f534a, 16);
+        glb.set(json, 20);
+        await writeFile(join(directory, "src/models/pipeline.glb"), glb, { flag: "wx" });
+        const verification = spawnSync(
+          process.execPath,
+          [fileURLToPath(new URL("./verify-model-app.mjs", import.meta.url)), directory],
+          { cwd, stdio: "inherit" },
+        );
+        if (verification.error) throw verification.error;
+        assert.equal(verification.status, 0, "模型双入口/密文验收失败");
+      } else run(smoke);
       assert.equal(digest(await readFile(appPath)), businessHash, "业务 App 被补装改写");
-      cases.push({ name, base, install, smoke, businessHash, appPath });
+      cases.push({ name, base, install, smoke, mode, businessHash, appPath });
     }
     runWorkspaceVp(workspace, ["run", "ready"]);
     runWorkspaceVp(workspace, ["check"]);
     const before = await snapshot(workspace),
       results = [];
     for (const current of cases) {
-      for (const [kind, args, expectedExit, reason] of [
-        ["repeat-addons", current.install, 1, /阶段：补装预检/],
-        [
-          "repeat-css",
-          [
-            ...current.base,
-            "--ui",
-            "none",
-            "--css",
-            current.install[current.install.indexOf("--css") + 1],
-            "--apply-existing",
-          ],
-          1,
-          /创建失败/,
-        ],
-        ["repeat-smoke", current.smoke, 1, /阶段：UI 验收页/],
-        [
-          "base-styles-noop",
-          [...current.base, "--ui", "none", "--css", "none", "--apply-existing"],
-          0,
-          undefined,
-        ],
-      ]) {
+      const guards = models
+        ? [
+            ["repeat-model-addons", current.install, 1, /阶段：补装预检/],
+            [
+              "change-model-mode",
+              [
+                ...current.base,
+                "--engine",
+                "three",
+                "--model-protection",
+                current.mode === "embedded" ? "external" : "embedded",
+                "--apply-existing",
+              ],
+              1,
+              /阶段：补装预检/,
+            ],
+            ["repeat-three-smoke", [...current.base, "--three-smoke"], 1, /阶段：Three 集成/],
+          ]
+        : [
+            ["repeat-addons", current.install, 1, /阶段：补装预检/],
+            [
+              "repeat-css",
+              [
+                ...current.base,
+                "--ui",
+                "none",
+                "--css",
+                current.install[current.install.indexOf("--css") + 1],
+                "--apply-existing",
+              ],
+              1,
+              /创建失败/,
+            ],
+            ["repeat-smoke", current.smoke, 1, /阶段：UI 验收页/],
+          ];
+      guards.push([
+        "base-styles-noop",
+        [...current.base, "--ui", "none", "--css", "none", "--apply-existing"],
+        0,
+        undefined,
+      ]);
+      for (const [kind, args, expectedExit, reason] of guards) {
         const result = spawnSync(
           process.execPath,
           ["--import", pathToFileURL(probe).href, cli, ...args],
@@ -166,6 +248,8 @@ syncBuiltinESMExports();\n`,
       node: process.version,
       uid: typeof process.getuid === "function" ? process.getuid() : null,
       profiles: cases.length,
+      modelBuilds: models ? cases.length : 0,
+      controlledInstallFailures: installFailures,
       guardedCommands: results,
       unchangedFiles: Object.keys(before).length,
       appHashes: Object.fromEntries(cases.map((item) => [item.name, item.businessHash])),
@@ -183,7 +267,12 @@ syncBuiltinESMExports();\n`,
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    console.log(JSON.stringify(await verifyRepeatGuards(), null, 2));
+    const args = process.argv.slice(2);
+    if (args.length && (args.length !== 1 || args[0] !== "--models"))
+      throw new Error("用法：node scripts/verify-repeat-guards.mjs [--models]");
+    console.log(
+      JSON.stringify(await verifyRepeatGuards({ models: args.includes("--models") }), null, 2),
+    );
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

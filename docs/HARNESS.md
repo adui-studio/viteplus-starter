@@ -246,3 +246,13 @@ node scripts/verify-repeat-guards.mjs
 两个应用各验证重复插件、重复CSS、重复UI页和基础样式空操作，共8次调用。仅这些保护分支注入子进程探针；任何安装/格式化调用都会使验证失败，同时比较113份文件（当前官方模板）的内容与修改时间。文件数随模板变化，以实际JSON为准，不作为固定断言。业务App哈希需在正向补装前后保持一致。
 
 输出先包含工具日志，最后是结果JSON；进程退出码非0表示失败。成功或失败均在finally校验临时根归属后清理自建工程，不删除用户目录；最终JSON中的temporaryRootRemoved仅在清理成功返回后输出。此脚本不作为node --test默认用例，也不增加CI或后台任务。
+
+3D/模型保护使用同一工具的独立模式：
+
+```sh
+node scripts/verify-repeat-guards.mjs --models
+```
+
+它仍创建两个官方成员，初始启用AdScreen；分别补装Three + embedded/external模型保护，并显式保留验收页。首次Three依赖命令由探针返回23，断言未改工作区；随后正常重试，使用实际工具安装依赖、生成KEY与备份，并为每应用构建首页/模型双入口。模型夹具为脚本自建的最小自包含GLB，不读取用户模型。复用verify-model-app检查部署base、.adui解密一致性以及产物无原模型和原始KEY字面量，再执行完整ready及check。
+
+两应用各执行重复模型补装、切换保护模式、重复Three验收页及空补装，共8项保护检查；179份文件（本轮实际值）的哈希和修改时间不变，包含KEY及原件备份。JSON增加modelBuilds和controlledInstallFailures；受控首次失败不等于真实网络中断验收。写入后格式化中断的拒绝覆盖边界由model-addon-recovery单元用例验证，不自动删除部分文件恢复。

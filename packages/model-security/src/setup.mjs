@@ -6,6 +6,14 @@ import {
   installedPresetPath,
   rewriteInstalledPluginPaths,
 } from "../../create/src/plugin-paths.mjs";
+export function modelPluginConfig(source, keyMode) {
+  if (source.includes("aduiModels") || source.includes("adui-model-build"))
+    throw new Error("模型插件已配置，拒绝重复安装");
+  return injectStarterPlugins(source, {
+    imports: ["import { aduiModels } from './adui-model-build/vite.mjs'"],
+    plugins: ["aduiModels({keyMode:" + JSON.stringify(keyMode) + "})"],
+  });
+}
 export async function setupModelPlugin(project, keyMode = "embedded", engine = "three") {
   if (!["three", "babylon", "cesium"].includes(engine)) throw new Error("不支持的模型引擎");
   if (!["external", "embedded"].includes(keyMode))
@@ -61,12 +69,7 @@ export async function setupModelPlugin(project, keyMode = "embedded", engine = "
   if (configs.length !== 1) throw new Error("无法唯一识别 Vite 配置");
   const configPath = join(root, configs[0]),
     original = await readFile(configPath, "utf8");
-  if (original.includes("aduiModels") || original.includes("adui-model-build"))
-    throw new Error("模型插件已配置，拒绝重复安装");
-  const updated = injectStarterPlugins(original, {
-    imports: ["import { aduiModels } from './adui-model-build/vite.mjs'"],
-    plugins: ["aduiModels({keyMode:" + JSON.stringify(keyMode) + "})"],
-  });
+  const updated = modelPluginConfig(original, keyMode);
   const files = modelSmoke(framework, language, keyMode, engine);
   const scripts = {
     "models:keygen": "node adui-model-build/keygen.mjs",

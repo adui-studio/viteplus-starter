@@ -9,6 +9,8 @@
 - docs/MACOS_LINUX.md：当前源码的sh/zsh命令、Linux实测与macOS待实机边界；.gitattributes固定两入口LF。
 - packages/create/bin/cli.mjs、test/workspace-noop.test.mjs：工作区配置内容变化时才格式化，Vue/React空补装不启动子进程并保留文件修改时间。
 - scripts/verify-repeat-guards.mjs：自建真实官方混合工程，补装/构建后验证8次重复与空操作，限定临时目录清理；手动运行说明见HARNESS。
+- model-security/src/setup.mjs、create/src/model-protection.mjs：modelPluginConfig统一已有模型配置检查与增量生成，补装预检提前阻塞。
+- create/test/model-addon-recovery.test.mjs：Vue/React预检零子进程及模型格式化中断后的KEY/备份/业务文件保护；verify-repeat-guards --models复验真实Three/模型补装与密文构建。
 
 ## 社区与发布
 

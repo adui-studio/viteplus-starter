@@ -1,9 +1,8 @@
 import { lstat, mkdir, writeFile, readFile } from "node:fs/promises";
-import { injectStarterPlugins } from "./vite-config.mjs";
 import { dirname, join, resolve } from "node:path";
 import { validateProjectOptions, modelEngine } from "./options.mjs";
 import { modelSmoke } from "../../model-security/src/smoke.mjs";
-import { setupModelPlugin } from "../../model-security/src/setup.mjs";
+import { setupModelPlugin, modelPluginConfig } from "../../model-security/src/setup.mjs";
 import { generateProjectKey } from "../../model-security/src/project-key.mjs";
 import { runWorkspaceVp } from "./workspace.mjs";
 import { rejectGroupedPreset } from "./plugin-paths.mjs";
@@ -89,10 +88,7 @@ export async function preflightModelProtection(directory, input) {
     for (const ext of ["ts", "js", "mts", "mjs"])
       if (await inspect(join(directory, "vite.config." + ext))) configs.push("vite.config." + ext);
     if (configs.length !== 1) throw new Error("无法唯一识别 Vite 配置");
-    injectStarterPlugins(await readFile(join(directory, configs[0]), "utf8"), {
-      imports: [],
-      plugins: ["aduiModels()"],
-    });
+    modelPluginConfig(await readFile(join(directory, configs[0]), "utf8"), plan.mode);
   }
 }
 export async function addModelProtection(directory, input, runner = runWorkspaceVp) {
