@@ -15,11 +15,12 @@
   <a href="#常用操作">常用操作</a> ·
   <a href="#项目结构">项目结构</a> ·
   <a href="#文档">文档</a> ·
+  <a href="https://github.com/adui-studio/viteplus-starter/releases">Releases</a> ·
   <a href="LICENSE">MIT</a>
 </p>
 
 > [!NOTE]
-> **Windows CLI · v0.1.1**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。
+> **Windows CLI · v0.1.2**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。
 
 ## 功能
 
@@ -55,16 +56,16 @@ vp run create
 **已有本地 tgz：直接运行。** 在项目父目录任选一种，替换为实际包路径：
 
 ```powershell
-vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.1.tgz'
+vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
 # 或
-pnpm dlx 'C:\Downloads\adui-viteplus-starter-0.1.1.tgz'
+pnpm dlx 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
 ```
 
 <details>
 <summary>使用 npm 运行本地 tgz</summary>
 
 ```powershell
-npm exec --yes --package 'C:\Downloads\adui-viteplus-starter-0.1.1.tgz' -- viteplus-starter
+npm exec --yes --package 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz' -- viteplus-starter
 ```
 
 </details>

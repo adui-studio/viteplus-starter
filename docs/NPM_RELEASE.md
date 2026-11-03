@@ -58,6 +58,12 @@ if ($LASTEXITCODE -ne 0) { throw '候选包安装失败' }
 3. **只有用户明确授权发布后**，才同步版本/README 状态并调整 CLI 源清单的 private 状态，重新打包、核对新 integrity 并复验；工作区根继续 private。打包器读取源 private 布尔值，不另藏一个相互冲突的固定值。
 4. 最终发布必须指向已复验的 CLI tarball，不能在仓库根误发整个开发工作区。不添加流水线、安装钩子发布或其他自动发布入口。
 
-2026-11-03 最新只读检查：npm whoami 返回 adui，符合个人作用域 @adui；目标包公开查询为 E404，权限列表尚无目标包。此前 ENEEDAUTH 为用户登录前的历史状态。个人作用域规则见 [npm scopes](https://docs.npmjs.com/about-scopes/)。未直接读取或记录任何凭据内容，授权后的上传结果单独记录。
+2026-11-03 首发前只读检查（历史）：npm whoami 返回 adui，符合个人作用域 @adui；目标包当时公开查询为 E404，权限列表尚无目标包。此前 ENEEDAUTH 为用户登录前的历史状态。个人作用域规则见 [npm scopes](https://docs.npmjs.com/about-scopes/)。未直接读取或记录任何凭据内容，授权后的上传结果单独记录。
 
 `private: true` 会让 npm 拒绝发布；publishConfig 只声明发布时的目标设置，不会自行执行发布。依据：[npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#private)。后续更新仍须按 [npm 官方发布说明](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/) 完成人工授权与身份验证，不能将打包或 dry-run 当成实际发布。
+
+## 0.1.2 候选与本轮授权
+
+用户明确要求增加Release、Issue/PR模板，整理Skills、分步提交推送并发布新版npm。本轮选择0.1.2补丁，同步作者ADui、新仓库链接及包内README；不改变运行逻辑或依赖。GitHub新增社区模板、CHANGELOG和手动发布说明，详见 [发布步骤](RELEASING.md)。
+
+本地候选 `dist/cli/pack-MxmoCs/adui-viteplus-starter-0.1.2.tgz` 共92文件、101420字节，SHA-512为 `sha512-aaTMfz1850eTyN/pdpKqzlozrAFnTfvitb85YAgBDKAgGUcVY0uY2LUlI3UfCPrErWcMzEnf/sh3FEH6CXIUvw==`。与公开0.1.1对比，仅归档内package.json及README改变，其他90文件字节一致。291/291测试、全仓vp check及文档校验通过；YAML解析和表单结构核验通过。隔离安装9个包，Windows shim帮助与Vue/React预览通过，中文空格与元字符调用目录正确且无项目生成；对该具体tgz的publish dry-run通过。尚未据此声明上传或公开Release成功，实际结果另记。

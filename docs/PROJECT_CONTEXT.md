@@ -927,3 +927,11 @@ npm包名仍为 `@adui/viteplus-starter`，作者ADui；未改版本、依赖、
 本轮291/291测试、文档校验、155代码文件lint和13份改动文件格式检查通过；全仓 `vp check` 仍因已安装Skills的20份文件格式问题退出1，原文和锁文件未改。实际本地tgz `dist/cli/pack-3z4p6V/adui-viteplus-starter-0.1.1.tgz` 共92文件，归档清单的仓库/主页/反馈、作者与包内README链接均通过新地址核验，完整性通过。GitHub连接器实际读取新仓库的README、横幅与原始Logo成功，克隆Logo的SHA-256与用户原件一致。未将Git克隆等同新地址的Vite+远程创建实测；记录见 `dist/verification/migration-*`。下一步继续公开CLI的已有应用补装与入口保护验收。
 
 本轮独立临时克隆已按自有路径、系统临时父目录、非链接和真实路径核验后清理，迁移日志与结构化证据保留。
+
+## 2026-11-03 社区模板与0.1.2候选
+
+用户明确授权增加GitHub Release、Issue/PR模板，整理新增Skills，提交推送并发布新版npm。本轮采用0.1.2补丁：同步作者ADui与新仓库元信息，CLI运行逻辑及依赖未变。增加Bug/Feature/Chore表单、PR模板、release.yml分类、CHANGELOG与手动发布说明；不创建示例Issue/PR或任何工作流。
+
+Skills保留starter-preset-development、git-commit、gitmoji、create-readme、github-issues、github-release；移除3个重复批量建Issue Skill及issue-fields-migration，其安装副本仅在忽略目录备份。按原有第三方导入策略精确排除5个保留导入目录的格式化，保留原文与来源哈希，自有Skill继续检查。候选验证、提交、npm及GitHub发布结果另记，未将准备工作称为已发布。
+
+发布前验证：291/291测试、文档校验及完整vp check通过（214份格式文件、155代码文件），无跳过。5份YAML均实际解析，表单必填项/唯一ID、Release分类与无workflow检查通过。pack-MxmoCs候选92文件、101420字节，实际SHA-512通过；与公开0.1.1仅清单/README有差异，其他90文件字节相同。隔离安装、Windows shim和Vue TS/React JS代表预览通过，未创建目标；npm publish dry-run对该具体tgz退出0，npm whoami为adui。状态仍为待实际发布。
