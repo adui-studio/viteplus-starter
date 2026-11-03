@@ -16,6 +16,7 @@ const required = [
   "docs/GENERATOR_STATUS.md",
   "docs/V1_ACCEPTANCE.md",
   "docs/WINDOWS_GUIDE.md",
+  "docs/MACOS_LINUX.md",
   "examples/README.md",
   "docs/CESIUM.md",
   "docs/BABYLON.md",

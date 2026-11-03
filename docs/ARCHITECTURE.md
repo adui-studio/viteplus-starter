@@ -21,6 +21,8 @@ flowchart TD
 
 ## 模块边界
 
+- 平台层复用现有Windows命令分支与POSIX argv执行，不复制框架模板。恢复报告提供双Shell格式；仅OS临时根解析为物理路径，任意输出路径仍按safe-paths逐级检查。平台原生与受控验证分别记录，见 [跨平台指南](MACOS_LINUX.md)。
+
 - GitHub 入口由 Vite+ 下载工具仓库；scripts/create.mjs 经不缓存的 vp run create 启动原 CLI，cwd 为工具父目录。下载与项目创建分两步，官方基础模板来源不变。
 - 本地 CLI 分发由 scripts/cli-package.mjs 按固定范围暂存原 CLI 和预设源码，scripts/pack-cli.mjs 通过 npm pack 输出独立 tgz。保留 sibling 资源路径，不引入运行时打包器或框架模板；bin 直接启动原 CLI，cwd 为实际调用目录，和 GitHub 启动器的工具父目录策略分开。详见 [分发说明](CLI_DISTRIBUTION.md)。
 

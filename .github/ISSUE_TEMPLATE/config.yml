@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: macOS / Linux 使用指南
+    url: https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md
+    about: 跨平台命令、当前源码使用方式和验证边界。
   - name: Windows 使用指南
     url: https://github.com/adui-studio/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md
     about: 创建、补装和本地检查的操作说明。

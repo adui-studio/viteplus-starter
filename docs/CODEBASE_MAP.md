@@ -1,5 +1,13 @@
 # 代码索引
 
+## 跨平台
+
+- packages/create/src/recovery.mjs、batch.mjs：双Shell只读指引及本机失败摘要，保留原始argv和旧powershell字段。
+- packages/create/src/safe-paths.mjs：继续逐级拒绝未知链接，统一POSIX父路径占用报错。
+- scripts/temp-directory.mjs：OS临时根真实路径，pack/验证脚本及35份测试夹具共用。
+- test-support/vp-shim.mjs：Windows/POSIX的真实CLI失败夹具；temporary-root/recovery/cli-package测试覆盖别名、转义和LF入口。
+- docs/MACOS_LINUX.md：当前源码的sh/zsh命令、Linux实测与macOS待实机边界；.gitattributes固定两入口LF。
+
 ## 社区与发布
 
 - .github/ISSUE_TEMPLATE：Bug/Feature/Chore表单及文档入口；.github/pull_request_template.md：默认PR模板。

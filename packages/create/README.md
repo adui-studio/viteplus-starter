@@ -12,11 +12,11 @@
 </p>
 
 > [!NOTE]
-> **Windows CLI · v0.1.2**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。
+> **项目生成 CLI · v0.1.2**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。源码新增macOS/Linux适配，公开0.1.2尚未包含本轮修复；当前源码的使用方式与验收范围见 [跨平台指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md)。
 
 ## 快速开始
 
-**环境**：Windows，Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`，可运行的 Vite+ `vp` 与 pnpm。首次启动和创建需要网络或完整依赖缓存。
+**环境**：Windows / PowerShell，macOS、Linux / sh或zsh；Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`，可运行的 Vite+ `vp` 与 pnpm。首次启动和创建需要网络或完整依赖缓存。以下Windows路径在macOS/Linux上请替换为引号包裹的实际路径。
 
 ### 使用本地 tgz
 
@@ -132,11 +132,11 @@ Monorepo 根不指定框架、语言或插件，各应用独立配置。全部�
 
 ## 文档
 
-| 主题       | 入口                                                                                                                                                                                             |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 使用与接入 | [Windows 指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md) · [目录与补装](https://github.com/adui-studio/viteplus-starter/blob/main/docs/PROJECT_LAYOUT.md) |
-| 批量与模型 | [批量配置](https://github.com/adui-studio/viteplus-starter/blob/main/docs/BATCH_CONFIG.md) · [模型构建](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MODEL_BUILD.md)           |
-| 分发与范围 | [CLI 分发](https://github.com/adui-studio/viteplus-starter/blob/main/docs/CLI_DISTRIBUTION.md) · [验收范围](https://github.com/adui-studio/viteplus-starter/blob/main/docs/V1_ACCEPTANCE.md)     |
+| 主题       | 入口                                                                                                                                                                                                                                                                                            |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 使用与接入 | [Windows 指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/WINDOWS_GUIDE.md) · [macOS/Linux](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md) · [目录与补装](https://github.com/adui-studio/viteplus-starter/blob/main/docs/PROJECT_LAYOUT.md) |
+| 批量与模型 | [批量配置](https://github.com/adui-studio/viteplus-starter/blob/main/docs/BATCH_CONFIG.md) · [模型构建](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MODEL_BUILD.md)                                                                                                          |
+| 分发与范围 | [CLI 分发](https://github.com/adui-studio/viteplus-starter/blob/main/docs/CLI_DISTRIBUTION.md) · [验收范围](https://github.com/adui-studio/viteplus-starter/blob/main/docs/V1_ACCEPTANCE.md)                                                                                                    |
 
 <details>
 <summary>从源码生成本地 CLI 包</summary>

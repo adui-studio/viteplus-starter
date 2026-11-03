@@ -1,8 +1,15 @@
 name: 问题反馈
-description: 报告 Windows 创建、补装、检查或构建问题。
+description: 报告创建、补装、检查或构建问题。
 title: "[Bug] "
 labels: [bug]
 body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 操作系统
+      options: [Windows, macOS, Linux]
+    validations:
+      required: true
   - type: textarea
     id: problem
     attributes:
@@ -14,7 +21,7 @@ body:
     id: environment
     attributes:
       label: 环境和项目配置
-      description: 填写 Windows、Node、Vite+、包管理器和 Starter 版本，以及框架、语言、UI/CSS、大屏和引擎选项。
+      description: 填写系统版本和CPU架构、Node、Vite+、包管理器和Starter版本，以及框架、语言、UI/CSS、大屏和引擎选项；Linux另附发行版。
       placeholder: Windows 11 / Node 22.18.0 / Vite+ 1.4.0 / pnpm / Vue TS / Element Plus / Tailwind
     validations:
       required: true

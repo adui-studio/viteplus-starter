@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：Windows V1 CLI 公开分发后的实际使用验收与问题修复。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，latest、作者、新仓库、20个关键词及下载完整性已核验；继续验证已有应用补装和业务入口保护。现有恢复、三引擎及代表大屏专项范围见文末及 GENERATOR_STATUS；自定义布局、其他操作系统与覆盖式恢复不在本阶段范围。
+- 当前阶段：用户已追加macOS/Linux要求，源码补齐POSIX提示与临时路径兼容，继续验证已有应用补装和业务入口保护。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，但尚不包含本轮跨平台改动。Windows/Linux原生与macOS受控验证范围分开记录；自定义布局、覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 使用已发布的0.1.2 CLI继续验证Windows已有应用补装及业务入口保护；依据具体反馈修复创建、补装及输入校验问题，不重复扩张组合或新增业务演示。任何后续npm/Release发布仍需明确授权。
+1. 完成本轮跨平台源码与已有应用补装验收，下一步补macOS实机的安装、TTY、创建/补装及完整构建；已有Windows证据保留。依据具体问题修复生成器，不扩展业务查看器。后续npm/Release版本仍需明确授权，不复用已完成的0.1.2授权。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -943,3 +943,21 @@ Skills保留starter-preset-development、git-commit、gitmoji、create-readme、
 用户完成npm浏览器验证后，同一候选上传退出0；registry处理后version/latest均为0.1.2，作者ADui、新repository/homepage/bugs及20个关键词一致，公开下载101420字节与候选SHA-512完全相同。两种公开包名入口的显式0.1.2帮助均退出0。无重复上传，未覆盖旧版本。
 
 模板/Skills与候选分别提交为b36067f、d538320并推送；v0.1.2签注标签固定d538320f384d188119b472c4c527fcadeedd6cd5，GitHub Release已通过浏览器人工发布。公开API确认非草稿、非预发布，页面显示Latest及正确提交。GitHub选择页显示3个Issue模板和Windows指南，Bug表单字段正常渲染；没有创建示例Issue/PR或流水线。证据见dist/verification/v012-publish-evidence.json、v012-release-evidence.json及对应截图/日志。发布后文档另行提交，不移动已发布标签。
+
+## 2026-11-03 macOS / Linux源码适配与已有应用保护
+
+用户追加macOS与Linux要求，覆盖此前仅Windows限制。继续生成器主线，补齐恢复指引、路径、分发和原生验证，不开发业务查看器。恢复JSON保留powershell并增加posix，批量失败摘要按本机Shell显示；真实恢复仍使用重建argv，不执行显示文本。
+
+OS临时根通过scripts/temp-directory规范为物理路径，供pack、两个验证脚本和35份测试夹具使用；解决macOS标准/var别名与路径保护的冲突，不放行用户输出中的未知链接。safe-paths统一处理POSIX的ENOTDIR，继续向上定位非目录祖先。两个真实CLI退出码测试改为Windows/POSIX可执行shim，不再跳过；另修正一处仅识别Windows格式命令字符串的测试夹具。两CLI入口由.gitattributes固定LF，安装后执行性另行验证。
+
+### 本轮实际验证
+
+- Windows Node22.18.0与Linux Node26.13.0均295/295测试通过，无跳过；Linux首轮发现2处差异，分别通过父目录占用错误归一化和跨平台格式夹具修正，未放宽文件保护或跳过断言。
+- Linux使用用户已有Docker Desktop创建独立容器，官方Vite+1.4.0镜像，Debian12 x64；冻结锁文件安装106个依赖，工作区依赖声明/锁文件不升级。Windows构建的RhZwRL tgz在Linux实际安装，bin具备执行权限且直接帮助调用成功；没有依赖原开发工作区node_modules。
+- 从该安装后的CLI在含中文、空格、&和单引号目录中实际创建官方Monorepo、Vue TS与React JS应用；加入业务App/main标记，再补装Vue Element Plus/Tailwind、React Ant Design/UnoCSS及两应用AdScreen。两个App精确哈希不变；main仅新增样式，去除CSS导入并归一化格式空白后原代码一致，normalize内容不变，新增预设位于src/plugins。
+- 根ready无缓存8/8通过，构建后check为63份格式文件、32份代码文件通过；只读对照两个应用present且无问题，重复创建退出1。根不含UI/CSS直接依赖。官方TypeScript7实验性提示和已有Volar peer范围警告保留，不宣称上游声明已修复；本轮无Linux桌面浏览器/WebGL验收。
+- Windows把子进程TEMP/TMP/TMPDIR指向自有别名后真实打包成功，pack暂存目录被清理。macOS标准临时根场景由真实路径/链接受控测试覆盖，但尚无macOS设备；其原生安装、TTY、创建/补装和构建仍待验收，不能用Linux结果替代。
+
+日志、Linux结构化结果和本地候选位于忽略目录dist/verification/cross-platform-*。本轮不改公开0.1.2、标签或Release，不据上一轮已完成授权发布新版本。文档和最终本地检查、容器清理结果另记。
+
+最终收尾：两端完整vp check均通过（218份格式文件、158代码文件），文档校验通过；指南9段sh代码仅做语法检查且通过，Issue操作系统选项YAML解析通过。Windows最终R6EUkf与Linux原生xnkXHv包均92文件，实际字节及SHA-512完全一致；本地候选保留，不上传。Linux临时容器核对随机名称、初始ID、官方镜像和源码只读挂载后已删除，测试工作区/应用/隔离安装随容器清理；Windows临时别名验证目录亦已清理，用户原有工程未改。下一步补macOS原生验收；当前只能交付其兼容代码及受控证据，不声称macOS已实机通过。

@@ -6,6 +6,8 @@ GitHub 来源的 `vp create github:adui-studio/viteplus-starter` 下载工具仓
 
 0.1.2为当前公开版本，同步作者与新仓库元信息，也可继续本地打包。打包结果提供 contents 路径，对应实际文件清单 pack-contents.json，包含 MIT LICENSE、关键词、包元信息与 integrity，清单不进入 tarball。
 
+源码已追加macOS/Linux适配，尚未发布到npm。当前源码的POSIX操作见 [跨平台指南](MACOS_LINUX.md)；下面Windows路径示例需在其他系统替换为实际路径，并使用引号。旧tgz不会获得源码更新。
+
 ## 构建本地包
 
 在生成器仓库根目录执行：

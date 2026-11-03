@@ -120,7 +120,7 @@ Chrome 中 Vue TS 与 React JS 两页面均通过按钮点击 0→1、CSS 颜色
 
 ## 失败后的人工恢复指引
 
-批量失败报告增加每个未执行步骤的工作目录和 PowerShell 命令；API 的 error.recovery.pending 同时保留 command/args 数组。命令由重新校验后的原计划生成，路径和参数使用 PowerShell 单引号转义，不拼入失败原因。恢复报告不会运行命令、写入状态文件或保存密钥。
+批量失败报告列出每个未执行步骤的工作目录，Windows显示PowerShell、macOS/Linux显示sh/zsh命令；API的error.recovery.pending保留command/args和powershell，新增posix。两种文本分别按对应Shell单引号规则转义，不拼入失败原因。恢复报告不会运行命令、写入状态文件或保存密钥。POSIX操作与实际验证见 [跨平台指南](MACOS_LINUX.md)。
 
 先处理失败阶段，再按顺序处理未执行步骤。失败阶段可能部分完成，报告不为该阶段生成盲目重试命令。后面的 UI Smoke 命令可能依赖失败应用恢复完成，不能直接跳过修复执行。根目录已存在时重跑同一个 batch 仍被拒绝；根目录不存在时应先确认无残留，再重新规划。
 

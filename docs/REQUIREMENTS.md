@@ -109,7 +109,7 @@
 - 验收：提供本地单元测试、文档检查与构建说明；**不得新增 CI/CD 工作流**。
 - 生成、补装、旧配置修复及失败指引区分应用和工作区根：应用使用 vp check、vp run build 执行模板提供的完整构建（TS 模板包含类型检查），官方 Monorepo 根使用 vp run ready。单独 vp build 或结构检查不等同完整构建；独立验收页仍需专项构建或开发服务器与浏览器验收。
 - 运行时：与当前锁定 Vite+ 1.4.0 的支持范围一致，Node `^22.18.0 || ^24.11.0 || >=26.0.0`；Node 22 最低为 22.18.0。复验需确认 CLI 与官方工具子进程的实际运行时，不能只验证最外层 Node 版本；步骤见 [Harness](HARNESS.md#node-22-最低版本复验)。
-- 交付平台：用户于 2026-10-30 明确本阶段只需 Windows；Linux/macOS 不列入本阶段验收或阻塞项，保留未实测声明。继续验证 Windows 的路径、创建、恢复、文件保护及构建，不因此扩展功能。
+- 交付平台：用户于2026-11-03追加macOS与Linux要求，取代此前仅Windows的阶段限制。复用官方模板与现有预设，补齐POSIX命令、临时路径与分发入口；按平台分别记录实际验证，不能以Linux容器或受控测试替代macOS实机验收。操作与边界见 [macOS/Linux指南](MACOS_LINUX.md)。
 
 ### NFR-003 可维护性
 
@@ -261,3 +261,11 @@ NFR-003：项目当前仓库为 `adui-studio/viteplus-starter`。源清单及实
 NFR-003：提供中文Bug/Feature/Chore表单、默认PR模板、手动发布说明分类和CHANGELOG。模板聚焦Windows生成器场景、配置、复现与实际验证，不批量创建示例Issue/PR。Skills保留实际使用的6项，移除重复或无场景项，保留导入原文及来源哈希。公开发布结果必须经registry与GitHub实际返回确认。
 
 本轮交付已完成：0.1.2已公开于npm并指向latest，作者、新仓库、关键词及下载完整性核验通过；GitHub v0.1.2为非草稿/非预发布Release，标签固定验收提交d538320。三类Issue模板已在GitHub选择页显示，Bug表单实际渲染通过；PR模板已提交。完整本地检查通过，后续版本与平台写操作仍按明确授权执行。
+
+## 2026-11-03 macOS / Linux扩展
+
+NFR-002/003：当前源码兼容Windows/PowerShell与macOS/Linux的POSIX命令形式。恢复JSON保留powershell并增加posix，批量摘要选择本机格式；原始command/args保持且不执行报告文本。参数中的引号、空值、空格、中文和Shell元字符按字面值保留。
+
+操作系统临时根先规范为真实路径以兼容macOS标准别名，用户输出路径继续拒绝未知链接；POSIX的ENOTDIR应明确报告实际占用的父路径。入口保持LF；测试夹具统一使用物理临时根，批量/恢复CLI失败保护测试不再仅在Windows执行。
+
+验收：Windows和Linux均295项测试通过、无跳过；Linux x64实际安装Windows构建的tgz、创建官方混合工作区、补装两类UI/CSS及大屏，完整ready/检查通过，保护业务App和main原代码。macOS实现与受控验证已补齐，原生安装、TTY、构建和浏览器仍待实机验证。本轮不自动发布新npm/Release，不扩大服务端或业务查看器范围。

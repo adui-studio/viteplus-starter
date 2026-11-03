@@ -20,7 +20,7 @@
 </p>
 
 > [!NOTE]
-> **Windows CLI · v0.1.2**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。
+> **项目生成 CLI · v0.1.2**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。源码新增 macOS/Linux 适配，尚未进入公开0.1.2；使用当前源码或重新打包，验证范围见 [跨平台指南](docs/MACOS_LINUX.md)。
 
 ## 功能
 
@@ -39,7 +39,7 @@
 
 ## 快速开始
 
-**环境**：Windows / PowerShell，Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`，可运行的 Vite+ `vp` 与 pnpm。首次创建需要网络或完整的模板、依赖缓存。
+**环境**：Windows / PowerShell，macOS、Linux / sh或zsh；Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`，可运行的 Vite+ `vp` 与 pnpm。首次创建需要网络或完整的模板、依赖缓存。以下命令块使用PowerShell，macOS/Linux操作见 [指南](docs/MACOS_LINUX.md)。
 
 ### 1. 启动配置向导
 
@@ -211,16 +211,16 @@ Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App
 
 ## 文档
 
-| 主题       | 指南                                                                                                                                                  |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 开始使用   | [Windows 操作](docs/WINDOWS_GUIDE.md) · [CLI 分发](docs/CLI_DISTRIBUTION.md) · [项目结构](docs/PROJECT_LAYOUT.md)                                     |
-| 工作区     | [Monorepo](docs/MONOREPO.md) · [批量配置](docs/BATCH_CONFIG.md) · [配置示例](examples/README.md)                                                      |
-| 大屏与引擎 | [AdScreen](docs/SCREEN.md) · [Three.js](docs/THREE_SMOKE.md) · [Cesium](docs/CESIUM.md) · [Babylon](docs/BABYLON.md) · [多引擎](docs/MULTI_ENGINE.md) |
-| 模型与验收 | [模型构建](docs/MODEL_BUILD.md) · [模型加密](docs/MODEL_SECURITY.md) · [UI 验收](docs/UI_SMOKE.md)                                                    |
-| 交付范围   | [当前能力](docs/GENERATOR_STATUS.md) · [验收范围](docs/V1_ACCEPTANCE.md) · [首发准备](docs/NPM_RELEASE.md)                                            |
-| 开发维护   | [协作规范](AGENTS.md) · [架构](docs/ARCHITECTURE.md) · [代码索引](docs/CODEBASE_MAP.md) · [本地验证](docs/HARNESS.md)                                 |
+| 主题       | 指南                                                                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 开始使用   | [Windows 操作](docs/WINDOWS_GUIDE.md) · [macOS/Linux](docs/MACOS_LINUX.md) · [CLI 分发](docs/CLI_DISTRIBUTION.md) · [项目结构](docs/PROJECT_LAYOUT.md) |
+| 工作区     | [Monorepo](docs/MONOREPO.md) · [批量配置](docs/BATCH_CONFIG.md) · [配置示例](examples/README.md)                                                       |
+| 大屏与引擎 | [AdScreen](docs/SCREEN.md) · [Three.js](docs/THREE_SMOKE.md) · [Cesium](docs/CESIUM.md) · [Babylon](docs/BABYLON.md) · [多引擎](docs/MULTI_ENGINE.md)  |
+| 模型与验收 | [模型构建](docs/MODEL_BUILD.md) · [模型加密](docs/MODEL_SECURITY.md) · [UI 验收](docs/UI_SMOKE.md)                                                     |
+| 交付范围   | [当前能力](docs/GENERATOR_STATUS.md) · [验收范围](docs/V1_ACCEPTANCE.md) · [首发准备](docs/NPM_RELEASE.md)                                             |
+| 开发维护   | [协作规范](AGENTS.md) · [架构](docs/ARCHITECTURE.md) · [代码索引](docs/CODEBASE_MAP.md) · [本地验证](docs/HARNESS.md)                                  |
 
-当前验证覆盖 Windows 下的代表组合；完整构建、浏览器验收和未覆盖范围以验收文档为准。
+当前验证覆盖Windows代表组合及Linux x64的创建、补装和完整构建；macOS相关代码已适配但尚无实机验收。跨平台命令与边界见 [macOS/Linux指南](docs/MACOS_LINUX.md)，浏览器与其他组合范围以验收文档为准。
 
 <details>
 <summary>本地开发与 CLI 打包</summary>

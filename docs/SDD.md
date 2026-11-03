@@ -373,3 +373,11 @@ cli-pack-report 只接收 npm pack 的元信息，核对包名/版本/标准 sco
 .github/ISSUE_TEMPLATE 使用GitHub表单组织Bug/Feature/Chore输入，config指向Windows指南；默认PR模板记录行为变化和本地验证。release.yml只定义手动生成说明的分类，没有工作流或运行脚本。CHANGELOG记录版本差异，docs/RELEASING定义npm具体tgz、完整性、源码提交、Git标签与Release之间的人工核验关系，不更改生成器运行逻辑或打包边界。
 
 第三方保留Skills采用已有精确目录格式排除策略，原文不变；锁文件删除不用项、保留来源哈希，自有Skill继续检查。0.1.2只同步公开元信息和社区维护能力，根版本与其余私有包不联动升级。
+
+## macOS / Linux兼容
+
+recovery.pendingRecovery保留powershell并生成POSIX单引号转义的posix，formatPendingRecovery按process.platform选择摘要展示；batch调用展示函数，执行器仍只接收重建后的argv。测试验证darwin/linux/win32显示、空参数及元字符，POSIX机器另通过/bin/sh实际验证参数往返。
+
+scripts/temp-directory.mjs只对OS提供的临时根realpath；本地pack与两个验证工具复用，35份测试夹具仅替换此导入以避开macOS /var标准别名。safe-paths仍拒绝输出中的链接，ENOTDIR时继续向上检查并报告真实非目录祖先。两个失败退出码测试使用test-support/vp-shim的Windows CMD或POSIX sh包装，跨平台执行相同断言；existing-output格式夹具同时识别shell字符串与直接argv，不放宽真实文件保护。
+
+.gitattributes仅为两个CLI入口固定LF，分发后的可执行性以Linux实际安装和直接调用验证，不依赖Windows tar头部权限。依赖与运行时插件来源不变；本轮变更属于Unreleased，公开0.1.2及其标签不改写。
