@@ -17,7 +17,7 @@ node .\viteplus-starter\packages\create\bin\cli.mjs --name starter-react-p3 --ty
 
 本项目**不使用 CI/CD**。所有检查由开发者本地手动执行。
 
-自有文件统一使用根 `vite.config.ts` 中的 Vite+ 格式配置。第三方 `git-commit`、`gitmoji` Skill 原文仅从格式化范围排除以保持安装哈希；自有 Skill、源码、测试和文档继续参与全仓检查。2026-10-27 已建立通过 `vp check` 的格式基线。
+自有文件统一使用根 `vite.config.ts` 中的 Vite+ 格式配置。第三方 `git-commit`、`gitmoji`、`create-readme`、`github-issues`、`github-release` Skill 原文仅从格式化范围排除以保持来源内容；自有 Skill、源码、测试、社区模板和文档继续参与全仓检查。保留项及适用范围见 [Skills](SKILLS.md)，2026-11-03完整 `vp check` 已通过。
 
 ## P4 Monorepo 混合应用
 

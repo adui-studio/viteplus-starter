@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：Windows V1 CLI 公开分发后的实际使用验收与问题修复。@adui/viteplus-starter@0.1.1 已公开发布，latest、20 个关键词及下载完整性已核验；继续使用公开包验证真实创建、正式首页和混合工作区。现有恢复、三引擎及代表大屏专项范围见文末及 GENERATOR_STATUS；自定义布局、其他操作系统与覆盖式恢复不在本阶段范围。
+- 当前阶段：Windows V1 CLI 公开分发后的实际使用验收与问题修复。@adui/viteplus-starter@0.1.2及GitHub Release v0.1.2已公开，latest、作者、新仓库、20个关键词及下载完整性已核验；继续验证已有应用补装和业务入口保护。现有恢复、三引擎及代表大屏专项范围见文末及 GENERATOR_STATUS；自定义布局、其他操作系统与覆盖式恢复不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 使用已发布的 0.1.1 CLI 验证 Windows 真实项目创建、正式首页和混合工作区；依据具体反馈修复创建、补装及输入校验问题，不重复扩张组合或新增业务演示。任何后续 npm/Release 发布仍需明确授权。
+1. 使用已发布的0.1.2 CLI继续验证Windows已有应用补装及业务入口保护；依据具体反馈修复创建、补装及输入校验问题，不重复扩张组合或新增业务演示。任何后续npm/Release发布仍需明确授权。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -935,3 +935,11 @@ npm包名仍为 `@adui/viteplus-starter`，作者ADui；未改版本、依赖、
 Skills保留starter-preset-development、git-commit、gitmoji、create-readme、github-issues、github-release；移除3个重复批量建Issue Skill及issue-fields-migration，其安装副本仅在忽略目录备份。按原有第三方导入策略精确排除5个保留导入目录的格式化，保留原文与来源哈希，自有Skill继续检查。候选验证、提交、npm及GitHub发布结果另记，未将准备工作称为已发布。
 
 发布前验证：291/291测试、文档校验及完整vp check通过（214份格式文件、155代码文件），无跳过。5份YAML均实际解析，表单必填项/唯一ID、Release分类与无workflow检查通过。pack-MxmoCs候选92文件、101420字节，实际SHA-512通过；与公开0.1.1仅清单/README有差异，其他90文件字节相同。隔离安装、Windows shim和Vue TS/React JS代表预览通过，未创建目标；npm publish dry-run对该具体tgz退出0，npm whoami为adui。状态仍为待实际发布。
+
+### 0.1.2 npm与GitHub Release完成
+
+本轮隔离安装与含中文/空格/元字符的调用目录已在自有临时路径核验后清理，保留已发布tgz、验证日志、Release截图和v012-final-evidence.json。删除的无用Skills不再位于项目Skill目录，其安装备份仅在忽略目录；当前保留6项，安装锁文件同步。发布后再次完整vp check和文档校验通过。
+
+用户完成npm浏览器验证后，同一候选上传退出0；registry处理后version/latest均为0.1.2，作者ADui、新repository/homepage/bugs及20个关键词一致，公开下载101420字节与候选SHA-512完全相同。两种公开包名入口的显式0.1.2帮助均退出0。无重复上传，未覆盖旧版本。
+
+模板/Skills与候选分别提交为b36067f、d538320并推送；v0.1.2签注标签固定d538320f384d188119b472c4c527fcadeedd6cd5，GitHub Release已通过浏览器人工发布。公开API确认非草稿、非预发布，页面显示Latest及正确提交。GitHub选择页显示3个Issue模板和Windows指南，Bug表单字段正常渲染；没有创建示例Issue/PR或流水线。证据见dist/verification/v012-publish-evidence.json、v012-release-evidence.json及对应截图/日志。发布后文档另行提交，不移动已发布标签。

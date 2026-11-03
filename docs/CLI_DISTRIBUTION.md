@@ -2,9 +2,9 @@
 
 GitHub 来源的 `vp create github:adui-studio/viteplus-starter` 下载工具仓库，再由 `vp run create` 启动向导。要直接进入 UI/CSS、大屏和引擎选择，使用本地 CLI 安装包入口。
 
-本轮候选为 `@adui/viteplus-starter@0.1.2`，命令名 `viteplus-starter`，latest 指向 0.1.1。CLI 清单 private:false，发布及包名验收结果见 [发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器。运行环境为 Windows、已安装的 `vp` 和受支持 Node；基础工程仍委托 Vite+ 官方模板。
+当前公开包为 `@adui/viteplus-starter@0.1.2`，命令名 `viteplus-starter`，latest 指向 0.1.2。CLI 清单 private:false，发布及包名验收结果见 [发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器。运行环境为 Windows、已安装的 `vp` 和受支持 Node；基础工程仍委托 Vite+ 官方模板。
 
-0.1.2候选同步作者与新仓库元信息；公开状态以发布记录为准，也可继续本地打包。打包结果提供 contents 路径，对应实际文件清单 pack-contents.json，包含 MIT LICENSE、关键词、包元信息与 integrity，清单不进入 tarball。
+0.1.2为当前公开版本，同步作者与新仓库元信息，也可继续本地打包。打包结果提供 contents 路径，对应实际文件清单 pack-contents.json，包含 MIT LICENSE、关键词、包元信息与 integrity，清单不进入 tarball。
 
 ## 构建本地包
 
@@ -81,7 +81,7 @@ pnpm dlx $bundle.tarball
 
 公开 0.1.1 已通过 `vp dlx` 实际创建 Vue TS/Element Plus/Tailwind 与 React JS/Ant Design/UnoCSS 混合工作区，均接入正式首页和 AdScreen；根 ready 8/8、构建后检查及五张代表页面的浏览器验收通过。只读结构检查和重复创建保护通过；依赖存在官方 TypeScript 7 与 Volar 的 peer 范围警告，详见 [批量验收记录](BATCH_CONFIG.md#验证状态)。这些结果来自公开包的实际创建，与此前的帮助和 dry-run 验证分开记录。
 
-包名已按用户要求确定为 @adui/viteplus-starter，当前0.1.1已公开发布并包含Keywords；本地打包入口不会自动发布或创建流水线。
+包名已按用户要求确定为 @adui/viteplus-starter，当前0.1.2已公开发布并包含作者、新仓库及Keywords；本地打包入口不会自动发布或创建流水线。
 
 ## 2026-11-02 本地包实测
 

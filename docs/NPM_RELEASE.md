@@ -1,8 +1,8 @@
 # npm 分发与发布记录
 
-包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为 0.1.1，latest 指向 0.1.1**；0.1.0 于 2026-11-03 首发。CLI 清单为 private:false，开发工作区根继续保留 0.0.0/private。
+包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为 0.1.2，latest 指向 0.1.2**；[GitHub Release v0.1.2](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.2) 已公开。0.1.0 于 2026-11-03 首发。CLI 清单为 private:false，开发工作区根继续保留 0.0.0/private。
 
-2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，当前源清单和包内文档已同步新地址及作者ADui。npm包名保持不变；已发布0.1.1的元信息和归档保持发布时内容，后续新版本经明确授权发布后才会同步这些更新。
+2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，0.1.2公开包已同步新地址及作者ADui。npm包名保持不变；0.1.1及以前的元信息和归档保持发布时内容。
 
 ## 0.1.0 首发结果
 
@@ -62,8 +62,16 @@ if ($LASTEXITCODE -ne 0) { throw '候选包安装失败' }
 
 `private: true` 会让 npm 拒绝发布；publishConfig 只声明发布时的目标设置，不会自行执行发布。依据：[npm package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#private)。后续更新仍须按 [npm 官方发布说明](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/) 完成人工授权与身份验证，不能将打包或 dry-run 当成实际发布。
 
-## 0.1.2 候选与本轮授权
+## 0.1.2 候选验收与本轮授权
 
 用户明确要求增加Release、Issue/PR模板，整理Skills、分步提交推送并发布新版npm。本轮选择0.1.2补丁，同步作者ADui、新仓库链接及包内README；不改变运行逻辑或依赖。GitHub新增社区模板、CHANGELOG和手动发布说明，详见 [发布步骤](RELEASING.md)。
 
 本地候选 `dist/cli/pack-MxmoCs/adui-viteplus-starter-0.1.2.tgz` 共92文件、101420字节，SHA-512为 `sha512-aaTMfz1850eTyN/pdpKqzlozrAFnTfvitb85YAgBDKAgGUcVY0uY2LUlI3UfCPrErWcMzEnf/sh3FEH6CXIUvw==`。与公开0.1.1对比，仅归档内package.json及README改变，其他90文件字节一致。291/291测试、全仓vp check及文档校验通过；YAML解析和表单结构核验通过。隔离安装9个包，Windows shim帮助与Vue/React预览通过，中文空格与元字符调用目录正确且无项目生成；对该具体tgz的publish dry-run通过。尚未据此声明上传或公开Release成功，实际结果另记。
+
+### 0.1.2 公开发布完成
+
+用户已完成npm官方浏览器身份验证；对上述同一tgz的发布命令退出0，经registry处理后，version/latest均为0.1.2。作者ADui、新仓库repository/homepage/bugs、20个keywords核验一致；公开下载101420字节，SHA-512与候选完全相同。公开包名 `vp dlx -- @adui/viteplus-starter@0.1.2 --help`、`pnpm dlx @adui/viteplus-starter@0.1.2 --help` 均退出0。
+
+提交按顺序为 b36067f（模板与Skills）和 d538320（发布候选）；签注标签v0.1.2明确指向 `d538320f384d188119b472c4c527fcadeedd6cd5` 并已推送，GitHub Release随后经已登录浏览器人工发布。公开API确认draft:false、prerelease:false，页面为Latest且提交正确。Release提供GitHub默认源码归档，npm使用经过核验的CLI包；未上传其他业务文件或新增工作流。
+
+GitHub选择页已显示3个Issue模板与Windows指南，Bug表单必填项正常渲染；未提交测试Issue或PR。发布证据、公开归档、包名日志和Release截图位于忽略目录 `dist/verification/v012-*`。本次授权已完成，后续版本仍需明确发布授权。
