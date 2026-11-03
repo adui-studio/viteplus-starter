@@ -4,6 +4,14 @@
 
 2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，0.1.2公开包已同步新地址及作者ADui。npm包名保持不变；0.1.1及以前的元信息和归档保持发布时内容。
 
+## 0.1.3 正式包准备（2026-11-04）
+
+用户已确认本次npm public/latest及GitHub v0.1.3 Release发布。正式包为`dist/cli/pack-XOSqvx/adui-viteplus-starter-0.1.3.tgz`，92文件、101911字节；SHA-512为`sha512-aKTFmkQtvn77QBtE4Nh+oAfkbCSmlOIKBlQa+JsNBA5hdW4ktjkBLLjQsH7cqbO6xjM0a613IS9UUF24RF2R5g==`。与11月3日候选比较，仅README去除未发布提示并整理范围，其余91份文件原字节一致，保留双端真实生成/构建及保护回归证据。
+
+正式包另行隔离安装，Windows命令shim帮助、Vue/React预览、元信息、调用路径与临时目录清理通过；publish dry-run返回同一版本、大小和integrity。当前源码Windows301项测试、文档和vp check通过；Linux候选301项及双端模型构建记录继续保留，不把本次文案变更视为新增浏览器验收。
+
+npm登录原先返回401，用户已在官方网页完成安全密钥验证，npm whoami确认为adui；没有在日志或聊天保存凭据。接下来上传该具体归档，registry和GitHub公开结果在成功后另记。
+
 ## 0.1.0 首发结果
 
 - 用户已明确授权 public/latest 发布，账号 adui 完成 npm 浏览器身份验证；上传命令成功退出。registry 处理后版本公开可用，无需再次上传或单独执行 stage。

@@ -20,7 +20,7 @@
 </p>
 
 > [!NOTE]
-> **源码候选 v0.1.3，尚未发布**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。公开0.1.2尚未包含跨平台与补装保护修复；使用当前源码或重新打包，验证范围见 [跨平台指南](docs/MACOS_LINUX.md)。
+> **项目生成 CLI · v0.1.3**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。Windows/Linux实际安装、混合工程与模型构建已有代表验收，macOS原生验收待补；详细范围见 [跨平台指南](docs/MACOS_LINUX.md)。
 
 ## 功能
 

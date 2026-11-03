@@ -12,7 +12,7 @@
 </p>
 
 > [!NOTE]
-> **项目生成 CLI · v0.1.3 本地候选，尚未发布**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。候选包含macOS/Linux兼容与补装保护修复；包名命令仍取得公开版本。当前源码的使用方式与验收范围见 [跨平台指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md)。
+> **项目生成 CLI · v0.1.3**。通过 Vite+、pnpm 或 npm 启动配置向导，按需生成官方 Vue、React 与 Monorepo 工程。提供Windows/Linux命令与补装保护；macOS兼容逻辑已补齐，原生验收待设备可用后补充。使用方式与实际验收范围见 [跨平台指南](https://github.com/adui-studio/viteplus-starter/blob/main/docs/MACOS_LINUX.md)。
 
 ## 快速开始
 
