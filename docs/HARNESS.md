@@ -232,3 +232,17 @@ node $starterCli --execute-recovery $workspacePath --config $expectedConfig
 ```
 
 首次生成及恢复执行仍调用官方入口；不存在的应用才允许新建，已有完整应用跳过，部分完成应用阻塞。验收时先保存已有 App/main、预设配置和独立页哈希，再执行恢复和重复调用；根共享锁文件/catalog 的正常更新应与已有应用源文件保护分开检查。生成后在同一工作区串行运行完整 ready、UI 双入口构建和最终 check，不用结构检查代替构建。实际记录见 [V1 清单](V1_ACCEPTANCE.md)。
+
+## Windows / Linux重复补装回归
+
+在仓库根、可用的Vite+/pnpm/Node环境中手动运行，两套系统使用同一命令：
+
+```sh
+node scripts/verify-repeat-guards.mjs
+```
+
+脚本不接收业务目录。它在操作系统真实临时根创建唯一工程，父路径包含中文、空格、&与单引号；通过官方模板建立Monorepo、Vue TS和React JS成员。首次补装分别使用Element Plus/Tailwind与Ant Design/UnoCSS，同时启用AdScreen，再创建显式UI验收页并运行根ready和构建后check。需要联网安装依赖及足够磁盘空间，通常耗时数分钟。
+
+两个应用各验证重复插件、重复CSS、重复UI页和基础样式空操作，共8次调用。仅这些保护分支注入子进程探针；任何安装/格式化调用都会使验证失败，同时比较113份文件（当前官方模板）的内容与修改时间。文件数随模板变化，以实际JSON为准，不作为固定断言。业务App哈希需在正向补装前后保持一致。
+
+输出先包含工具日志，最后是结果JSON；进程退出码非0表示失败。成功或失败均在finally校验临时根归属后清理自建工程，不删除用户目录；最终JSON中的temporaryRootRemoved仅在清理成功返回后输出。此脚本不作为node --test默认用例，也不增加CI或后台任务。

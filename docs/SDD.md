@@ -381,3 +381,9 @@ recovery.pendingRecovery保留powershell并生成POSIX单引号转义的posix，
 scripts/temp-directory.mjs只对OS提供的临时根realpath；本地pack与两个验证工具复用，35份测试夹具仅替换此导入以避开macOS /var标准别名。safe-paths仍拒绝输出中的链接，ENOTDIR时继续向上检查并报告真实非目录祖先。两个失败退出码测试使用test-support/vp-shim的Windows CMD或POSIX sh包装，跨平台执行相同断言；existing-output格式夹具同时识别shell字符串与直接argv，不放宽真实文件保护。
 
 .gitattributes仅为两个CLI入口固定LF，分发后的可执行性以Linux实际安装和直接调用验证，不依赖Windows tar头部权限。依赖与运行时插件来源不变；本轮变更属于Unreleased，公开0.1.2及其标签不改写。
+
+## 工作区空补装
+
+CLI保留预检时的pnpm-workspace.yaml原文快照。工作区整理阶段仅在当前内容与快照不同时调用该文件的fmt，并在成功后刷新快照，避免同次创建的后续整理重复格式化。Vue声明忽略规则仍独立按实际变更格式化根Vite配置；首次peer/catalog变更照常处理。无需补装时不写文件、不启动子进程。
+
+workspace-noop.test以Vue TS和React JS业务夹具调用真实CLI，用子进程探针阻止安装/格式化，并比较全部文件原字节和修改时间。手动verify-repeat-guards使用实际官方模板创建、安装和构建两个成员，随后对重复插件、重复CSS、重复UI页和基础样式空操作验证同一保护边界。

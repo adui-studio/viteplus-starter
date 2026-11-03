@@ -15,6 +15,7 @@ import {
 import { preflightVpManifestEncoding } from "../src/vp-compatibility.mjs";
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { stdin } from "node:process";
 import { parseCliArgs } from "../src/cli-args.mjs";
@@ -197,13 +198,17 @@ async function main() {
   const stage = createStageRunner(target);
   await inspectPath(target);
   if (!args.dryRun && !args.applyExisting) await preflightModelProtection(target, options);
+  let workspaceSource = workspace?.peerSource;
   async function finishWorkspaceIntegration() {
     if (!workspace) return;
     return stage("工作区配置整理", async () => {
       if (await updateWorkspaceDeclarationIgnore(workspace)) {
         runWorkspaceVp(commandCwd, ["fmt", basename(workspace.configPath), "--write"]);
       }
-      runWorkspaceVp(commandCwd, ["fmt", "pnpm-workspace.yaml", "--write"]);
+      if ((await readFile(workspace.workspacePath, "utf8")) !== workspaceSource) {
+        runWorkspaceVp(commandCwd, ["fmt", "pnpm-workspace.yaml", "--write"]);
+        workspaceSource = await readFile(workspace.workspacePath, "utf8");
+      }
     });
   }
   if (args.threeSmoke) {
