@@ -405,3 +405,5 @@ verify-repeat-guards的内部函数新增可选cli路径参数，默认仍为工
 两入口在文件/安装操作前校验models布尔值，并通过normalizeVerificationLanguages白名单校验、复制和冻结语言映射，避免非法Shell字符或异步期间调用者修改进入Windows命令shim参数。verification-options测试覆盖提前拒绝、默认组合与复制后不可变；该校验只属于手动验收工具。
 
 非模型场景在生成显式UI页后调用verify-ui-build，使用/ui-check/部署base构建正式页和UI页，随后运行根ready与构建后check；结果增加uiBuilds和languages，重复保护继续比较全部源文件内容/修改时间。不启动浏览器，不将双入口构建视为点击验收，也不把验证工具打进npm运行时。
+
+models:true与vue:js/react:ts复用同一入口及保护逻辑，Vue固定embedded、React固定external，不增加运行时选项。模型场景先由官方模板创建带AdScreen成员，再补Three及保护；与UI/CSS场景分开。verify-model-app用唯一临时配置构建index/model双入口、校验部署base和.adui原文字节，finally移除临时配置。整轮在各自自建临时根清理，原包及侧车清单保留；说明与验收见HARNESS和V1_ACCEPTANCE。

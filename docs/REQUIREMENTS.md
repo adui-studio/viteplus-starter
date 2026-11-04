@@ -307,3 +307,9 @@ NFR-003：本轮将CLI源版本准备为0.1.3，本地打包与安装验收不�
 继续生成器主线，使用公开0.1.3实际归档覆盖Vue JS + Element Plus/Tailwind与React TS + Ant Design/UnoCSS，均补装AdScreen。通过官方Monorepo/Application创建成员，在业务App加标记后补装，分别验证正式页/UI页双入口构建、工作区ready、构建后check及重复调用保护。
 
 验证工具的内部语言映射可选择上述组合，原命令行和默认Vue TS/React JS保持；不新增生产CLI选项。公开下载需匹配正式包SHA-512，隔离安装后执行包内CLI。构建通过与浏览器实际渲染、Windows/Linux执行与Mac用户反馈分别记录，临时工程仍限定自建根并清理，不扩展发布或查看器功能。
+
+## 2026-11-04 其他语言组合Three/模型回归
+
+用户确认继续Vue JS、React TS的Three与模型保护代表验证。复用公开0.1.3实际归档和既有手动工具，按Vue JS embedded、React TS external验证官方工作区创建、带AdScreen应用补装、受控依赖失败后真实重试、模型双入口/base构建与密文字节一致。
+
+根ready/check后重复模型补装、切换模式、重复Three验收页和空补装须保持业务App、配置备份、KEY及全部源文件内容/修改时间，保护分支不启动安装或格式化。构建管线使用最小GLB夹具，另行记录真实模型及浏览器证据；本轮不扩展UI组合或发布授权。

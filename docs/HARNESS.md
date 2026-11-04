@@ -289,3 +289,15 @@ node --input-type=module -e "import {verifyCliPackage} from './scripts/verify-cl
 POSIX使用相同Node代码，将候选路径替换为本机路径并用引号包裹。公开包回归还需先从官方registry取得0.1.3的实际tgz，核对其SHA-512与正式包清单一致；不能把重新打包源码等同公开下载。
 
 原有工具命令行默认不变。非模型回归会额外构建index与ui-smoke双入口（base=/ui-check/），再执行工作区ready/check以及8次重复/空操作保护；输出uiBuilds、languages及实际文件数。该流程没有浏览器点击检查，不把Windows/Linux结果计为Mac同组合已通过。
+
+### Three与模型保护
+
+使用相同归档及语言映射，将models设为true；这是独立于上述UI/CSS回归的场景，不会同时补装UI/CSS：
+
+```powershell
+node --input-type=module -e "import {verifyCliPackage} from './scripts/verify-cli-package.mjs'; console.log(JSON.stringify(await verifyCliPackage(process.argv[1],{models:true,languages:{vue:'js',react:'ts'}}),null,2))" $candidate
+```
+
+工具经官方入口创建带AdScreen的Vue JS、React TS成员，再分别补装Three与embedded/external模型保护。每组先受控模拟首次依赖安装返回23，确认文件未改写，再用真实安装命令重试。最小自包含GLB仅用于构建管线：verify-model-app检查正式页/模型页双入口、/model-check/部署base、.adui解密字节一致以及产物不含原模型或原始KEY字面量。
+
+工作区ready/check后，重复模型补装、切换密钥模式、重复Three页及空补装共8项检查须零子进程、全部源文件哈希和修改时间保持；最终JSON应含modelBuilds=2、uiBuilds=0及两项controlledInstallFailures。KEY、备份和业务App包含在文件保护范围内。该结果不代表真实GLB浏览器加载、WebGL交互、不可逆向提取或Mac同组合通过。
