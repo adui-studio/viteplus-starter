@@ -16,7 +16,9 @@ Linux实测使用隔离容器，不等同全部Linux桌面环境。macOS现已�
 
 当前继续Windows/Linux回归，并根据用户提供的Mac实机日志补齐macOS验收。Linux使用UID1000普通用户：名称输入时Ctrl+C和完成多项选择后选No均退出0、未创建项目；选择流程覆盖React JS、UI/CSS、大屏、多引擎和外置密钥，但取消不等于这些选择已生成或构建。
 
-Three/模型最新回归使用Vue TS内置密钥、React JS外置密钥：首次依赖命令受控失败后正常重试，两组实际双入口加密构建及根ready通过，随后8项保护调用保持179份文件内容/修改时间不变。模型格式化中断的拒绝覆盖边界由真实CLI受控单元用例覆盖，不扩大为操作系统强杀或网络断开场景。
+此前Three/模型回归使用Vue TS内置密钥、React JS外置密钥：首次依赖命令受控失败后正常重试，两组实际双入口加密构建及根ready通过，随后8项保护调用保持179份文件内容/修改时间不变。模型格式化中断的拒绝覆盖边界由真实CLI受控单元用例覆盖，不扩大为操作系统强杀或网络断开场景。
+
+公开0.1.3又完成Vue JS内置密钥、React TS外置密钥的Windows/Linux独立模型回归：官方带AdScreen成员创建、Three补装、受控安装失败后真实重试、两组模型双入口/base与.adui解密、无缓存ready 8/8及check通过。每端8项重复/空操作保护保持179份文件哈希与mtime，包含KEY、备份和业务App；最小GLB仅验证管线，本轮不计浏览器加载或Mac同组合通过，见[V1验收记录](V1_ACCEPTANCE.md)。
 
 公开0.1.3新增Vue JS + Element Plus/Tailwind、React TS + Ant Design/UnoCSS及AdScreen的Windows/Linux代表回归；两端UI双入口构建、根ready/check及8项重复保护均通过，113份文件内容与修改时间保持。详情见[V1验收记录](V1_ACCEPTANCE.md)；Mac该两组及本轮浏览器点击仍未验收。
 

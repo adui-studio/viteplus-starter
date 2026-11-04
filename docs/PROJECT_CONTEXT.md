@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：公开0.1.3在Windows/Linux新增Vue JS、React TS的UI/CSS/AdScreen创建、补装、双入口构建及文件保护代表验收；M1 Max Mac的Vue TS/Three/embedded及真实GLB已有用户确认。继续已有能力回归，平台与验证阶段分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
+- 当前阶段：公开0.1.3在Windows/Linux新增Vue JS、React TS的UI/CSS/AdScreen及Three/模型保护创建、补装、双入口构建与文件保护代表验收；M1 Max Mac的Vue TS/Three/embedded及真实GLB已有用户确认。继续已有能力回归，平台与验证阶段分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 0.1.3的Vue JS、React TS公开包UI/CSS/AdScreen代表回归已在Windows/Linux通过。下一步用相同语言组合补Three/模型保护构建与重复执行，继续生成器主线；Mac证据保持用户已确认的Vue TS范围，后续版本不自动发布。
+1. 0.1.3的Vue JS、React TS公开包UI/CSS/AdScreen及Three/模型保护代表回归已在Windows/Linux分别通过。下一步在Windows用真实GLB补这两组的浏览器模型加载与外置密钥解锁验收；不扩展查看器功能。Mac证据保持用户已确认的Vue TS范围，后续版本不自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1054,3 +1054,13 @@ Windows仓库本地301/301回归、文档校验及vp check通过（224份格式�
 两端各8次重复插件、CSS、UI页及空补装调用均符合退出码预期，探针零子进程；113份文件内容/修改时间保持，业务App精确哈希不变且跨系统相同。Windows Node22.18.0及Linux Node26.13.0仓库各303/303测试通过，无跳过。Linux使用官方Vite+1.4.0镜像、Debian12 x64、UID1000普通用户及源码只读挂载；Windows安装较慢但正常完成，未跳过安装或检查。
 
 公开运行时、版本和标签保持0.1.3，改动仅为手动验收工具、参数回归和文档，不升级依赖或加入CI。本轮不涉及浏览器点击、Mac同语言组合或模型保护，不能据构建成功扩展这些结论。证据位于忽略目录dist/verification/public-alternate-*，下载/安装/工程临时根已由工具清理；专用容器核对身份及源码只读挂载后已删除，未停止Docker Desktop或操作其他容器。两端最终文档校验、vp check通过（225份格式文件、163份代码文件）。
+
+## 2026-11-04 公开包其他语言Three/模型回归
+
+用户确认继续上一轮的模型保护补验。Windows Node22.18.0及Linux Node26.13.0分别重新下载公开0.1.3，核对101911字节及SHA-512与正式包相同，隔离安装后检查真实命令shim帮助及两组语言预览。经包内CLI调用官方Monorepo/Application生成Vue JS、React TS的AdScreen成员，保留业务App标记后分别补装Three与embedded/external；本轮模型场景不同时补装UI/CSS。
+
+两端各两次首次依赖命令受控返回23，确认工作区未变后真实安装重试成功。最小自包含GLB的两组index/model双入口构建均通过，/model-check/路径正确、每组1份.adui解密与原字节一致，产物无原模型、模型明文或原始KEY字面量；该夹具不等同真实模型渲染。根ready均0/8缓存、8/8成功，构建后check通过126份格式文件及84份代码/类型文件。
+
+两端各8次重复模型补装、模式切换、Three页及空补装保护符合退出码预期，探针零子进程；179份文件哈希和修改时间保持，覆盖KEY、备份及业务App，两份业务App哈希跨系统相同。两端仓库各303/303测试通过、无跳过。本轮未发现需修改生成器运行时的问题，版本、归档、依赖与标签保持；只补运行说明及验收文档，不发布新版。
+
+Linux使用官方Vite+1.4.0镜像、Debian12 x64、UID1000及源码只读挂载；初始化私有/work时修正容器用户权限后继续，生成和验证均以普通用户执行。公开下载、安装与工程临时根已由工具清理，证据位于忽略目录dist/verification/public-model-alternate-*。两端文档校验及vp check通过（225份格式文件、163份代码文件），专用容器核对身份和只读挂载后已删除，未操作其他容器。本轮未执行浏览器、Mac同组合或其他引擎验收。

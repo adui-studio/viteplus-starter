@@ -2,9 +2,19 @@
 
 本项目交付Vite+项目生成器及逐应用预设，npm/GitHub Release0.1.3已公开。Windows/Linux已有代表创建、补装与构建证据，M1 Max Mac新增用户原生创建、检查、构建及界面/Three反馈；不将所有组合标为完成。详细实测证据见[项目状态](PROJECT_CONTEXT.md)，当前覆盖见[能力表](GENERATOR_STATUS.md)。
 
-用户2026-11-03追加macOS与Linux要求，取代仅Windows的阶段限制。发布候选Windows/Linux各301项测试通过；2026-11-04用户提供Mac darwin arm64上公开0.1.3的Vue TS/TDesign/UnoCSS/大屏/Three/embedded创建与构建日志，vp check通过，界面及Three反馈正常。Mac未执行仓库301项单元测试，其他组合与真实GLB加解密仍待验证；平台命令与范围见[macOS/Linux指南](MACOS_LINUX.md)。以下日期章节继续作为历史记录，不改写过去的验证结论。
+用户2026-11-03追加macOS与Linux要求，取代仅Windows的阶段限制。发布候选Windows/Linux各301项测试通过，当前仓库两端各303项通过；2026-11-04用户提供Mac darwin arm64上公开0.1.3的Vue TS/TDesign/UnoCSS/大屏/Three/embedded创建与构建日志，vp check通过，界面及Three反馈正常，随后确认实际GLB的.adui构建和加载通过。Mac未执行仓库单元测试，其他组合仍待各自验证；平台命令与范围见[macOS/Linux指南](MACOS_LINUX.md)。以下日期章节继续作为历史记录，不改写过去的验证结论。
 
 本文中的本地项目路径和“现场/产物保留”描述记录各轮验收当时的状态，不要求测试工程永久保留。用户于 2026-11-02 要求清理之前创建的测试项目，后续目录清理情况见 [项目状态](PROJECT_CONTEXT.md)；清理不表示重新执行或扩大此前的验收范围。
+
+## 公开0.1.3其他语言Three/模型保护（2026-11-04）
+
+Windows Node22.18.0及Linux x64 Node26.13.0（官方Vite+1.4.0容器、UID1000）各自从registry取得公开0.1.3实际归档，核对101911字节及正式SHA-512后隔离安装。命令shim帮助和Vue JS/React TS预览通过；实际包内CLI通过官方入口创建混合工作区，AdScreen成员分别补Three及Vue JS embedded、React TS external，业务App保持。本轮与下节UI/CSS场景分别执行。
+
+两端各两项首次依赖命令受控返回23后文件保持，真实安装重试成功；两组正式页/模型页双入口、/model-check/部署base及密文解密通过。每组最小GLB生成1份.adui，解密原字节一致，产物无原模型、模型明文和原始KEY字面量。根ready各0/8缓存、8/8成功；最终check通过126份格式文件及84份代码/类型文件。
+
+各8项重复模型补装、密钥模式切换、重复Three页及空补装保护零子进程；179份文件内容和mtime保持，KEY、配置备份及业务App均受检查，两份App哈希跨系统相同。两端仓库各303/303测试通过、无跳过。日志与归档核对结果位于忽略目录dist/verification/public-model-alternate-*，工具已清理自建下载、安装及工程根。
+
+这属于构建管线和重复保护验收，不是本轮真实GLB浏览器加载、WebGL交互、Mac同组合或全引擎矩阵。运行时代码、公开包和标签均保持0.1.3；下一步补Windows真实模型浏览器验收。
 
 ## 公开0.1.3其他语言组合（2026-11-04）
 

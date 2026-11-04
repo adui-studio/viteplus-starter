@@ -1,5 +1,7 @@
 # 生成器能力与验收范围
 
+2026-11-04当前状态：公开版本为0.1.3，Windows/Linux仓库各303项测试通过。公开包Vue JS/React TS已分别完成UI/CSS/AdScreen与Three/模型保护的代表创建、补装、双入口构建及重复保护；模型场景分别embedded/external，未合并宣称两类场景同时验收。Mac M1 Max的Vue TS/Three/embedded创建、构建、界面及真实GLB已有用户确认，其他组合仍需原生证据。当前结论见[V1清单](V1_ACCEPTANCE.md)及[项目状态](PROJECT_CONTEXT.md)，下文日期内容保留历史范围；后续版本不自动发布。
+
 2026-11-03 @adui/viteplus-starter@0.1.1 已以 public/latest 发布，补齐20个npm关键词并修复打包字段遗漏；与0.1.0相比仅元信息和README变化。registry关键词、tag及公开下载integrity已核对，两个包名入口帮助通过；0.1.0首发与代表创建/预览结果保留。CLI清单private:false，根工作区仍private；详情见 [发布记录](NPM_RELEASE.md) 和项目状态文末。此前私有候选与未登录描述属于历史状态。
 
 2026-11-02 补装新增插件已统一 src/plugins / build/plugins，保留已有业务入口、历史插件与配置原件备份，支持混合目录的结构检查。包名确定为 @adui/viteplus-starter，保持 private/0.0.0、未发布；本地包已完成 Vue 单应用及 React Monorepo 成员补装的代表检查/完整构建，工作区 ready 6/6，边界见项目状态文末。
