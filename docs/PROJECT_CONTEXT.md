@@ -1086,3 +1086,5 @@ application-home的Vue/React外置密钥解锁在输入有效时先清除旧提�
 Windows另从最终包README提取三个引擎和框架生命周期代码，生成官方Vue TS三引擎embedded与React TS Three external工程；真实DamagedHelmet的两组双入口/base/.adui解密、ready 9/9、193格式/141代码类型check及Cesium四类静态资源通过，候选生成的SceneView包含提示修复。该轮仅构建而非新增浏览器渲染。vp dlx、pnpm dlx、npm exec使用本地绝对tgz的帮助通过，调用目录无工程写入。
 
 候选CLI版本0.1.4，根仍0.0.0/private；registry只读核对latest仍0.1.3且无0.1.4。本轮未调用publish、未创建标签或Release。受控临时工程已由工具清理，原模型未变，日志在忽略目录dist/verification/v014-*；两端文档校验及vp check通过（227份格式文件、164份代码文件）。专用容器核对身份、官方镜像和源码只读挂载后已删除，未操作其他容器。
+
+Cesium兼容修复提交78cfd0b，README/0.1.4候选源码提交fa686c2；后者提交后重新打包与已验收pack-WMNmBe归档SHA-512及文件清单完全相同。候选继续仅本地保留，下一步等待明确发布决定。
