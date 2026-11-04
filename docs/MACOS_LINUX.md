@@ -8,8 +8,8 @@
 
 | 平台                  | 已执行                                                                                                                                                                                                 | 尚未覆盖                                                    |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| Windows / PowerShell  | Node 22.18.0，仓库303项测试通过，无跳过；UI及Three/模型补装、真实构建和重复保护通过；此前临时目录别名打包通过                                                                                          | 未穷举所有插件组合                                          |
-| Linux x64 / Debian 12 | 官方Vite+ 1.4.0、Node 26.13.0，仓库303项测试通过，无跳过；普通用户TTY取消、UI及Three/模型补装、真实构建和重复保护通过；此前Windows tgz安装通过                                                         | 其他发行版、ARM64、musl及原生桌面浏览器                     |
+| Windows / PowerShell  | Node 22.18.0，仓库305项测试通过，无跳过；UI及Three/模型补装、真实构建和重复保护通过；新增真实GLB浏览器及源码解锁重试修复验收                                                                           | 未穷举所有插件组合                                          |
+| Linux x64 / Debian 12 | 官方Vite+ 1.4.0、Node 26.13.0，仓库305项测试通过，无跳过；普通用户TTY取消、UI及Three/模型补装、真实构建和重复保护通过；此前Windows tgz安装通过                                                         | 其他发行版、ARM64、musl及原生桌面浏览器                     |
 | macOS / darwin arm64  | M1 Max、macOS Tahoe26.6.2、Node26.13.0；公开0.1.3完整向导与Vue TS/TDesign/UnoCSS/AdScreen/Three/embedded创建、check及build通过；用户反馈界面/Three正常，无控制台错误；实际GLB的.adui构建和加载确认通过 | React/JS等其他组合、取消/重复补装、外置密钥模式仍待原生验证 |
 
 Linux实测使用隔离容器，不等同全部Linux桌面环境。macOS现已有用户实机创建、检查和构建日志，以及页面与Three反馈；各阶段证据分别记录，其他架构仍需对应机器验证。Windows历史验收继续保留。
@@ -21,6 +21,8 @@ Linux实测使用隔离容器，不等同全部Linux桌面环境。macOS现已�
 公开0.1.3又完成Vue JS内置密钥、React TS外置密钥的Windows/Linux独立模型回归：官方带AdScreen成员创建、Three补装、受控安装失败后真实重试、两组模型双入口/base与.adui解密、无缓存ready 8/8及check通过。每端8项重复/空操作保护保持179份文件哈希与mtime，包含KEY、备份和业务App；最小GLB仅验证管线，本轮不计浏览器加载或Mac同组合通过，见[V1验收记录](V1_ACCEPTANCE.md)。
 
 公开0.1.3新增Vue JS + Element Plus/Tailwind、React TS + Ant Design/UnoCSS及AdScreen的Windows/Linux代表回归；两端UI双入口构建、根ready/check及8项重复保护均通过，113份文件内容与修改时间保持。详情见[V1验收记录](V1_ACCEPTANCE.md)；Mac该两组及本轮浏览器点击仍未验收。
+
+随后Windows Chrome使用真实DamagedHelmet完成Vue JS embedded与React TS external生产页面加载、模型页锁定清除及刷新检查；正式页错误密钥后正确重试残留提示已在源码修复，Vue JS/React TS external重新生成后浏览器复验通过。修复未发布，0.1.3原包仍有该提示问题；Vue标签有Three着色器精度warning，未称无警告。Linux只补源码305项回归，不计为原生桌面浏览器通过，详见[V1记录](V1_ACCEPTANCE.md)。
 
 ## 2026-11-04 macOS用户实机创建与构建
 

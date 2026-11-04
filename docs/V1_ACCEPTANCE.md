@@ -6,6 +6,16 @@
 
 本文中的本地项目路径和“现场/产物保留”描述记录各轮验收当时的状态，不要求测试工程永久保留。用户于 2026-11-02 要求清理之前创建的测试项目，后续目录清理情况见 [项目状态](PROJECT_CONTEXT.md)；清理不表示重新执行或扩大此前的验收范围。
 
+## Windows真实GLB与外置密钥重试（2026-11-04）
+
+从公开0.1.3下载并核对正式SHA-512后隔离安装，使用官方入口创建Vue JS embedded、React TS external的AdScreen/Three工程及独立模型页。用户DamagedHelmet.glb为3773916字节，SHA-256为a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8，原件未改。每组1份.adui解密与原GLB一致、双入口及/model-check/部署base通过，根ready无缓存8/8、check为136份格式和90份代码/类型文件。
+
+Windows Chrome生产产物实测：Vue正式首页按需加载自动显示头盔，模型页ready且1个模型网格；React外置文件解锁后同样显示头盔，独立页锁定清除后empty/0网格、加载按钮禁用，刷新保持锁定。React正式页错密钥后换正确密钥，模型虽成功但旧错误提示残留，公开0.1.3该重试场景未通过。
+
+当前源码修复Vue/React正式页的旧提示清除，新增两项行为回归，修复前失败、修复后通过。另由源码经官方入口创建Vue JS及React TS external工程，各真实GLB双入口构建、ready 8/8和136/90 check通过；Chrome中两组错密钥后正确重试均显示模型且提示为空。该源码修复尚未发布，npm仍为0.1.3；已有工程不会自动更新。
+
+浏览器未观察到运行时error；Vue标签记录一条Three着色器X4122精度warning，保留事实，不称无警告。两轮服务各183份源文件哈希/mtime不变，HTTP模型请求均为.adui，无GLB请求；解锁文件留在网站之外。Windows/Linux源码各305项测试通过，不把Linux源码测试计为Linux浏览器结果，也不扩大Mac或其他引擎结论。截图、HTTP及检查记录位于忽略目录dist/verification/model-browser-*。
+
 ## 公开0.1.3其他语言Three/模型保护（2026-11-04）
 
 Windows Node22.18.0及Linux x64 Node26.13.0（官方Vite+1.4.0容器、UID1000）各自从registry取得公开0.1.3实际归档，核对101911字节及正式SHA-512后隔离安装。命令shim帮助和Vue JS/React TS预览通过；实际包内CLI通过官方入口创建混合工作区，AdScreen成员分别补Three及Vue JS embedded、React TS external，业务App保持。本轮与下节UI/CSS场景分别执行。
