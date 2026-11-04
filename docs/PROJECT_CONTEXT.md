@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：@adui/viteplus-starter@0.1.3及GitHub Release已公开。Windows/Linux代表验收保留，M1 Max Mac新增用户原生创建/check/build及界面/Three正常反馈，继续补齐其他组合与真实GLB验收；平台证据分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
+- 当前阶段：公开0.1.3在Windows/Linux新增Vue JS、React TS的UI/CSS/AdScreen创建、补装、双入口构建及文件保护代表验收；M1 Max Mac的Vue TS/Three/embedded及真实GLB已有用户确认。继续已有能力回归，平台与验证阶段分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 0.1.3已公开，Mac Vue TS创建、检查、构建、界面/Three及实际GLB的.adui构建与加载均获用户确认。下一步回到Vue JS、React TS公开包代表回归，按实际问题修复生成器；后续版本不自动发布。
+1. 0.1.3的Vue JS、React TS公开包UI/CSS/AdScreen代表回归已在Windows/Linux通过。下一步用相同语言组合补Three/模型保护构建与重复执行，继续生成器主线；Mac证据保持用户已确认的Vue TS范围，后续版本不自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1044,3 +1044,13 @@ registry公开确认version/latest均0.1.3，作者ADui、新仓库元信息与2
 本轮只同步当前Mac验收范围、需求和下一步状态，历史原始日志结论保留。其他框架语言、外置密钥、取消与重复补装仍待各自原生证据；公开0.1.3包与标签保持。下一步恢复Vue JS和React TS公开包代表验收。
 
 Windows仓库本地301/301回归、文档校验及vp check通过（224份格式文件、162份代码文件）；日志位于忽略目录dist/verification/macos-glb-feedback-*，不计为Mac重新运行了这些仓库检查。
+
+## 2026-11-04 公开包Vue JS / React TS代表回归
+
+用户确认继续其他语言组合。复用verify-cli-package和verify-repeat-guards内部models/languages参数，默认命令行仍为原组合；新增非模型场景的正式页/UI页双入口构建。语言映射在I/O前白名单校验、复制与冻结，防止非法Shell字符或调用者后续修改进入Windows命令参数，新增2项对应单元回归。
+
+两端从官方registry取得公开0.1.3实际tgz，101911字节及SHA-512与正式包相同；在自建根隔离安装，命令shim帮助、Vue JS/React TS两组预览通过。真实调用包内CLI创建官方Monorepo和两个成员，给App加业务标记后分别补装Element Plus/Tailwind、Ant Design/UnoCSS和AdScreen，再生成显式UI页。两端各2组双入口/base构建、无缓存8/8根ready、构建后check（70份格式文件、35份代码文件）通过。
+
+两端各8次重复插件、CSS、UI页及空补装调用均符合退出码预期，探针零子进程；113份文件内容/修改时间保持，业务App精确哈希不变且跨系统相同。Windows Node22.18.0及Linux Node26.13.0仓库各303/303测试通过，无跳过。Linux使用官方Vite+1.4.0镜像、Debian12 x64、UID1000普通用户及源码只读挂载；Windows安装较慢但正常完成，未跳过安装或检查。
+
+公开运行时、版本和标签保持0.1.3，改动仅为手动验收工具、参数回归和文档，不升级依赖或加入CI。本轮不涉及浏览器点击、Mac同语言组合或模型保护，不能据构建成功扩展这些结论。证据位于忽略目录dist/verification/public-alternate-*，下载/安装/工程临时根已由工具清理；专用容器核对身份及源码只读挂载后已删除，未停止Docker Desktop或操作其他容器。两端最终文档校验、vp check通过（225份格式文件、163份代码文件）。
