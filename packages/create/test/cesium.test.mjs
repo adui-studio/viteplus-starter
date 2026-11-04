@@ -82,7 +82,7 @@ test("Cesium 安装备份原配置、保留字段；重复与安装期间变化�
   });
   assert.equal(await readFile(join(root, "vite.config.ts.before-adui-cesium"), "utf8"), original);
   assert.match(await readFile(join(root, "vite.config.ts"), "utf8"), /server:\{port:4321\}/);
-  assert.deepEqual(calls[0], ["add", "cesium@1.146.0", "--save-exact"]);
+  assert.deepEqual(calls[0], ["add", "cesium@1.147.0", "--save-exact"]);
   await assert.rejects(
     addCesium(root, base, () => assert.fail("must not install")),
     /已存在/,
@@ -97,12 +97,21 @@ test("Cesium 安装备份原配置、保留字段；重复与安装期间变化�
   assert.equal(await readFile(join(changed, "vite.config.ts"), "utf8"), "user config");
 });
 test("Cesium 冲突版本与祖先 junction 在安装前拒绝", async (t) => {
-  const root = await fixture(t);
-  await writeFile(
-    join(root, "package.json"),
-    JSON.stringify({ dependencies: { vue: "3", "vite-plus": "1", cesium: "1.100.0" } }),
-  );
-  await assert.rejects(preflightCesium(root, base), /未经验证/);
+  for (const version of ["1.100.0", "1.146.0"]) {
+    const root = await fixture(t);
+    const path = join(root, "package.json");
+    const source = JSON.stringify({
+      dependencies: { vue: "3", "vite-plus": "1", cesium: version },
+    });
+    await writeFile(path, source);
+    const config = await readFile(join(root, "vite.config.ts"));
+    await assert.rejects(
+      addCesium(root, base, () => assert.fail("existing Cesium must not be upgraded")),
+      /未经验证/,
+    );
+    assert.equal(await readFile(path, "utf8"), source);
+    assert.deepEqual(await readFile(join(root, "vite.config.ts")), config);
+  }
   const linked = await fixture(t),
     outside = await mkdtemp(join(tmpdir(), "cesium-outside-"));
   t.after(() => rm(outside, { recursive: true, force: true }));
@@ -111,7 +120,7 @@ test("Cesium 冲突版本与祖先 junction 在安装前拒绝", async (t) => {
 });
 test("Cesium catalog 根据本应用已安装版本检查，不执行依赖入口", async (t) => {
   const root = await fixture(t);
-  const versions = { cesium: "1.146.0", "vite-plugin-static-copy": "4.1.1" };
+  const versions = { cesium: "1.147.0", "vite-plugin-static-copy": "4.1.1" };
   for (const [name, version] of Object.entries(versions)) {
     const dir = join(root, "node_modules", name);
     await mkdir(dir, { recursive: true });
@@ -153,7 +162,7 @@ test("批量 Cesium 与 Three 按应用隔离依赖及模型策略", async (t) =
     },
     cwd,
   );
-  assert.deepEqual(plan.steps[1].engine.dependencies, ["cesium@1.146.0"]);
+  assert.deepEqual(plan.steps[1].engine.dependencies, ["cesium@1.147.0"]);
   assert.equal(plan.steps[1].modelProtection.engine, "cesium");
   assert.deepEqual(plan.steps[2].engine.dependencies, ["three@0.186.1"]);
   assert.equal(plan.steps[2].modelProtection.mode, "embedded");

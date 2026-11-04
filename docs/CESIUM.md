@@ -2,7 +2,9 @@
 
 > 2026-11-02 默认输出已调整：新建应用将插件归档并接入正式 main/App，独立页须加 --smoke-pages；本文原路径描述适用于历史布局或底层维护入口。新目录、KEY 脚本及已有项目边界以 [项目结构](PROJECT_LAYOUT.md) 为准。
 
-通过官方 Vite+ Application 模板生成 Vue/React、TS/JS 应用，再按应用增量添加 Cesium 1.146.0、vite-plugin-static-copy 4.1.1、大屏原生像素引擎层和独立验收页。正式首页、App、main 保留；Vite 配置增量插入插件，原件保存为 vite.config.*.before-adui-cesium。
+通过官方 Vite+ Application 模板生成 Vue/React、TS/JS 应用，再按应用增量添加 Cesium 1.147.0、vite-plugin-static-copy 4.1.1、大屏原生像素引擎层和独立验收页。正式首页、App、main 保留；Vite 配置增量插入插件，原件保存为 vite.config.*.before-adui-cesium。
+
+0.1.4候选将Cesium从1.146.0调整到1.147.0：前者的宽范围可解析到engine26.5.0，但仍引用已移走的导出，实际构建失败。后者的官方依赖与engine26.5/widgets16.3.1匹配，见[官方1.147发布](https://github.com/CesiumGS/cesium/releases/tag/1.147)。仅新建/首次安装采用新版本，已有旧版本继续在安装前拒绝，不自动升级或改写锁文件。
 
 ## 创建与补装
 

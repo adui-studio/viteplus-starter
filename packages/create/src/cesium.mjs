@@ -13,7 +13,8 @@ import { validateProjectOptions } from "./options.mjs";
 import { injectStarterPlugins } from "./vite-config.mjs";
 import { runWorkspaceVp } from "./workspace.mjs";
 import { readJsonObject } from "./workspace-json.mjs";
-export const cesiumDependencies = ["cesium@1.146.0"];
+// 1.146's broad engine range can resolve 26.5, whose moved exports require 1.147.
+export const cesiumDependencies = ["cesium@1.147.0"];
 export const cesiumDevDependencies = ["vite-plugin-static-copy@4.1.1"];
 export async function planCesium(input) {
   const options = validateProjectOptions(input);
