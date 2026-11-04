@@ -330,3 +330,9 @@ Chrome生产首页主按钮点击后自动显示带贴图头盔，Ant Design按�
 用户真实创建官方Monorepo及Vue TS/Element Plus/UnoCSS、React TS/Ant Design/Tailwind两个成员，均使用AdScreen/Three/embedded。根ready无缓存9/9通过，check118份格式/79份代码类型文件、utils1项测试以及website/utils/两应用构建成功。每应用1份.adui均与DamagedHelmet原件解密一致，KEY各自独立，交叉密钥解密拒绝；产物无原模型或原始KEY字面量，原有163份文件内容/mtime保持。
 
 Chrome两生产首页按钮、大屏及自动解密头盔显示通过，页面错误状态及捕获warn/error为空。原模型及本地副本保持，不提交模型或密钥。依赖检查仍报告TypeScript7与Volar<7的peer冲突，Three两应用均保留576.98 kB体积提示；因此本轮是代表组合功能验收通过，不是全部依赖无警告。详情与证据见[项目状态](PROJECT_CONTEXT.md)。
+
+## 混合工作区 peer 显式修复（2026-11-04）
+
+上轮Volar<7告警在当前Windows工程中已处理：根工具链显式引用原TS7 catalog并隔离peer自动补装/合并，Vue6.0.3及React7.0.2保持。peer检查无问题，根ready9/9成功；仅根package.json、pnpm-workspace.yaml和锁文件改变，其余163份文件内容/mtime保持，无新增依赖版本。两应用各1份.adui的解密/原模型排除/KEY字面量检查继续通过。
+
+临时副本新增官方Vue TS成员并再次安装后，最终ready13/13成功（1项缓存）；只关闭两个开关的中间方案会造成utils的TS Go解析失败，未作为修复交付。完整步骤见[Monorepo](MONOREPO.md)，该策略不默认写入生成器；临时副本已清理，源码305项测试通过。本轮没有重新执行浏览器验收，前轮页面证据范围保持。

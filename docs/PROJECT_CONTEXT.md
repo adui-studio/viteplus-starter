@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4的Windows单应用及Monorepo内Vue TS/React TS代表组合已完成真实GLB构建和生产首页验收；下一步定位混合工作区TypeScript7/Volar的peer兼容提示，保持官方模板和逐应用独立配置。
+1. 公开0.1.4单应用及混合Monorepo已完成代表组合生产页验收；当前工作区peer警告已通过显式根编译器绑定与隔离策略处理。下一步对现有工作区做重复补装和冲突保护回归，保持官方模板及逐应用独立配置。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1138,3 +1138,13 @@ Chrome生产preview首页Ant Design主按钮点击后自动解密显示带贴图
 两应用KEY独立、密文字节不同，交叉密钥解密均拒绝；模型原件与工作区既有163份文件内容/mtime保持，包含根配置/锁文件、website/utils、两应用业务入口及env。Chrome分别访问生产preview，Element Plus/Ant Design按钮点击后均显示带贴图头盔，1920×1080大屏HUD在当前视口缩放1.125；两页错误状态及捕获warn/error为空。模型副本保留本机，代理未覆盖业务代码，未提交模型或密钥；两预览服务已停止。
 
 pnpm peers check退出1，仅报告根解析TypeScript7.0.2与@volar/typescript及@volar/language-service2.4.30要求<7不匹配；真实Vue类型检查、全工作区ready与生产页面均通过。警告仍存在，不标为全部依赖兼容通过；Three两应用分块576.98 kB提示保留。下一步定位peer解析来源及兼容处理，不擅自统一或升级各应用TypeScript，不扩展查看器或发布新版本。证据位于忽略目录dist/verification中以v014-monorepo-开头的日志、字节核验和双页截图。
+
+## 2026-11-04 TypeScript / Volar peer诊断与显式修复
+
+用户确认继续处理上轮告警。实际依赖链为Vite+ core的可选Vue工具经pnpm跨成员解析后进入TS7分支；Volar2.4.30声明typescript<7。仅关闭autoInstallPeers和dedupePeerDependents的初轮旧工程ready通过，但在临时副本新增官方Vue TS成员、再次安装后，utils声明打包报TypeScript Go未安装，因此未采用自动注入草稿。补齐根devDependencies.typescript:catalog:、使用原有TS7 catalog后，无需放宽peer或新增版本覆盖即可稳定解析。
+
+最终在用户test-starter显式修改根package.json、pnpm-workspace.yaml及pnpm-lock.yaml：根工具链使用既有TS7.0.2，两个peer开关false；应用仍为Vue6.0.3、React7.0.2。离线安装、pnpm peers check无问题，根ready无缓存9/9通过，check118份格式/80份代码类型文件；两应用各1份.adui解密与原模型相同，产物无原模型及原始KEY字面量。依赖清单比较未新增任何包版本，其余163份源文件内容/mtime保持，包含应用清单、入口、KEY和原模型。
+
+独立临时副本完成真实官方Vue成员创建及再次安装后的peer/ready回归，最终13/13任务成功（1项缓存）；此前失败的两开关方案只作为诊断证据，不列为交付修复。该副本使用新生成的测试KEY、未复制用户密钥或GLB，已按拥有路径校验清理；实际用户工作区保留。证据位于忽略目录dist/verification中以volar-开头的日志和volar-user-final-artifacts.json。
+
+最终生成器代码、依赖和版本保持原样，不默认施加工作区级peer策略；撤回的自动注入代码及6项临时测试不提交。完整操作写入MONOREPO，需求/设计/ADR同步说明取舍。最终源回归305/305、无跳过；Three体积及TS7实验性提示仍保留，不把peer检查无问题扩大为全部构建无警告。不新增发布或CI。
