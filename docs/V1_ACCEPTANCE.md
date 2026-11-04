@@ -312,3 +312,9 @@ Chrome 两个开发首页 Count is 0→1；Vue 样式顺序为 normalize、Tailw
 ## 公开0.1.4用户向导与首页（2026-11-04）
 
 用户实际使用公开包完整创建Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded组合；本机check为53份格式、38份代码类型文件通过，生产构建1610模块成功，Three分块576.98 kB保留体积提示。Chrome开发页按钮点击、Three线框场景与当前视口等比适配通过，捕获的warn/error为空。目录已统一plugins且无默认smoke页/中间备份；当前无GLB，不计模型加解密或生产预览浏览器验收。证据与后续范围见[项目状态](PROJECT_CONTEXT.md)。
+
+## 公开0.1.4真实GLB生产首页（2026-11-04）
+
+在用户交互创建的Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded应用中，仅向src/models复制DamagedHelmet.glb，正常构建自动产出1份.adui。解密与原件逐字节一致，dist无原模型文件、完整模型明文及原始KEY字面量；原件与原有81份文件内容/mtime保持。构建通过，Three 576.98 kB体积提示保留；check为53份格式和39份代码类型文件通过。
+
+Chrome生产preview首页点击按钮后自动解密显示带贴图头盔，页面错误状态及捕获warn/error为空。模型副本留在本机工程，未提交模型或密钥；证据与边界见[项目状态](PROJECT_CONTEXT.md)。此为公开0.1.4该Vue组合的生产浏览器验收，不扩大此前React或其他引擎范围。

@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4的Windows交互创建及Vue TS/Element Plus/UnoCSS/AdScreen/Three首页已验收；下一步在该组合验证真实GLB的.adui构建与首页加载，或根据实际项目反馈修复生成器问题。
+1. 公开0.1.4的Windows交互创建及Vue TS/Element Plus/UnoCSS/AdScreen/Three首页、真实GLB加密构建和生产页加载已验收；下一步验证公开包React对应组合的创建与正式首页，或根据实际项目反馈修复生成器问题。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1110,3 +1110,11 @@ README清理已随公开包交付，运行时代码及其余91份文件保持候
 本机继续执行vp check，53份格式文件、38份lint/类型文件通过；vp run build两项任务成功，1610模块完成，Three分块576.98 kB有超过500 kB提示。src/plugins及build/plugins已归档并接入正式main/App，无默认smoke页面及中间备份。Chrome开发页点击Element Plus按钮后状态变为“场景已启用”并显示Three线框立方体，捕获的warn/error为空；2560×1271视口下1920×1080 HUD按1.17685等比缩放，场景约2259.55×1271并居中。
 
 src/models当前为空，本轮只验收空模型场景，不声明真实GLB加密、解密或生产预览浏览器通过。模型KEY未读取或记录，未改动业务源码；截图与浏览器证据留在忽略目录dist/verification/v014-user-test-starter*。后续在同一组合验证用户指定GLB的.adui产物及首页加载，不扩展业务查看器。
+
+## 2026-11-04 公开0.1.4 Vue TS真实GLB生产页验收
+
+用户确认继续后，将指定DamagedHelmet.glb以拒绝覆盖方式复制到现有test-starter的src/models。原件3773916字节，SHA-256为a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8；原件及副本哈希一致。本轮未改应用源码或配置，构建前后原有81份文件的内容及mtime保持，包含私有env、main/App及插件文件；模型副本保留供本机继续使用。
+
+公开包生成的embedded插件在正常vp run build中自动输出1份.adui，解密字节与原模型一致。扫描整个dist未发现glb/gltf/fbx/obj/mtl文件、完整原模型明文或原始KEY字面量；仅在内存中读取私有env用于核验，没有打印或保存密钥值。生产构建1610模块成功，Three分块576.98 kB仍提示超过500 kB；模型加入后vp check通过53份格式及39份代码类型文件。
+
+Chrome实际访问生产preview，点击首页Element Plus按钮后自动解密显示带贴图的头盔，页面错误状态为空，捕获的warn/error为空。生产页截图、构建日志和字节/保护核验记录位于忽略目录dist/verification中以v014-user-helmet-和v014-user-model-开头的文件；本轮预览服务已停止。该结果仅覆盖Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded，不等同其他框架、引擎或外置密钥已验证。下一步回到公开包React对应组合的创建和正式首页验收，无新增查看器功能或发布。
