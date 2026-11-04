@@ -20,7 +20,7 @@
 </p>
 
 > [!NOTE]
-> **项目生成 CLI · v0.1.3**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。Windows/Linux实际安装、混合工程与模型构建已有代表验收，macOS原生验收待补；详细范围见 [跨平台指南](docs/MACOS_LINUX.md)。
+> **项目生成 CLI · v0.1.3**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。Windows/Linux已有实际安装与构建代表验收；M1 Max Mac的原生创建、检查、构建及界面/Three用户验收通过。详细范围见 [跨平台指南](docs/MACOS_LINUX.md)。
 
 ## 功能
 
@@ -220,7 +220,7 @@ Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App
 | 交付范围   | [当前能力](docs/GENERATOR_STATUS.md) · [验收范围](docs/V1_ACCEPTANCE.md) · [首发准备](docs/NPM_RELEASE.md)                                             |
 | 开发维护   | [协作规范](AGENTS.md) · [架构](docs/ARCHITECTURE.md) · [代码索引](docs/CODEBASE_MAP.md) · [本地验证](docs/HARNESS.md)                                  |
 
-当前验证覆盖Windows代表组合及Linux x64的创建、补装和完整构建；macOS相关代码已适配但尚无实机验收。跨平台命令与边界见 [macOS/Linux指南](docs/MACOS_LINUX.md)，浏览器与其他组合范围以验收文档为准。
+当前验证覆盖Windows代表组合及Linux x64的创建、补装和完整构建；M1 Max Mac用户日志确认darwin arm64上的Vue TS/TDesign/UnoCSS/大屏/Three/embedded创建、检查和构建通过，用户反馈界面/Three正常且无控制台错误。跨平台命令与边界见[macOS/Linux指南](docs/MACOS_LINUX.md)，其他组合范围以验收文档为准。
 
 <details>
 <summary>本地开发与 CLI 打包</summary>

@@ -6,17 +6,41 @@
 
 ## 当前验证范围
 
-| 平台                  | 已执行                                                                                                                                     | 尚未覆盖                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| Windows / PowerShell  | Node 22.18.0，301项测试通过，无跳过；UI及Three/模型补装、真实构建和重复保护通过；此前临时目录别名打包通过                                  | 未穷举所有插件组合                                                    |
-| Linux x64 / Debian 12 | 官方Vite+ 1.4.0、Node 26.13.0，301项测试通过，无跳过；普通用户TTY取消、UI及Three/模型补装、真实构建和重复保护通过；此前Windows tgz安装通过 | 其他发行版、ARM64、musl及原生桌面浏览器                               |
-| macOS / sh、zsh       | 已补齐POSIX恢复提示、系统临时根真实路径和LF入口；相关逻辑受控测试通过                                                                      | 尚无macOS实机验收，不能视为Intel/Apple Silicon安装、TTY或构建均已通过 |
+| 平台                  | 已执行                                                                                                                                                               | 尚未覆盖                                                         |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Windows / PowerShell  | Node 22.18.0，301项测试通过，无跳过；UI及Three/模型补装、真实构建和重复保护通过；此前临时目录别名打包通过                                                            | 未穷举所有插件组合                                               |
+| Linux x64 / Debian 12 | 官方Vite+ 1.4.0、Node 26.13.0，301项测试通过，无跳过；普通用户TTY取消、UI及Three/模型补装、真实构建和重复保护通过；此前Windows tgz安装通过                           | 其他发行版、ARM64、musl及原生桌面浏览器                          |
+| macOS / darwin arm64  | M1 Max、macOS Tahoe26.6.2、Node26.13.0；公开0.1.3完整向导与Vue TS/TDesign/UnoCSS/AdScreen/Three/embedded创建、check及build通过；用户反馈界面/Three正常，无控制台错误 | React/JS等其他组合、取消/重复补装、带实际GLB的加解密仍待原生验证 |
 
-Linux 实测使用隔离容器，不等同全部Linux桌面环境。macOS与其他架构需要在相应机器上补充原生验证；Windows历史验收继续保留。
+Linux实测使用隔离容器，不等同全部Linux桌面环境。macOS现已有用户实机创建、检查和构建日志，以及页面与Three反馈；各阶段证据分别记录，其他架构仍需对应机器验证。Windows历史验收继续保留。
 
-当前按用户选择优先推进Windows/Linux，macOS原生验收暂缓。Linux最新补充使用UID1000普通用户：名称输入时Ctrl+C和完成多项选择后选No均退出0、未创建项目；选择流程覆盖React JS、UI/CSS、大屏、多引擎和外置密钥，但取消不等于这些选择已生成或构建。
+当前继续Windows/Linux回归，并根据用户提供的Mac实机日志补齐macOS验收。Linux使用UID1000普通用户：名称输入时Ctrl+C和完成多项选择后选No均退出0、未创建项目；选择流程覆盖React JS、UI/CSS、大屏、多引擎和外置密钥，但取消不等于这些选择已生成或构建。
 
 Three/模型最新回归使用Vue TS内置密钥、React JS外置密钥：首次依赖命令受控失败后正常重试，两组实际双入口加密构建及根ready通过，随后8项保护调用保持179份文件内容/修改时间不变。模型格式化中断的拒绝覆盖边界由真实CLI受控单元用例覆盖，不扩大为操作系统强杀或网络断开场景。
+
+## 2026-11-04 macOS用户实机创建与构建
+
+用户在MacBook Pro（M1 Max，设备截图为macOS Tahoe26.6.2）通过`pnpm dlx @adui/viteplus-starter@0.1.3`进入交互向导，创建test-starter。日志显示Node26.13.0、pnpm12.16.1，选择Vue3/TypeScript、TDesign1.20.10、UnoCSS66.12.0、AdScreen、Three0.186.1及embedded模型保护；@types/three为0.186.0。
+
+官方模板创建、UI/CSS安装与格式化、大屏与引擎生成、模型配置/KEY生成及插件目录/首页/Logo整理均完成，终端最后显示“创建完成”。用户后续输出process.platform + process.arch为darwinarm64，确认Node以arm64运行；父目录执行的vp --version显示全局CLI v0.3.3，该次输出未定位到应用内vite-plus，不能据此填写项目依赖版本。未收录设备序列号或原始截图。
+
+在test-starter中，vp check通过53份格式文件及38份代码文件的lint/类型检查；vp run build依次执行vue-tsc -b和vp build，转换3842个模块并在1.74秒完成。Three为577.24 kB、GLTFLoader为45.20 kB的独立分块；大于500 kB的构建提示保留，构建未失败。用户通过vp dev访问后确认界面和Three正常、浏览器控制台无错误。该反馈不替代未提供的真实GLB加密/解密、取消流程或其他框架语言组合验收。
+
+用户首次在项目父目录运行vp check，收到Package not found in workspace；进入test-starter后检查与构建均通过。命令应在应用目录执行，父目录显示Local vite-plus Not found不表示该应用缺失依赖。
+
+在Mac应用目录执行以下命令，检查与构建日志和浏览器反馈分别记录：
+
+```sh
+node -p "process.platform + ' ' + process.arch"
+vp --version
+vp check
+vp run build
+vp dev
+```
+
+创建日志中的24项deprecated均指向@yuku-codegen/@yuku-parser的0.9.5平台绑定。官方registry的弃用信息分别说明codegen自0.14改为纯JavaScript、parser自0.14转用yuku-core；弃用提示的含义见[npm官方文档](https://docs.npmjs.com/cli/v11/commands/npm-deprecate/)。该日志未显示这些警告导致安装中止；实际父依赖链仍需该项目锁文件或pnpm why确认，不据此替换官方模板的工具链版本。
+
+向导前的minimumReleaseAgeExclude新增提示由pnpm dlx输出，属于包管理器的发布时间策略处理；设置说明见[pnpm文档](https://pnpm.io/settings/dependency-resolution#minimumreleaseageexclude)。本轮未修改该Mac项目的策略、依赖或分块阈值。
 
 ## 环境准备
 

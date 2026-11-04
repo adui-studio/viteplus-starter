@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：Windows/Linux兼容与补装保护已随@adui/viteplus-starter@0.1.3及GitHub Release v0.1.3正式公开，registry完整性、包名入口及标签提交已核对。继续生成器代表回归，macOS原生验收暂缓；平台证据分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
+- 当前阶段：@adui/viteplus-starter@0.1.3及GitHub Release已公开。Windows/Linux代表验收保留，M1 Max Mac新增用户原生创建/check/build及界面/Three正常反馈，继续补齐其他组合与真实GLB验收；平台证据分别记录，自定义布局与覆盖式恢复仍不在本阶段范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 0.1.3 npm与GitHub Release发布已完成。下一步优先补Vue JS、React TS的公开包代表验收，按实际问题修复生成器，不扩展业务查看器；macOS原生验收待设备可用后补充，后续版本不自动发布。
+1. 0.1.3已公开，Mac Vue TS创建、检查、构建及界面/Three用户验收通过。下一步在Mac补实际GLB的.adui构建与加载，再回到Vue JS、React TS公开包代表回归，按实际问题修复生成器；后续版本不自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1024,3 +1024,15 @@ registry公开确认version/latest均0.1.3，作者ADui、新仓库元信息与2
 签注标签v0.1.3固定53f1814并已推送；GitHub经已登录浏览器人工发布，公开API确认draft:false、prerelease:false，页面显示Latest与Commit53f1814。默认源码归档保留，未额外上传用户模型或密钥。GitHub截图保存为dist/verification/v013-github-release.png，并保留公开下载、registry、GitHub API与命令入口证据。
 
 两份README及CHANGELOG已随源码准备提交；主分支指南、npm记录、需求状态与历史候选说明在公开确认后更新，不移动已发布标签。当前0.1.3授权已经完成，后续版本与发布仍按用户新指令处理，无CI/CD。
+
+## 2026-11-04 Mac原生创建、检查、构建与用户界面反馈
+
+用户提供MacBook Pro M1 Max设备信息与公开0.1.3的完整pnpm dlx日志。系统为macOS Tahoe26.6.2，Node26.13.0、pnpm12.16.1，process.platform和process.arch输出确认darwin arm64。向导选择Vue3/TS、TDesign1.20.10、UnoCSS66.12.0、大屏、Three0.186.1、@types/three0.186.0及embedded；官方模板、全部所选预设、KEY、插件目录和首页/Logo整理均显示完成。未公开设备序列号、原始图片或完整终端附件。
+
+父目录vp --version显示全局CLI v0.3.3及Local vite-plus Not found，不能用于推断应用内依赖版本。父目录vp check报Package not found in workspace；用户进入test-starter后，vp check的53份格式文件、38份lint/类型文件均通过。vp run build执行vue-tsc -b和vp build，转换3842模块、1.74秒完成；Three独立块577.24 kB、GLTFLoader45.20 kB，保留500 kB体积提示。
+
+用户随后通过vp dev确认界面与Three正常、无控制台错误，计为用户实机反馈；不声明代理直接控制Mac或逐像素验证。Mac上的真实GLB/.adui加解密、其他语言/框架、取消和重复补装仍未提供证据，Mac也未运行仓库301项单元测试。
+
+弃用提示的registry信息已核对：@yuku-codegen/@yuku-parser0.9.5平台绑定已标为deprecated，分别提示0.14后的纯JS/codegen及yuku-core/parser迁移；当前工作区锁定的是yuku0.19，不能将本地依赖树替代该Mac工程的0.9.5父链。minimumReleaseAgeExclude由pnpm dlx在向导前输出。本轮无复现的生成器代码故障，不升级或覆盖依赖、关闭警告或修改安全策略；仅更新平台证据与命令目录说明，公开0.1.3归档/标签保持。
+
+文档更新的Windows仓库回归301/301通过，无跳过；文档校验与vp check通过（224份格式文件、162份代码文件）。该仓库回归与Mac用户的53/38文件检查分别记录，不将其计为Mac执行了单元测试。本轮只更新README、跨平台/验收指南、需求、索引及项目状态，无需新npm版本或Release。

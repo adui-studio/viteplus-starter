@@ -6,7 +6,7 @@
 - packages/create/src/safe-paths.mjs：继续逐级拒绝未知链接，统一POSIX父路径占用报错。
 - scripts/temp-directory.mjs：OS临时根真实路径，pack/验证脚本及35份测试夹具共用。
 - test-support/vp-shim.mjs：Windows/POSIX的真实CLI失败夹具；temporary-root/recovery/cli-package测试覆盖别名、转义和LF入口。
-- docs/MACOS_LINUX.md：当前源码的sh/zsh命令、Linux实测与macOS待实机边界；.gitattributes固定两入口LF。
+- docs/MACOS_LINUX.md：sh/zsh命令、Linux实测、用户M1 Max Mac原生创建/check/build及界面反馈；.gitattributes固定两入口LF。
 - packages/create/bin/cli.mjs、test/workspace-noop.test.mjs：工作区配置内容变化时才格式化，Vue/React空补装不启动子进程并保留文件修改时间。
 - scripts/verify-repeat-guards.mjs：自建真实官方混合工程，补装/构建后验证8次重复与空操作，限定临时目录清理；手动运行说明见HARNESS。
 - model-security/src/setup.mjs、create/src/model-protection.mjs：modelPluginConfig统一已有模型配置检查与增量生成，补装预检提前阻塞。
