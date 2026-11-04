@@ -1,5 +1,7 @@
 # 生成器能力与验收范围
 
+2026-11-04批量补验：公开0.1.4的Vue JS/Element Plus/Tailwind与React TS/Ant Design/UnoCSS批量创建、正式首页/大屏、ready8/8和4项输入/覆盖保护通过；可复用配置见[混合语言样例](../examples/mixed-language.batch.json)。环境与实测边界见[V1清单](V1_ACCEPTANCE.md)。
+
 2026-11-04现有工程补验：用户混合工作区peer显式修复后，实际公开0.1.4包的20项重复/冲突/空操作及KEY覆盖保护通过，受测命令子进程0；192份文件及52个目录保持。该轮没有重新安装工程依赖或重新构建，详见[V1清单](V1_ACCEPTANCE.md)与[项目状态](PROJECT_CONTEXT.md)。
 
 2026-11-04当前进度：0.1.4已公开发布至npm public/latest及GitHub Release，包含正式页解锁重试、Cesium1.147.0兼容修复和README三引擎模型示例。公开下载与正式包逐字节一致，两种包名入口帮助通过；详见[发布记录](NPM_RELEASE.md)。Windows/Linux实际候选tgz安装、官方生成/补装、模型构建和重复保护通过；Windows另验证包内README代码参与三引擎及框架组件构建。源码两端305项测试通过，正式包仅README文案与候选不同，详见[候选验收](CANDIDATE_0_1_4.md)。以下旧版本描述保留各轮历史范围，后续版本不自动发布。

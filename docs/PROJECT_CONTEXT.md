@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4单应用、混合Monorepo生产页及现有工作区20项重复/冲突/空操作保护已验收。下一步验证批量JSON的混合语言工作区创建，保持官方模板及逐应用UI/CSS配置。
+1. 公开0.1.4单应用、逐个/批量创建混合Monorepo及代表生产页已验收。下一步验证批量创建中断后的检查、恢复计划及缺失应用恢复，保持官方模板和已有文件保护。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1158,3 +1158,13 @@ Vue TS/Element Plus/UnoCSS与React TS/Ant Design/Tailwind两个现有应用各�
 每次命令后比对全工作区192份文件的内容/size/mtime及52个目录名称，包含dist产物、应用入口、各自KEY、GLB、根编译器/peer配置与锁文件；排除node_modules/.git。全部原样，下载目录模型哈希也保持。该轮不重新创建应用、重新构建或重复浏览器验收，前轮ready与模型证据保持范围。真实公开包调用日志及快照见忽略目录dist/verification中以existing-guards-开头的文件，独立安装根已按拥有路径校验清理。
 
 未发现需修改生成器的缺陷，不升级依赖或发布；仅记录实际保护结果。下一步回到批量JSON的Vue JS/React TS混合语言创建与按应用独立配置验收。
+
+## 2026-11-04 公开0.1.4批量JSON混合语言创建
+
+使用实际registry下载的0.1.4归档复核SHA-512后隔离安装，在含中文、空格、&及单引号的自建调用目录执行批量配置；配置文件位于调用目录之外。dry-run正确指向调用目录下batch-mixed且未创建文件，正式执行完成根及两个应用共3个阶段，根委托vite:monorepo、子应用委托vite:application。用户现有test-starter未参与本轮操作。
+
+Vue JS选择Element Plus/Tailwind，React TS选择Ant Design/UnoCSS，两者均启用AdScreen，不选引擎或额外验收页。各自main/App、src/plugins、Vite/CSS配置和依赖声明独立，本地normalize内容一致并优先导入，默认无smoke页面和中间备份；官方website/utils保持。公开包结构检查通过。环境为Windows、Node22.18.0、Vite+1.4.0，本轮官方模板选择pnpm11.22.0并保留；不与此前12.16.1实测合并描述。
+
+根ready无缓存0/8命中、8/8成功，check66份格式/33份代码类型文件、utils1项测试以及website/utils/两应用构建通过。Chrome生产preview两页按钮均由0点击到1，Element Plus/Ant Design样式及Tailwind/UnoCSS的.p-6规则已存在，大屏HUD保持1920×1080按视口等比适配；捕获warn/error为空。utils的TS7 API实验性提示保留，根创建前目录不使用Vite+的提示未阻止官方流程；没有为消除提示升级依赖或修改生成结果。
+
+实际公开包另验证重复目标、React不支持的UI、非法语言及路径穿越4项批量拒绝保护，均退出1、子进程0，129份文件及36个目录名称/文件内容与mtime保持。对应已验证配置作为examples/mixed-language.batch.json交付；全部9个样例、22个应用计划dry-run通过（此工具actualBuilds=0，实际构建范围仅本轮所述组合）。临时工作区、隔离安装和两个preview服务已清理；截图与日志位于忽略目录dist/verification中以public-batch-开头的文件。不新增生成器运行逻辑、CI或发布。
