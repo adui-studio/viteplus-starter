@@ -19,6 +19,12 @@ flowchart TD
   I --> J[本地测试和构建]
 ```
 
+## 当前集成口径
+
+新建应用在官方生成后，将所选运行时插件归档src/plugins、构建插件归档build/plugins，并接入正式main/App；独立验收页由显式选项生成。已有工程补装保留业务App及自定义入口逻辑，只增量写本次插件与必要配置，保留原件备份。布局与实现入口见[目录说明](PROJECT_LAYOUT.md)。
+
+三引擎与多选、GLB/.adui自动构建及embedded/external均已接入。当前模型范围为自包含GLB，服务端授权与其他格式不属于默认交付。后文P5/Three首期章节保留阶段设计；其中“首页不改”和历史新增目录只描述当时流程，当前新建/补装行为以上述口径及对应模块文档为准。
+
 ## 模块边界
 
 - 平台层复用现有Windows命令分支与POSIX argv执行，不复制框架模板。恢复报告提供双Shell格式；仅OS临时根解析为物理路径，任意输出路径仍按safe-paths逐级检查。平台原生与受控验证分别记录，见 [跨平台指南](MACOS_LINUX.md)。
@@ -27,7 +33,7 @@ flowchart TD
 - 本地 CLI 分发由 scripts/cli-package.mjs 按固定范围暂存原 CLI 和预设源码，scripts/pack-cli.mjs 通过 npm pack 输出独立 tgz。保留 sibling 资源路径，不引入运行时打包器或框架模板；bin 直接启动原 CLI，cwd 为实际调用目录，和 GitHub 启动器的工具父目录策略分开。详见 [分发说明](CLI_DISTRIBUTION.md)。
 
 - `packages/create`：CLI、配置校验、官方命令调用和 UI/CSS 应用集成；负责已实现的官方模板编排、按应用集成及独立验收入口。
-- `packages/three` 提供引擎适配，`packages/model-security` 提供共享加解密源码与独立工具；生产授权服务尚未创建。
+- `packages/three` 提供引擎适配，`packages/model-security` 提供共享加解密源码与独立工具；生产授权服务不在当前交付范围。
 - `packages/cesium` 提供按需场景、实例生命周期、静态资源配置和 GLB/.adui 适配；create/cesium 增量安装与配置。共享授权、GLB 校验、env 构建插件及 KEY 脚本；lazy 管理目录下载、取消和部署 base，控制器独立管理候选就绪、替换、Blob URL 和销毁。
 - `packages/babylon` 提供按需场景、Engine/Scene 生命周期和 GLB/.adui AssetContainer 适配；create/babylon 增量安装 core/loaders 及四组合独立页面。与 Three 共用格式检查、授权解密、env 构建插件和 KEY 脚本；保护默认启用，配置备份后增量写入，关闭时不改 Vite 配置。多引擎只选择一个模型适配器；create/engine 同时编排其计划。
 - `scripts/validate-docs.mjs`：本地文档静态校验；不是 CI。

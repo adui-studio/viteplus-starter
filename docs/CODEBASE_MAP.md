@@ -25,7 +25,7 @@
 - .github/ISSUE_TEMPLATE：Bug/Feature/Chore表单及文档入口；.github/pull_request_template.md：默认PR模板。
 - .github/release.yml：手动生成发布说明时的分类，不是工作流。
 - CHANGELOG.md、docs/RELEASING.md、docs/NPM_RELEASE.md：版本变化、手动发布步骤与实际发布结果。
-- docs/releases/v0.1.3.md：本次发布说明正文，概述Windows/Linux兼容、补装保护及实际验收边界。
+- docs/releases/v0.1.3.md：0.1.3历史发布说明，概述Windows/Linux兼容、补装保护及实际验收边界。
 - docs/releases/v0.1.4.md：正式页解锁重试、Cesium兼容修复与README模型示例的发布说明；候选与正式包的身份核对见NPM_RELEASE。
 - docs/SKILLS.md、skills-lock.json、vite.config.ts：6个保留Skills、来源与第三方原文格式边界。
 

@@ -2,11 +2,11 @@
 
 GitHub 来源的 `vp create github:adui-studio/viteplus-starter` 下载工具仓库，再由 `vp run create` 启动向导。要直接进入 UI/CSS、大屏和引擎选择，使用本地 CLI 安装包入口。
 
-当前公开包为`@adui/viteplus-starter@0.1.3`，命令名`viteplus-starter`，latest指向0.1.3。CLI清单private:false，发布及包名验收结果见[发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器；需要已安装的vp和受支持Node，系统验证范围见[跨平台指南](MACOS_LINUX.md)。基础工程仍委托Vite+官方模板。
+当前公开包为`@adui/viteplus-starter@0.1.4`，命令名`viteplus-starter`，latest指向0.1.4。CLI清单private:false，发布及包名验收结果见[发布记录](NPM_RELEASE.md)。无需为分发入口新建仓库或重写生成器；需要已安装的vp和受支持Node，系统验证范围见[跨平台指南](MACOS_LINUX.md)。基础工程仍委托Vite+官方模板。
 
-0.1.3已公开，包名入口可直接使用；也可继续本地打包。打包结果提供contents路径，对应实际文件清单pack-contents.json，包含MIT LICENSE、关键词、包元信息与integrity，清单不进入tarball。
+0.1.4已公开，包名入口可直接使用；也可继续本地打包。打包结果提供contents路径，对应实际文件清单pack-contents.json，包含MIT LICENSE、关键词、包元信息与integrity，清单不进入tarball。
 
-0.1.3包含POSIX命令与路径适配，Windows/Linux代表验收已通过；macOS原生验证待补，详情见[跨平台指南](MACOS_LINUX.md)。下面Windows路径示例需在其他系统替换为实际路径并使用引号；旧tgz不会获得源码更新。
+0.1.4包含POSIX命令与路径适配，Windows/Linux代表验收已通过；macOS已有用户原生代表验收，详情见[跨平台指南](MACOS_LINUX.md)。下面Windows路径示例需在其他系统替换为实际路径并使用引号；旧tgz不会获得源码更新。
 
 ## 构建本地包
 
@@ -49,7 +49,7 @@ vp dlx -- $bundle.tarball
 若把 tgz 交给另一台已安装 Vite+ 的 Windows 电脑，也可以直接运行：
 
 ```powershell
-vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.3.tgz'
+vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.4.tgz'
 ```
 
 不需要先下载生成器仓库。无参数进入向导，选择项目类型、Vue/React、TS/JS、UI、CSS、大屏、引擎和模型保护。与 Vite+ 使用同款方向键选项和回车确认，3D 引擎用空格勾选，可多选，空列表表示不启用；名称直接输入。最终选择 No 或任意步骤 Ctrl+C 均取消，不创建项目。目标位置依据调用目录，和 dlx 缓存或包安装目录无关。
