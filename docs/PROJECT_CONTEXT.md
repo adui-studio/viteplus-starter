@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：用户确认继续0.1.4人工发布，并要求删除README品牌实现说明、继续精简；正式包与候选仅README不同，代码及示例保持。npm/Release公开结果待实际核验，候选及历史平台证据保留原范围。
+- 当前阶段：0.1.4已公开发布至npm public/latest及GitHub Release；README已按要求去掉品牌实现说明并精简。公开归档与正式包逐字节一致，标签固定验收源码c32afa0；候选及历史平台证据保留原范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 按用户确认完成0.1.4正式归档复核、npm发布与GitHub Release；硬件验证由用户在官方页面完成，上传、registry和Release分别记录。不扩展查看器功能或后续版本自动发布。
+1. 使用公开0.1.4完成一次完整交互创建及正式首页/所选插件验收，或根据实际项目反馈修复生成器问题；不扩展查看器功能或自动发布后续版本。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1096,3 +1096,9 @@ Cesium兼容修复提交78cfd0b，README/0.1.4候选源码提交fa686c2；后者
 正式包pack-9DqaM7为92文件、104567字节，SHA-512见NPM_RELEASE；与候选仅README不同，其余91份文件及模型代码块一致。Windows本轮305/305、文档及vp check（228/164）通过；正式包隔离安装shim帮助、Vue JS/React TS预览、元信息和调用目录无工程写入通过，临时根清理。publish dry-run身份与归档一致，npm whoami为adui。
 
 本轮0.1.4发布已授权，但上传、registry生效和GitHub Release各自待实际结果，不延伸为自动发布后续版本。没有新增依赖、流水线或部署入口；历史候选和平台范围保留。
+
+## 2026-11-04 0.1.4公开发布完成
+
+用户完成npm官方验证后，正式tgz上传成功，公开version/latest均为0.1.4；公开下载与pack-9DqaM7逐字节一致，两种显式包名入口帮助通过。签注标签v0.1.4指向验收源码c32afa05442b312942c17c578962d92c22b38472；GitHub Release非草稿、非预发布，API与网页均确认Latest及正确提交，正文与仓库发布说明一致。
+
+README清理已随公开包交付，运行时代码及其余91份文件保持候选原字节。发布后305/305测试、文档检查和vp check通过；正式包、公开结果及证据身份见[发布记录](NPM_RELEASE.md)。未提交用户模型或密钥，本次授权已完成；下一步回到公开包实际创建/首页和插件验收及用户反馈。

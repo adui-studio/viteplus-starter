@@ -286,7 +286,7 @@ $candidate = 'D:\path\to\adui-viteplus-starter-0.1.4.tgz'
 node --input-type=module -e "import {verifyCliPackage} from './scripts/verify-cli-package.mjs'; console.log(JSON.stringify(await verifyCliPackage(process.argv[1],{models:false,languages:{vue:'js',react:'ts'}}),null,2))" $candidate
 ```
 
-POSIX使用相同Node代码，将候选路径替换为本机路径并用引号包裹。归档版本须匹配当前CLI源清单；公开回归另需从官方registry取得对应已发布版本的实际tgz并核对正式SHA-512，不能把重打包源码等同公开下载。当前0.1.4为本地候选，只使用候选归档与侧车清单，不从registry下载尚未发布的版本。
+POSIX使用相同Node代码，将候选路径替换为本机路径并用引号包裹。归档版本须匹配当前CLI源清单；公开回归另需从官方registry取得对应已发布版本的实际tgz并核对正式SHA-512，不能把重打包源码等同公开下载。当前0.1.4已公开发布，正式归档身份见[NPM发布记录](NPM_RELEASE.md)；公开回归使用registry实际下载及匹配的侧车清单，本地重打包验证仍使用本次产物自己的清单。
 
 原有工具命令行默认不变。非模型回归会额外构建index与ui-smoke双入口（base=/ui-check/），再执行工作区ready/check以及8次重复/空操作保护；输出uiBuilds、languages及实际文件数。该流程没有浏览器点击检查，不把Windows/Linux结果计为Mac同组合已通过。
 

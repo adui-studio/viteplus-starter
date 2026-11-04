@@ -1,8 +1,8 @@
 # npm 分发与发布记录
 
-包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为0.1.3，latest指向0.1.3**；[GitHub Release v0.1.3](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.3) 已公开。0.1.0于2026-11-03首发。CLI清单为private:false，开发工作区根继续保留0.0.0/private。
+包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为0.1.4，latest指向0.1.4**；[GitHub Release v0.1.4](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.4) 已公开。0.1.0于2026-11-03首发。CLI清单为private:false，开发工作区根继续保留0.0.0/private。
 
-0.1.4候选已完成，用户随后确认继续正式发布；当前正在准备正式归档，尚未据此声明npm/Release已公开。候选身份和生成验收保留于[0.1.4候选记录](CANDIDATE_0_1_4.md)。
+0.1.4已完成正式发布及公开核验。以下保留正式包准备过程。候选身份和生成验收保留于[0.1.4候选记录](CANDIDATE_0_1_4.md)。
 
 ## 0.1.4正式包准备（2026-11-04）
 
@@ -11,6 +11,14 @@
 与pack-WMNmBe候选比较仅README改变，其余91份文件原字节一致；三引擎与组件生命周期示例代码块保持。README去掉Logo/favicon实现说明和候选提示，常用命令直接使用安装后的CLI，明确当前调用目录；保持原始品牌资源和生成器行为。
 
 Windows本轮305/305测试、文档校验及vp check通过（228份格式文件、164份代码文件）；正式tgz隔离安装后的Windows命令shim帮助、Vue JS/React TS预览、元信息和无项目写入检查通过，临时根已清理。publish dry-run返回同一104567字节、92文件及SHA-512。Linux候选305项及实际创建构建证据保留，未因本轮文案调整声称重复了全平台矩阵。npm whoami确认adui；尚未据此认定上传或公开成功。
+
+### 0.1.4公开发布完成
+
+用户完成本次npm官方发布验证后，上传退出0；registry处理期间未重复提交。公开version与latest均为0.1.4，作者ADui、仓库地址及20个关键词已核对。公开下载104567字节与上述正式tgz逐字节相同，SHA-512一致；显式版本的`vp dlx -- @adui/viteplus-starter@0.1.4 --help`和`pnpm dlx @adui/viteplus-starter@0.1.4 --help`均退出0。
+
+发布源码提交为`c32afa05442b312942c17c578962d92c22b38472`，签注标签v0.1.4固定该提交并已推送。GitHub首次网页提交超时，经API确认尚未创建后重试成功；公开API及网页确认Release非草稿、非预发布且为Latest，正文与docs/releases/v0.1.4.md一致。Release保留默认源码归档，CLI由npm分发，未上传用户模型或密钥。
+
+证据位于忽略目录dist/verification下的v014-public-evidence.json、v014-tag-evidence.json、v014-github-release-evidence.json、两种公开包名帮助日志及v014-github-release.jpg。发布后源码回归305/305通过，无跳过；文档及vp check通过。本次授权已完成，后续版本不自动发布。
 
 2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，0.1.2公开包已同步新地址及作者ADui。npm包名保持不变；0.1.1及以前的元信息和归档保持发布时内容。
 
@@ -47,9 +55,9 @@ npm登录原先返回401，用户已在官方网页完成安全密钥验证，np
 
 ## 本轮候选包
 
-0.1.3正式包已完成公开发布，源码可继续本地打包；实际发布归档为上文pack-XOSqvx产物。11月3日候选归档与正式包仅README不同，候选记录保留作历史验收证据，不再作为待上传产物。
+0.1.4正式包已完成公开发布，源码可继续本地打包；实际发布归档为上文pack-9DqaM7产物。候选归档与正式包仅README不同，候选记录保留作历史验收证据，不再作为待上传产物。
 
-具体产物身份、两端安装与构建范围见[0.1.3候选验收](CANDIDATE_0_1_3.md)。
+具体产物身份、两端安装与构建范围见[0.1.4候选验收](CANDIDATE_0_1_4.md)。
 
 在仓库根运行：
 

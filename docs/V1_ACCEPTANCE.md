@@ -1,10 +1,14 @@
 # V1 本地验收与交付范围
 
-本项目交付Vite+项目生成器及逐应用预设，npm/GitHub Release0.1.3已公开。Windows/Linux已有代表创建、补装与构建证据，M1 Max Mac新增用户原生创建、检查、构建及界面/Three反馈；不将所有组合标为完成。详细实测证据见[项目状态](PROJECT_CONTEXT.md)，当前覆盖见[能力表](GENERATOR_STATUS.md)。
+本项目交付Vite+项目生成器及逐应用预设，npm/GitHub Release0.1.4已公开。Windows/Linux已有代表创建、补装与构建证据，M1 Max Mac新增用户原生创建、检查、构建及界面/Three反馈；不将所有组合标为完成。详细实测证据见[项目状态](PROJECT_CONTEXT.md)，当前覆盖见[能力表](GENERATOR_STATUS.md)。
 
 用户2026-11-03追加macOS与Linux要求，取代仅Windows的阶段限制。发布候选Windows/Linux各301项测试通过，当前仓库两端各303项通过；2026-11-04用户提供Mac darwin arm64上公开0.1.3的Vue TS/TDesign/UnoCSS/大屏/Three/embedded创建与构建日志，vp check通过，界面及Three反馈正常，随后确认实际GLB的.adui构建和加载通过。Mac未执行仓库单元测试，其他组合仍待各自验证；平台命令与范围见[macOS/Linux指南](MACOS_LINUX.md)。以下日期章节继续作为历史记录，不改写过去的验证结论。
 
 本文中的本地项目路径和“现场/产物保留”描述记录各轮验收当时的状态，不要求测试工程永久保留。用户于 2026-11-02 要求清理之前创建的测试项目，后续目录清理情况见 [项目状态](PROJECT_CONTEXT.md)；清理不表示重新执行或扩大此前的验收范围。
+
+## 0.1.4公开交付（2026-11-04）
+
+正式包与下述候选仅README文案不同，其余91份文件原字节保持；公开npm version/latest为0.1.4，下载完整性及两种包名帮助通过。GitHub v0.1.4已公开并为Latest，标签固定验收源码c32afa0。发布后305项测试、文档及vp check通过，具体身份见[发布记录](NPM_RELEASE.md)。以下候选与旧版本章节保留各阶段原始证据。
 
 ## 0.1.4本地候选（2026-11-04）
 
