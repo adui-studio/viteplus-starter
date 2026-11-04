@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4单应用、逐个/批量创建混合Monorepo及代表生产页已验收。下一步验证批量创建中断后的检查、恢复计划及缺失应用恢复，保持官方模板和已有文件保护。
+1. 公开0.1.4的单应用、混合Monorepo、批量创建及中断恢复代表流程已验收。下一步核对V1交付清单与剩余验证缺口，保持官方模板和已有文件保护，不重复扩展已通过组合。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1168,3 +1168,15 @@ Vue JS选择Element Plus/Tailwind，React TS选择Ant Design/UnoCSS，两者均�
 根ready无缓存0/8命中、8/8成功，check66份格式/33份代码类型文件、utils1项测试以及website/utils/两应用构建通过。Chrome生产preview两页按钮均由0点击到1，Element Plus/Ant Design样式及Tailwind/UnoCSS的.p-6规则已存在，大屏HUD保持1920×1080按视口等比适配；捕获warn/error为空。utils的TS7 API实验性提示保留，根创建前目录不使用Vite+的提示未阻止官方流程；没有为消除提示升级依赖或修改生成结果。
 
 实际公开包另验证重复目标、React不支持的UI、非法语言及路径穿越4项批量拒绝保护，均退出1、子进程0，129份文件及36个目录名称/文件内容与mtime保持。对应已验证配置作为examples/mixed-language.batch.json交付；全部9个样例、22个应用计划dry-run通过（此工具actualBuilds=0，实际构建范围仅本轮所述组合）。临时工作区、隔离安装和两个preview服务已清理；截图与日志位于忽略目录dist/verification中以public-batch-开头的文件。不新增生成器运行逻辑、CI或发布。
+
+## 2026-11-04 公开0.1.4批量中断与缺失应用恢复
+
+在独立临时根复核并隔离安装实际registry 0.1.4，调用目录含中文、空格、&和单引号。三应用配置为Vue JS/Element Plus/Tailwind/大屏、React TS/Ant Design/UnoCSS/大屏及无预设Vue JS。首轮根和第一个应用由官方入口实际创建；仅在父CLI启动第二个应用前由探针返回23，批量退出23、报告失败react-ts和未执行later-js，两个目录均未创建。此为受控子进程失败，不是真实网络中断。
+
+为已完成Vue首页加入测试业务注释并定向格式化后取快照。inspect在应用缺失时退出1，plan退出0并给出validate-existing/create-missing/create-missing，均只读且子进程0。重复batch拒绝已有根。另在缺失目标创建仅含自造marker的部分目录，plan给出manual-review、execute在任何子进程前拒绝；只清除此自造文件及空目录后，现场恢复原样，并非自动处理真实残留。
+
+正式execute实际创建react-ts、later-js，跳过vue-js；已完成应用原有32份文件内容/mtime保持，测试业务注释保留。恢复后根ready无缓存9/9通过，check79份格式/38份代码类型文件、utils1项测试及website/utils/三应用构建成功。环境Windows、Node22.18.0、Vite+1.4.0、官方模板pnpm11.22.0；utils TS7 API实验性提示保留。无预设应用未生成空plugins目录。
+
+最终inspect/plan均通过，重复execute返回completed为空、skipped为全部3个应用，子进程0，包含产物的156份文件及45个目录保持。整轮8次只读/拒绝/空操作调用由spawn/exec/fork等探针核验，没有安装或格式化子进程。本轮不做新浏览器验收，不操作用户现有test-starter；临时根与隔离安装已清理。证据位于忽略目录dist/verification中以public-recovery-开头的日志和结果JSON。
+
+未发现需修改生成器的缺陷，补充公开包恢复步骤及验收记录，不升级依赖、修改版本或发布。下一步核对V1交付清单与真实剩余缺口，避免重复已通过组合。
