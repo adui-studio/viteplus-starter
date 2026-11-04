@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 0.1.3已公开，Mac Vue TS创建、检查、构建及界面/Three用户验收通过。下一步在Mac补实际GLB的.adui构建与加载，再回到Vue JS、React TS公开包代表回归，按实际问题修复生成器；后续版本不自动发布。
+1. 0.1.3已公开，Mac Vue TS创建、检查、构建、界面/Three及实际GLB的.adui构建与加载均获用户确认。下一步回到Vue JS、React TS公开包代表回归，按实际问题修复生成器；后续版本不自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1036,3 +1036,11 @@ registry公开确认version/latest均0.1.3，作者ADui、新仓库元信息与2
 弃用提示的registry信息已核对：@yuku-codegen/@yuku-parser0.9.5平台绑定已标为deprecated，分别提示0.14后的纯JS/codegen及yuku-core/parser迁移；当前工作区锁定的是yuku0.19，不能将本地依赖树替代该Mac工程的0.9.5父链。minimumReleaseAgeExclude由pnpm dlx在向导前输出。本轮无复现的生成器代码故障，不升级或覆盖依赖、关闭警告或修改安全策略；仅更新平台证据与命令目录说明，公开0.1.3归档/标签保持。
 
 文档更新的Windows仓库回归301/301通过，无跳过；文档校验与vp check通过（224份格式文件、162份代码文件）。该仓库回归与Mac用户的53/38文件检查分别记录，不将其计为Mac执行了单元测试。本轮只更新README、跨平台/验收指南、需求、索引及项目状态，无需新npm版本或Release。
+
+## 2026-11-04 Mac实际GLB构建与加载用户确认
+
+在上一轮建议“在Mac使用实际GLB验证.adui加密构建和模型加载”后，用户回复“通过了”。将其记录为既有Mac Vue TS/TDesign/UnoCSS/AdScreen/Three/embedded组合的实际GLB构建及加载用户确认；没有另附该次构建/网络日志或产物哈希，不填造模型文件名、数量、密文原字节比对或密钥轮换结果。
+
+本轮只同步当前Mac验收范围、需求和下一步状态，历史原始日志结论保留。其他框架语言、外置密钥、取消与重复补装仍待各自原生证据；公开0.1.3包与标签保持。下一步恢复Vue JS和React TS公开包代表验收。
+
+Windows仓库本地301/301回归、文档校验及vp check通过（224份格式文件、162份代码文件）；日志位于忽略目录dist/verification/macos-glb-feedback-*，不计为Mac重新运行了这些仓库检查。
