@@ -423,3 +423,9 @@ application-unlock测试直接执行生成的JS事件处理器，以适配器实
 Cesium预设1.146.0的^26.4.0依赖会解析到26.5.0，但其聚合入口还从engine导出已移入gltf的符号，三引擎示例真实构建因此失败。1.147.0官方包匹配engine26.5/widgets16.3.1/gltf；仅同步cesiumDependencies与私有peer，不引入全局overrides或修改用户锁文件。现有版本预检保持，cesium测试覆盖旧1.146.0在零安装调用前拒绝且清单、配置原字节不变。
 
 0.1.4正式包继续使用同一打包边界，README去候选状态、移除品牌实现说明并把常用操作统一为安装后的CLI调用。通过归档逐文件核对证明91份非README文件及三引擎代码块与候选一致；本轮发布前隔离安装仅补帮助、两组预览和元信息核验，真实创建/模型构建保留该候选的既有证据，不把文案修改声称为再次全矩阵验收。
+
+## 混合工作区 peer 解析诊断
+
+Vite+ core的可选Vue工具可由pnpm传播至TS7分支，导致Volar的<7声明不匹配。显式修复分为根package.json增量引用typescript:catalog:、pnpm-workspace.yaml关闭autoInstallPeers及dedupePeerDependents、重装和peers/ready检查。只关闭两个开关会使后续安装失去根工具链的TS7绑定，utils声明打包可能无法解析TypeScript Go；完整步骤须包含根编译器引用并复验新增成员。
+
+本轮不将该策略写入生成器，不增加运行时参数或修改官方应用模板；其他预设可能依赖peer自动安装，因此采用明确的工程级修复说明。既有workspace.mjs的Vite peer扩展与保护逻辑保持。操作步骤见[Monorepo](MONOREPO.md)，源码和当前公开0.1.4保持同一默认行为。

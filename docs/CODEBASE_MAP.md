@@ -2,6 +2,8 @@
 
 ## 跨平台
 
+- docs/MONOREPO.md：混合TS6/TS7的Volar peer诊断、根TypeScript catalog显式绑定及peer隔离步骤；不改变生成器默认策略。
+
 - packages/create/src/recovery.mjs、batch.mjs：双Shell只读指引及本机失败摘要，保留原始argv和旧powershell字段。
 - packages/create/src/safe-paths.mjs：继续逐级拒绝未知链接，统一POSIX父路径占用报错。
 - scripts/temp-directory.mjs：OS临时根真实路径，pack/验证脚本及35份测试夹具共用。

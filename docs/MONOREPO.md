@@ -124,3 +124,30 @@ node packages/create/bin/cli.mjs --execute-recovery D:/Workspace/adui-studio/adu
 开始处理缺失应用后，执行过程失败的错误对象另含 pending，对应文本中的“未执行子进程”。当前失败阶段单列，已完成或跳过项不重复列入；创建后的结构检查失败时，后续 UI 和应用仍列为未执行。清单仅帮助核对剩余操作，不能跳过失败阶段直接执行。末尾阶段失败且没有后续步骤时显示“无”。初始预检阻塞仍在任何步骤启动前直接拒绝。
 
 恢复子进程失败时，最外层CLI保留其有效非零退出码；信号退出、启动异常或没有有效码的失败使用1，可通过PowerShell的 `$LASTEXITCODE` 或sh/zsh的 `$?` 查看。若部分创建后再次执行因人工阻塞返回1，应按本次失败阶段处理，不视为原失败已解决；命令不会记住旧退出码或自动重试。
+
+## 混合 TypeScript 版本的 Volar peer 告警
+
+Windows实测的Vite+1.4.0/pnpm12.16.1混合工作区中，Vue应用使用TypeScript6.0.3，React及官方website/utils使用7.0.2。pnpm的可选peer传播会把Vue工具带入TS7依赖分支，peer检查报告@volar/typescript、@volar/language-service2.4.30要求TypeScript<7。[pnpm官方行为说明](https://raw.githubusercontent.com/pnpm/pnpm/v12.16.1/pnpm/docs/settings/peer-dependencies.md)。
+
+该组合可按以下顺序显式修复，保留各应用自己的TypeScript配置：
+
+1. 备份根package.json、pnpm-workspace.yaml及pnpm-lock.yaml，确认catalog中的typescript已经是当前工作区使用的TS7范围。
+2. 在根package.json的devDependencies中增量加入`"typescript": "catalog:"`。保留其他字段；根工具链需要明确的编译器引用，不只依赖兄弟应用的隐藏提升副本。
+3. 在根pnpm-workspace.yaml设置下面两项。它们影响整个工作区的peer自动补装/实例合并，其他第三方扩展所需peer应明确声明；已有自定义策略先人工核对。
+
+```yaml
+autoInstallPeers: false
+dedupePeerDependents: false
+```
+
+然后在根目录执行：
+
+```sh
+vp install
+pnpm peers check
+vp run ready
+```
+
+不要只添加两个false：在未显式绑定根TypeScript时，一次构建可能通过，但后续新增成员/重装后，官方utils的vp pack可能报TypeScript Go未安装。完整步骤已验证peer检查、现有混合工作区ready以及再次创建Vue成员后的完整ready。不放宽Volar的peer范围、不统一降级React、不新增依赖版本覆盖；TypeScript引用复用既有catalog。
+
+生成器和公开0.1.4默认策略保持，未自动为已有工程迁移配置。上述是针对已验证组合的显式操作；其他工具链或自定义catalog须分别验证，详细结果见[项目状态](PROJECT_CONTEXT.md)。
