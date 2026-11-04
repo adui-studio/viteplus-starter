@@ -43,9 +43,26 @@ async function snapshot(directory) {
   return files;
 }
 
+export function normalizeVerificationLanguages(input = { vue: "ts", react: "js" }) {
+  if (
+    !input ||
+    typeof input !== "object" ||
+    Array.isArray(input) ||
+    Object.keys(input).length !== 2 ||
+    Object.keys(input).some((key) => !["vue", "react"].includes(key))
+  )
+    throw new Error("验收语言需为vue/react分别指定ts或js");
+  const languages = { vue: input.vue, react: input.react };
+  if (Object.values(languages).some((value) => !["ts", "js"].includes(value)))
+    throw new Error("验收语言需为vue/react分别指定ts或js");
+  return Object.freeze(languages);
+}
+
 // Real tools create and build the fixtures. Only negative/no-op commands load a
 // child-process probe: an unexpected installer or formatter must fail the check.
-export async function verifyRepeatGuards({ models = false, cli = sourceCli } = {}) {
+export async function verifyRepeatGuards({ models = false, cli = sourceCli, languages } = {}) {
+  if (typeof models !== "boolean") throw new Error("验收models需为布尔值");
+  languages = normalizeVerificationLanguages(languages);
   const parent = tmpdir(),
     root = await mkdtemp(join(parent, "adui-repeat-guards-"));
   assert.equal(dirname(root), parent);
@@ -80,11 +97,16 @@ syncBuiltinESMExports();\n`,
         version: 1,
         name: "repeat-workspace",
         apps: [
-          { name: "admin", framework: "vue", ...(models ? { screen: true } : {}) },
+          {
+            name: "admin",
+            framework: "vue",
+            language: languages.vue,
+            ...(models ? { screen: true } : {}),
+          },
           {
             name: "portal",
             framework: "react",
-            language: "js",
+            language: languages.react,
             ...(models ? { screen: true } : {}),
           },
         ],
@@ -93,8 +115,15 @@ syncBuiltinESMExports();\n`,
     run(["--config", config]);
     const workspace = join(cwd, "repeat-workspace");
     for (const [name, framework, language, ui, css, app] of [
-      ["admin", "vue", "ts", "element-plus", "tailwindcss", "App.vue"],
-      ["portal", "react", "js", "antd", "unocss", "App.jsx"],
+      ["admin", "vue", languages.vue, "element-plus", "tailwindcss", "App.vue"],
+      [
+        "portal",
+        "react",
+        languages.react,
+        "antd",
+        "unocss",
+        "App." + (languages.react === "ts" ? "tsx" : "jsx"),
+      ],
     ]) {
       const directory = join(workspace, "apps", name),
         appPath = join(directory, "src", app);
@@ -174,7 +203,16 @@ syncBuiltinESMExports();\n`,
         );
         if (verification.error) throw verification.error;
         assert.equal(verification.status, 0, "模型双入口/密文验收失败");
-      } else run(smoke);
+      } else {
+        run(smoke);
+        const verification = spawnSync(
+          process.execPath,
+          [fileURLToPath(new URL("./verify-ui-build.mjs", import.meta.url)), directory],
+          { cwd, stdio: "inherit" },
+        );
+        if (verification.error) throw verification.error;
+        assert.equal(verification.status, 0, "UI双入口验收失败");
+      }
       assert.equal(digest(await readFile(appPath)), businessHash, "业务 App 被补装改写");
       cases.push({ name, base, install, smoke, mode, businessHash, appPath });
     }
@@ -248,6 +286,8 @@ syncBuiltinESMExports();\n`,
       node: process.version,
       uid: typeof process.getuid === "function" ? process.getuid() : null,
       profiles: cases.length,
+      languages,
+      uiBuilds: models ? 0 : cases.length,
       modelBuilds: models ? cases.length : 0,
       controlledInstallFailures: installFailures,
       guardedCommands: results,

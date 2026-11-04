@@ -399,3 +399,9 @@ model-addon-recovery.test通过真实CLI和受控子进程边界验证：Vue TS/
 verify-cli-package接收本地tgz及同目录pack-contents.json，先核对SHA-512、版本和包名，再使用当前Node的npm JS入口在唯一临时根隔离安装，固定ignore-scripts且不保存锁文件。直接执行npm创建的Windows CMD / POSIX bin检查帮助与两种框架预览，调用目录含中文、空格、&和单引号；Windows工具shim路径中的百分号等CMD扩展字符提前拒绝，调用目录作为cwd数据传递。
 
 verify-repeat-guards的内部函数新增可选cli路径参数，默认仍为工作区源码入口，原命令行保持不变。包验收工具传入已安装包内CLI，以同一模型代表回归完成真实官方创建、补装及构建；配置、资源与子CLI相对路径均来自安装包。加密产物校验仍复用仓库验证工具，不把这些工具打进npm包。两个工具各自清理拥有的临时根，候选tgz和侧车清单保留于dist/cli。
+
+手动工具内部增加languages映射，默认vue:ts/react:js；映射需完整指定两框架的ts或js，传入批量成员和补装参数，React入口按语言读取App.tsx/App.jsx。verify-cli-package内部可传models与languages，命令行仍只接受tgz并保持原默认模型场景；预览与真实回归使用同一映射。
+
+两入口在文件/安装操作前校验models布尔值，并通过normalizeVerificationLanguages白名单校验、复制和冻结语言映射，避免非法Shell字符或异步期间调用者修改进入Windows命令shim参数。verification-options测试覆盖提前拒绝、默认组合与复制后不可变；该校验只属于手动验收工具。
+
+非模型场景在生成显式UI页后调用verify-ui-build，使用/ui-check/部署base构建正式页和UI页，随后运行根ready与构建后check；结果增加uiBuilds和languages，重复保护继续比较全部源文件内容/修改时间。不启动浏览器，不将双入口构建视为点击验收，也不把验证工具打进npm运行时。

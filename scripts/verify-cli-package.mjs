@@ -5,7 +5,7 @@ import { lstat, mkdir, mkdtemp, readFile, readdir, realpath, rm, stat } from "no
 import { basename, dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "./temp-directory.mjs";
-import { verifyRepeatGuards } from "./verify-repeat-guards.mjs";
+import { verifyRepeatGuards, normalizeVerificationLanguages } from "./verify-repeat-guards.mjs";
 
 async function npmEntrypoint() {
   const candidates = [
@@ -24,7 +24,9 @@ async function npmEntrypoint() {
   throw new Error("找不到 npm JS 入口，请使用包含 npm 的 Node 运行时");
 }
 
-export async function verifyCliPackage(input) {
+export async function verifyCliPackage(input, { models = true, languages } = {}) {
+  if (typeof models !== "boolean") throw new Error("验收models需为布尔值");
+  languages = normalizeVerificationLanguages(languages);
   const tarball = await realpath(resolve(input));
   assert.ok((await lstat(tarball)).isFile() && tarball.endsWith(".tgz"), "需要本地 tgz 文件");
   const report = JSON.parse(await readFile(join(dirname(tarball), "pack-contents.json"), "utf8"));
@@ -97,8 +99,8 @@ export async function verifyCliPackage(input) {
     }
     assert.match(invoke(["--help"]), /ADui Vite\+ Starter/);
     for (const [name, framework, language, ui, css] of [
-      ["candidate-vue", "vue", "ts", "element-plus", "tailwindcss"],
-      ["candidate-react", "react", "js", "antd", "unocss"],
+      ["candidate-vue", "vue", languages.vue, "element-plus", "tailwindcss"],
+      ["candidate-react", "react", languages.react, "antd", "unocss"],
     ]) {
       const plan = JSON.parse(
         invoke([
@@ -122,7 +124,7 @@ export async function verifyCliPackage(input) {
       assert.equal(plan.target, join(cwd, name));
     }
     assert.deepEqual(await readdir(cwd), [], "帮助或预览创建了项目文件");
-    const regression = await verifyRepeatGuards({ models: true, cli });
+    const regression = await verifyRepeatGuards({ models, cli, languages });
     return {
       name: manifest.name,
       version: manifest.version,

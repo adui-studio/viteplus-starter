@@ -276,3 +276,16 @@ node scripts/verify-cli-package.mjs '/path/to/pack-xxxx/adui-viteplus-starter-0.
 工具先校验SHA-512、源清单版本和包名，随后在自建临时安装目录中执行npm install --ignore-scripts。直接调用安装器创建的命令shim，检查帮助、Vue/React预览及特殊字符调用目录，再用安装包内CLI执行--models代表场景；需要网络、Vite+及带npm的Node，耗时数分钟。npm入口从npm_execpath或当前Node标准布局读取，不经Shell查找或拼接安装命令。
 
 最终JSON记录包身份、integrity、binHelp/binPreviews及嵌套regression。temporaryInstallRemoved和regression.temporaryRootRemoved均在对应finally清理完成后才返回；实际tgz和侧车不会删除。没有默认测试、CI、发布或后台执行入口。安装后的普通/负向调用与工作区源码单元测试分开记录。
+
+## 其他语言组合
+
+工具内部可用同一正式tgz选择Vue JS + Element Plus/Tailwind和React TS + Ant Design/UnoCSS。在仓库根执行，tgz需同目录具备pack-contents.json：
+
+```powershell
+$candidate = 'D:\path\to\adui-viteplus-starter-0.1.3.tgz'
+node --input-type=module -e "import {verifyCliPackage} from './scripts/verify-cli-package.mjs'; console.log(JSON.stringify(await verifyCliPackage(process.argv[1],{models:false,languages:{vue:'js',react:'ts'}}),null,2))" $candidate
+```
+
+POSIX使用相同Node代码，将候选路径替换为本机路径并用引号包裹。公开包回归还需先从官方registry取得0.1.3的实际tgz，核对其SHA-512与正式包清单一致；不能把重新打包源码等同公开下载。
+
+原有工具命令行默认不变。非模型回归会额外构建index与ui-smoke双入口（base=/ui-check/），再执行工作区ready/check以及8次重复/空操作保护；输出uiBuilds、languages及实际文件数。该流程没有浏览器点击检查，不把Windows/Linux结果计为Mac同组合已通过。
