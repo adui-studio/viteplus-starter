@@ -70,7 +70,7 @@ node packages/create/bin/cli.mjs --inspect-workspace D:/Workspace/adui-studio/ad
 node packages/create/bin/cli.mjs --inspect-workspace D:/Workspace/adui-studio/adui-cesium-workspace --config ./expected-apps.json
 ```
 
-仅支持当前官方 apps/_、packages/_、tools/* 布局。检查根 private/Vite+ 声明、YAML 列表、apps 目录和唯一根 Vite 配置；枚举成员清单及重复包名。带 --config 时按原批量 JSON 的校验规则检查预期应用的框架、语言入口、Vite 配置、UI/CSS/引擎依赖声明和已选择预设/验收页的文件存在性。额外官方默认成员和其他应用保留，不要求工作区名称与配置 name 相同。
+仅支持当前官方 `apps/*`、`packages/*`、`tools/*` 布局。检查根 private/Vite+ 声明、YAML 列表、apps 目录和唯一根 Vite 配置；枚举成员清单及重复包名。带 --config 时按原批量 JSON 的校验规则检查预期应用的框架、语言入口、Vite 配置、UI/CSS/引擎依赖声明和已选择预设/验收页的文件存在性。额外官方默认成员和其他应用保留，不要求工作区名称与配置 name 相同。
 
 JSON 报告包含 root、readOnly、ok、issues、members、apps 和 limitations。应用状态：
 
@@ -151,3 +151,32 @@ vp run ready
 不要只添加两个false：在未显式绑定根TypeScript时，一次构建可能通过，但后续新增成员/重装后，官方utils的vp pack可能报TypeScript Go未安装。完整步骤已验证peer检查、现有混合工作区ready以及再次创建Vue成员后的完整ready。不放宽Volar的peer范围、不统一降级React、不新增依赖版本覆盖；TypeScript引用复用既有catalog。
 
 生成器和公开0.1.4默认策略保持，未自动为已有工程迁移配置。上述是针对已验证组合的显式操作；其他工具链或自定义catalog须分别验证，详细结果见[项目状态](PROJECT_CONTEXT.md)。
+
+## 使用公开包恢复批量创建
+
+批量创建失败后，保留原JSON与生成目录。在生成器仓库的上级目录执行，下面以混合语言样例为例：
+
+```sh
+vp dlx -- @adui/viteplus-starter@0.1.4 --inspect-workspace ./batch-mixed --config ./viteplus-starter/examples/mixed-language.batch.json
+vp dlx -- @adui/viteplus-starter@0.1.4 --plan-recovery ./batch-mixed --config ./viteplus-starter/examples/mixed-language.batch.json
+```
+
+应用缺失时，inspect退出1是检查结果；plan没有人工阻塞时可退出0。核对各应用的action：
+
+| action            | 含义与执行行为                                           |
+| ----------------- | -------------------------------------------------------- |
+| validate-existing | 已有结构通过；恢复时跳过，随后另行检查和构建             |
+| create-missing    | 目录缺失；显式恢复时通过官方模板创建                     |
+| manual-review     | 存在占用、部分完成或结构问题；整体恢复在启动子进程前拒绝 |
+
+确认计划没有manual-review后，执行：
+
+```sh
+vp dlx -- @adui/viteplus-starter@0.1.4 --execute-recovery ./batch-mixed --config ./viteplus-starter/examples/mixed-language.batch.json
+cd batch-mixed
+vp run ready
+```
+
+execute使用原JSON重新检查现场，不执行保存的计划文本。已完成应用不重新集成；共享catalog、锁文件和必要根配置可随新应用安装更新。已有部分写入时先人工检查，不通过重跑同一批量命令覆盖现场。所有应用都存在且结构通过后，重复execute只返回跳过结果，不运行安装或格式化。
+
+公开0.1.4已通过受控中断、部分目录阻塞、实际缺失应用恢复及恢复后完整构建验收；受控退出码不等同真实断网或断电测试。详细记录见[项目状态](PROJECT_CONTEXT.md)。
