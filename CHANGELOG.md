@@ -4,14 +4,18 @@
 
 ## [Unreleased]
 
-### Fixed
+暂无新增变更。
 
-- Vue/React 新建应用的外置密钥模型解锁重试会清除旧错误提示，避免正确模型已显示但仍提示认证失败；已有应用不会自动改写。
-- Cesium 预设固定为 1.147.0，修复 1.146.0 解析到 engine 26.5 后的缺失导出构建错误；已有 Cesium 应用仍在预检拒绝自动升级。
+## [0.1.4] - 2026-11-04
 
 ### Changed
 
 - 整理 README 的跨平台使用入口，增加 Three.js、Cesium、Babylon 加密 GLB 加载及组件生命周期示例。
+
+### Fixed
+
+- Vue/React 新建应用的外置密钥模型解锁重试会清除旧错误提示，避免正确模型已显示但仍提示认证失败；已有应用不会自动改写。
+- Cesium 预设固定为 1.147.0，修复 1.146.0 解析到 engine 26.5 后的缺失导出构建错误；已有 Cesium 应用仍在预检拒绝自动升级。
 
 ## [0.1.3] - 2026-11-04
 
@@ -59,7 +63,8 @@
 - 提供已有应用补装、JSON批量创建、只读结构检查及明确边界的恢复操作。
 - 默认导入本地静态 normalize.css，统一 ADui Studio Logo 与 favicon。
 
-[Unreleased]: https://github.com/adui-studio/viteplus-starter/compare/v0.1.3...main
+[Unreleased]: https://github.com/adui-studio/viteplus-starter/compare/v0.1.4...main
+[0.1.4]: https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.4
 [0.1.2]: https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.2
 [0.1.1]: https://www.npmjs.com/package/@adui/viteplus-starter/v/0.1.1
 [0.1.0]: https://www.npmjs.com/package/@adui/viteplus-starter/v/0.1.0

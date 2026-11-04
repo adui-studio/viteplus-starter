@@ -33,9 +33,7 @@
 | 工作区管理 | 逐应用添加、JSON 批量创建、只读检查与缺失应用恢复                                                  |
 | 增量集成   | 已有应用补装、配置保护、可选独立验收页                                                             |
 
-基础工程始终委托 Vite+ 官方 `vite:application` / `vite:monorepo`。各应用独立选择语言和插件，默认 TypeScript；UI、CSS 和引擎均可不启用。所有 Vue/React 应用默认导入本地静态 normalize.css，不安装 normalize.css npm 包。
-
-新建应用、工作区默认网站、README 和 favicon 统一使用 [ADui Studio Logo](packages/create/assets/adui-studio-logo.svg)。应用首页与浏览器图标共用同一资源，生产构建由 Vite 处理路径。
+基础工程来自 Vite+ 官方 `vite:application` / `vite:monorepo`。每个应用独立选择语言和插件，默认 TypeScript，并使用本地 normalize.css。
 
 ## 快速开始
 
@@ -121,30 +119,30 @@ pnpm dlx @adui/viteplus-starter --name my-vue-app --type application --framework
 
 ## 常用操作
 
-以下示例在**生成器仓库根目录**运行，目标按工具父目录解析。项目名以小写字母开头，只使用小写字母、数字和中划线；新建目标须不存在。
+以下示例使用已安装的 `viteplus-starter`，项目生成在当前目录下。未安装时，可将命令替换为 `vp dlx -- @adui/viteplus-starter` 或 `pnpm dlx @adui/viteplus-starter`。项目名使用小写字母、数字和中划线，以字母开头；新建目标须不存在。
 
 ### 创建 Vue / React 应用
 
 ```sh
 # Vue + TypeScript + Element Plus + Tailwind CSS
-vp run create --name my-vue-app --type application --framework vue --ui element-plus --css tailwindcss
+viteplus-starter --name my-vue-app --type application --framework vue --ui element-plus --css tailwindcss
 
 # React + JavaScript + Ant Design + UnoCSS
-vp run create --name my-react-app --type application --framework react --language js --ui antd --css unocss
+viteplus-starter --name my-react-app --type application --framework react --language js --ui antd --css unocss
 
 # Vue 大屏 + Three.js，默认启用模型自动加密加载
-vp run create --name my-screen --type application --framework vue --screen --engine three
+viteplus-starter --name my-screen --type application --framework vue --screen --engine three
 ```
 
-添加 `--dry-run` 先预览；新建应用直接从正式 main/App 接入所选插件。默认不保留独立预设验收页，需要时添加 `--smoke-pages`。
+添加 `--dry-run` 先预览，添加 `--smoke-pages` 额外生成独立验收页。所选插件默认接入应用首页。
 
 <details>
 <summary>创建 Monorepo，并添加独立配置的应用</summary>
 
 ```sh
-vp run create --name my-workspace --type monorepo
-vp run create --workspace ./my-workspace --name admin --type application --framework vue --ui tdesign --css unocss
-vp run create --workspace ./my-workspace --name portal --type application --framework react --language js --ui antd --css tailwindcss
+viteplus-starter --name my-workspace --type monorepo
+viteplus-starter --workspace ./my-workspace --name admin --type application --framework vue --ui tdesign --css unocss
+viteplus-starter --workspace ./my-workspace --name portal --type application --framework react --language js --ui antd --css tailwindcss
 ```
 
 保留官方 `apps/website` 和 `packages/utils`，新应用位于 `apps/<name>`。根不指定统一框架或语言。详见 [Monorepo 指南](docs/MONOREPO.md)。
@@ -155,11 +153,11 @@ vp run create --workspace ./my-workspace --name portal --type application --fram
 <summary>使用 JSON 批量创建混合工作区</summary>
 
 ```sh
-vp run create --config ./viteplus-starter/examples/monorepo.batch.json --dry-run
-vp run create --config ./viteplus-starter/examples/monorepo.batch.json
+viteplus-starter --config ./workspace.json --dry-run
+viteplus-starter --config ./workspace.json
 ```
 
-配置路径相对于工具父目录；工具目录重命名后须同步调整路径，或使用绝对路径。配置格式见 [批量配置](docs/BATCH_CONFIG.md)，更多组合见 [示例索引](examples/README.md)。
+先按 [批量配置](docs/BATCH_CONFIG.md) 准备 `workspace.json`。文件路径相对于当前目录，也可使用绝对路径；更多组合见 [示例索引](examples/README.md)。
 
 </details>
 
@@ -167,10 +165,10 @@ vp run create --config ./viteplus-starter/examples/monorepo.batch.json
 <summary>为已有 Vue 应用补装 UI / CSS</summary>
 
 ```sh
-vp run create --name existing-vue --type application --framework vue --ui element-plus --css tailwindcss --apply-existing
+viteplus-starter --name existing-vue --type application --framework vue --ui element-plus --css tailwindcss --apply-existing
 ```
 
-目标为工具父目录下的已有 `existing-vue`，框架和语言须匹配。本次新增插件统一归档；业务 App、挂载逻辑、自定义注册入口与配置原件备份保留，样式按已知规则增量导入。历史插件不自动迁移，冲突时停止并保留现场。详见 [补装接入说明](docs/PROJECT_LAYOUT.md)。
+目标为当前目录下已有的 `existing-vue`，框架和语言须匹配。补装保留业务首页、自定义注册逻辑和配置备份，冲突时停止并保留现场。详见 [补装接入说明](docs/PROJECT_LAYOUT.md)。
 
 </details>
 
@@ -192,8 +190,6 @@ build/
 ```
 
 Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App 组合组件。JS / React 使用对应的 JS / JSX / TSX 入口。引擎点击后加载，多引擎安装不会同时启动多个渲染器。详见 [目录与入口设计](docs/PROJECT_LAYOUT.md)。
-
-模型保护默认将自包含 GLB 加密为 `.adui`，提供 `models:keygen` / `models:keyrotate`。客户端内置密钥用于提高直接复用门槛，不保证无法逆向提取，边界见 [模型构建指南](docs/MODEL_BUILD.md)。
 
 ## 加密模型加载
 
@@ -339,9 +335,9 @@ export function mountProtectedModel(host: HTMLElement) {
 
 内置密钥模式用于提高文件直接复用门槛，不保证无法逆向提取。更多配置见 [模型构建](docs/MODEL_BUILD.md)、[Three.js](docs/THREE_SMOKE.md)、[Cesium](docs/CESIUM.md) 与 [Babylon](docs/BABYLON.md)。
 
-## 本地候选包
+## 本地 tgz
 
-当前源码准备 **0.1.4 本地候选**，包含外置密钥解锁重试提示及 Cesium 依赖兼容修复；尚未发布到 npm。包名命令运行 npm 已发布版本。将下方路径替换为 tgz 的实际绝对路径：
+也可以通过本地 CLI 归档运行。将下方路径替换为 tgz 的实际绝对路径：
 
 ```sh
 vp dlx -- '/absolute/path/adui-viteplus-starter-0.1.4.tgz'

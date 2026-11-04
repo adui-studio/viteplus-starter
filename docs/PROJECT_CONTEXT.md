@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：0.1.4本地候选已准备，README统一平台入口并补三个引擎加密模型示例；包含解锁提示及Cesium依赖兼容修复，实际安装、生成和示例构建已验收。npm仍为0.1.3，候选未发布；平台与历史浏览器证据保留各自范围。
+- 当前阶段：用户确认继续0.1.4人工发布，并要求删除README品牌实现说明、继续精简；正式包与候选仅README不同，代码及示例保持。npm/Release公开结果待实际核验，候选及历史平台证据保留原范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 0.1.4本地候选的README、实际安装/生成和三个引擎示例构建已验收，归档见CANDIDATE_0_1_4。下一步审阅候选并由用户明确决定是否发布npm及GitHub Release；当前不上传、不创建标签。不扩展查看器功能。
+1. 按用户确认完成0.1.4正式归档复核、npm发布与GitHub Release；硬件验证由用户在官方页面完成，上传、registry和Release分别记录。不扩展查看器功能或后续版本自动发布。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1088,3 +1088,11 @@ Windows另从最终包README提取三个引擎和框架生命周期代码，生�
 候选CLI版本0.1.4，根仍0.0.0/private；registry只读核对latest仍0.1.3且无0.1.4。本轮未调用publish、未创建标签或Release。受控临时工程已由工具清理，原模型未变，日志在忽略目录dist/verification/v014-*；两端文档校验及vp check通过（227份格式文件、164份代码文件）。专用容器核对身份、官方镜像和源码只读挂载后已删除，未操作其他容器。
 
 Cesium兼容修复提交78cfd0b，README/0.1.4候选源码提交fa686c2；后者提交后重新打包与已验收pack-WMNmBe归档SHA-512及文件清单完全相同。候选继续仅本地保留，下一步等待明确发布决定。
+
+## 2026-11-04 0.1.4正式发布准备
+
+用户在候选交付和正式发布建议后确认继续，随后要求删除README中Logo/favicon实现说明并进一步优化。已同步根/包README，精简重复段落，将常用操作改为已安装CLI、明确当前目录和JSON路径，保留三个引擎代码；应用品牌资源和生成器逻辑保持。
+
+正式包pack-9DqaM7为92文件、104567字节，SHA-512见NPM_RELEASE；与候选仅README不同，其余91份文件及模型代码块一致。Windows本轮305/305、文档及vp check（228/164）通过；正式包隔离安装shim帮助、Vue JS/React TS预览、元信息和调用目录无工程写入通过，临时根清理。publish dry-run身份与归档一致，npm whoami为adui。
+
+本轮0.1.4发布已授权，但上传、registry生效和GitHub Release各自待实际结果，不延伸为自动发布后续版本。没有新增依赖、流水线或部署入口；历史候选和平台范围保留。
