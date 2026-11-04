@@ -308,3 +308,7 @@ Chrome 两个开发首页 Count is 0→1；Vue 样式顺序为 normalize、Tailw
 - 从含中文、空格、& 和单引号的调用目录运行已安装 Windows cmd shim：帮助成功；Vue TS/Element Plus/Tailwind/大屏/Three 与 React JS/Ant Design/UnoCSS/大屏/三引擎 dry-run 成功，cwd/target 指向调用目录，未创建目标。TTY 首提示 Ctrl+C 退出0，官方提示依赖正常加载，无目标生成。仅证明候选安装、资源读取、规划和取消，不将该轮预览称为新的应用构建或浏览器验收。
 - 全量回归285/285、无跳过，文档校验、根 vp check 204格式/153代码文件通过；vp install --frozen-lockfile 成功，根锁文件与依赖声明未升级。实际清单与隔离验收摘要保留在忽略目录 dist/verification；两次安装及调用目录已按自有临时路径保护清理。
 - 截至2026-11-03，npm whoami 为 ENEEDAUTH；官方 registry 的公开包查询与无认证 HTTPS 请求均为404。没有直接读取或记录凭据，@adui 作用域权限和最终首发版本仍需确认。private:true 保留，本地验收通过不等于已具备发布权限或已发布。
+
+## 公开0.1.4用户向导与首页（2026-11-04）
+
+用户实际使用公开包完整创建Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded组合；本机check为53份格式、38份代码类型文件通过，生产构建1610模块成功，Three分块576.98 kB保留体积提示。Chrome开发页按钮点击、Three线框场景与当前视口等比适配通过，捕获的warn/error为空。目录已统一plugins且无默认smoke页/中间备份；当前无GLB，不计模型加解密或生产预览浏览器验收。证据与后续范围见[项目状态](PROJECT_CONTEXT.md)。

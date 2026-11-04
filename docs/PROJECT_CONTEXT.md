@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 使用公开0.1.4完成一次完整交互创建及正式首页/所选插件验收，或根据实际项目反馈修复生成器问题；不扩展查看器功能或自动发布后续版本。
+1. 公开0.1.4的Windows交互创建及Vue TS/Element Plus/UnoCSS/AdScreen/Three首页已验收；下一步在该组合验证真实GLB的.adui构建与首页加载，或根据实际项目反馈修复生成器问题。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1102,3 +1102,11 @@ Cesium兼容修复提交78cfd0b，README/0.1.4候选源码提交fa686c2；后者
 用户完成npm官方验证后，正式tgz上传成功，公开version/latest均为0.1.4；公开下载与pack-9DqaM7逐字节一致，两种显式包名入口帮助通过。签注标签v0.1.4指向验收源码c32afa05442b312942c17c578962d92c22b38472；GitHub Release非草稿、非预发布，API与网页均确认Latest及正确提交，正文与仓库发布说明一致。
 
 README清理已随公开包交付，运行时代码及其余91份文件保持候选原字节。发布后305/305测试、文档检查和vp check通过；正式包、公开结果及证据身份见[发布记录](NPM_RELEASE.md)。未提交用户模型或密钥，本次授权已完成；下一步回到公开包实际创建/首页和插件验收及用户反馈。
+
+## 2026-11-04 用户公开0.1.4交互创建与正式首页验收
+
+用户通过vp dlx显式调用公开0.1.4，交互创建test-starter：Application/Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded，官方模板及全部安装阶段完成，约2分19.5秒。当前工程依赖为Element Plus2.14.7、UnoCSS66.12.0、Three0.186.1及types0.186.0；此记录为生成时实际解析版本，不修改生成器依赖范围。
+
+本机继续执行vp check，53份格式文件、38份lint/类型文件通过；vp run build两项任务成功，1610模块完成，Three分块576.98 kB有超过500 kB提示。src/plugins及build/plugins已归档并接入正式main/App，无默认smoke页面及中间备份。Chrome开发页点击Element Plus按钮后状态变为“场景已启用”并显示Three线框立方体，捕获的warn/error为空；2560×1271视口下1920×1080 HUD按1.17685等比缩放，场景约2259.55×1271并居中。
+
+src/models当前为空，本轮只验收空模型场景，不声明真实GLB加密、解密或生产预览浏览器通过。模型KEY未读取或记录，未改动业务源码；截图与浏览器证据留在忽略目录dist/verification/v014-user-test-starter*。后续在同一组合验证用户指定GLB的.adui产物及首页加载，不扩展业务查看器。
