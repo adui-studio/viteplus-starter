@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4的Windows交互创建、Vue TS和React TS代表组合的真实GLB加密构建及生产首页已验收；下一步验证公开包Monorepo内Vue/React多应用独立配置与构建，或根据实际项目反馈修复生成器问题。
+1. 公开0.1.4的Windows单应用及Monorepo内Vue TS/React TS代表组合已完成真实GLB构建和生产首页验收；下一步定位混合工作区TypeScript7/Volar的peer兼容提示，保持官方模板和逐应用独立配置。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1128,3 +1128,13 @@ Chrome实际访问生产preview，点击首页Element Plus按钮后自动解密�
 Chrome生产preview首页Ant Design主按钮点击后自动解密显示带贴图头盔，页面错误状态及捕获warn/error为空。Tailwind的.p-6规则已生成；2560×1271视口中1920×1080大屏HUD等比缩放1.17685。src/plugins及build/plugins统一接入正式main/App，无默认smoke页或中间备份。Three分块576.98 kB超过500 kB和Tailwind构建回调耗时提示保留，未通过改变阈值或升级依赖消除。
 
 预览服务已停止，生产截图、构建日志、字节与保护核验见忽略目录dist/verification中以v014-react-开头的文件。当前只覆盖本组React embedded，不扩大外置密钥、其他引擎或跨平台范围；下一步继续公开包Monorepo的Vue/React多应用独立配置与构建验收。
+
+## 2026-11-04 公开0.1.4混合Monorepo实机验收
+
+用户通过公开0.1.4创建官方Monorepo test-starter，并以--workspace分别创建apps/test-vue（Vue TS/Element Plus/UnoCSS）及apps/test-react（React TS/Ant Design/Tailwind），均选AdScreen/Three/embedded。官方website/utils保留，Vue本地TypeScript6.0.3、React7.0.2保持各自模板版本；UI/CSS与模型配置位于各应用，公共依赖按官方catalog共享。
+
+在两个原本为空的src/models中以拒绝覆盖方式复制指定DamagedHelmet.glb；原件3773916字节，SHA-256为a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8。根vp run ready无缓存0/9命中、9/9成功，包括118份格式/79份代码类型检查、utils的1项测试、website/utils及两应用构建。构建后根vp check另通过118份格式/80份代码类型文件。Vue1610模块、React1508模块，两者各有1份.adui，解密与原GLB相同，产物无原模型文件、完整模型明文和原始KEY字面量。
+
+两应用KEY独立、密文字节不同，交叉密钥解密均拒绝；模型原件与工作区既有163份文件内容/mtime保持，包含根配置/锁文件、website/utils、两应用业务入口及env。Chrome分别访问生产preview，Element Plus/Ant Design按钮点击后均显示带贴图头盔，1920×1080大屏HUD在当前视口缩放1.125；两页错误状态及捕获warn/error为空。模型副本保留本机，代理未覆盖业务代码，未提交模型或密钥；两预览服务已停止。
+
+pnpm peers check退出1，仅报告根解析TypeScript7.0.2与@volar/typescript及@volar/language-service2.4.30要求<7不匹配；真实Vue类型检查、全工作区ready与生产页面均通过。警告仍存在，不标为全部依赖兼容通过；Three两应用分块576.98 kB提示保留。下一步定位peer解析来源及兼容处理，不擅自统一或升级各应用TypeScript，不扩展查看器或发布新版本。证据位于忽略目录dist/verification中以v014-monorepo-开头的日志、字节核验和双页截图。

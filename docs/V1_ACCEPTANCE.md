@@ -324,3 +324,9 @@ Chrome生产preview首页点击按钮后自动解密显示带贴图头盔，页�
 用户通过公开0.1.4向导创建React TS/Ant Design/Tailwind CSS/AdScreen/Three/embedded，随后本机在不改源码配置的情况下复制DamagedHelmet.glb，check通过52份格式/35份代码类型文件，生产构建成功。1份.adui解密与原模型一致，产物无原模型文件、完整明文或原始KEY字面量；原件及原有79份文件内容/mtime保持。
 
 Chrome生产首页主按钮点击后自动显示带贴图头盔，Ant Design按钮、Tailwind规则及当前视口大屏适配通过，页面错误状态与捕获warn/error为空。Three 576.98 kB分块及Tailwind构建回调耗时提示保留。模型副本留在本机工程，证据与版本边界见[项目状态](PROJECT_CONTEXT.md)；本轮不改变生成器或发布新版本。
+
+## 公开0.1.4 Monorepo双应用（2026-11-04）
+
+用户真实创建官方Monorepo及Vue TS/Element Plus/UnoCSS、React TS/Ant Design/Tailwind两个成员，均使用AdScreen/Three/embedded。根ready无缓存9/9通过，check118份格式/79份代码类型文件、utils1项测试以及website/utils/两应用构建成功。每应用1份.adui均与DamagedHelmet原件解密一致，KEY各自独立，交叉密钥解密拒绝；产物无原模型或原始KEY字面量，原有163份文件内容/mtime保持。
+
+Chrome两生产首页按钮、大屏及自动解密头盔显示通过，页面错误状态及捕获warn/error为空。原模型及本地副本保持，不提交模型或密钥。依赖检查仍报告TypeScript7与Volar<7的peer冲突，Three两应用均保留576.98 kB体积提示；因此本轮是代表组合功能验收通过，不是全部依赖无警告。详情与证据见[项目状态](PROJECT_CONTEXT.md)。
