@@ -2,6 +2,8 @@
 
 ## 跨平台
 
+- examples/mixed-language.batch.json、examples/README.md、docs/BATCH_CONFIG.md：Vue JS/React TS混合语言样例及公开包调用，复用原batch schema和执行链。
+
 - docs/MONOREPO.md：混合TS6/TS7的Volar peer诊断、根TypeScript catalog显式绑定及peer隔离步骤；不改变生成器默认策略。
 
 - packages/create/src/recovery.mjs、batch.mjs：双Shell只读指引及本机失败摘要，保留原始argv和旧powershell字段。

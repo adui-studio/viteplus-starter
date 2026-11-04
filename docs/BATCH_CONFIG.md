@@ -44,6 +44,26 @@ uiSmoke 的 Vue UI 为 Element Plus、Ant Design Vue、TDesign，React UI 为 An
 
 未知字段、null/错误类型会报错，不忽略拼错的选项。根不允许设置 framework/language/UI/CSS。名称不允许路径或 Windows 保留设备名称；根也不能与默认 website/utils 包重名。仅支持最大 1 MiB 的 JSON，接受 UTF-8 BOM。
 
+## 混合语言与独立插件配置
+
+[mixed-language.batch.json](../examples/mixed-language.batch.json)一次创建以下组合，均使用正式首页和AdScreen，不额外生成smoke页面：
+
+| 应用     | 框架与语言         | UI           | CSS          |
+| -------- | ------------------ | ------------ | ------------ |
+| vue-js   | Vue / JavaScript   | Element Plus | Tailwind CSS |
+| react-ts | React / TypeScript | Ant Design   | UnoCSS       |
+
+在生成器仓库的上级目录运行，输出为当前目录下的batch-mixed：
+
+```sh
+vp dlx -- @adui/viteplus-starter@0.1.4 --config ./viteplus-starter/examples/mixed-language.batch.json --dry-run
+vp dlx -- @adui/viteplus-starter@0.1.4 --config ./viteplus-starter/examples/mixed-language.batch.json
+cd batch-mixed
+vp run ready
+```
+
+分别进入apps/vue-js或apps/react-ts运行`vp dev`；两应用使用自己的语言入口、UI/CSS配置及src/plugins，根catalog仍可共享版本。已有同名根会拒绝覆盖。该样例已使用公开0.1.4实际创建、完整构建和生产页点击验收，具体环境与范围见[项目状态](PROJECT_CONTEXT.md)。
+
 ## 预览与执行
 
 使用 npm 公开包时，将上面的 JSON 保存为项目父目录中的 `monorepo.batch.json`，在该目录执行：
@@ -53,7 +73,7 @@ vp dlx -- @adui/viteplus-starter --config ./monorepo.batch.json --dry-run
 vp dlx -- @adui/viteplus-starter --config ./monorepo.batch.json
 ```
 
-也可用 `pnpm dlx @adui/viteplus-starter` 替换上述入口，保留后面的参数。预览不会创建工作区；第二条命令才实际生成。需要复现特定版本时，在包名后追加版本，例如 `@adui/viteplus-starter@0.1.1`。
+也可用 `pnpm dlx @adui/viteplus-starter` 替换上述入口，保留后面的参数。预览不会创建工作区；第二条命令才实际生成。需要复现特定版本时，在包名后追加版本，例如 `@adui/viteplus-starter@0.1.4`。
 
 在仓库上级目录执行，输出为**当前目录下的配置 name**，与配置文件所在目录无关；目标必须不存在，不能在已有 workspace 内嵌套创建。
 

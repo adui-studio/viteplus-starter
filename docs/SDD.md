@@ -429,3 +429,7 @@ Cesium预设1.146.0的^26.4.0依赖会解析到26.5.0，但其聚合入口还从
 Vite+ core的可选Vue工具可由pnpm传播至TS7分支，导致Volar的<7声明不匹配。显式修复分为根package.json增量引用typescript:catalog:、pnpm-workspace.yaml关闭autoInstallPeers及dedupePeerDependents、重装和peers/ready检查。只关闭两个开关会使后续安装失去根工具链的TS7绑定，utils声明打包可能无法解析TypeScript Go；完整步骤须包含根编译器引用并复验新增成员。
 
 本轮不将该策略写入生成器，不增加运行时参数或修改官方应用模板；其他预设可能依赖peer自动安装，因此采用明确的工程级修复说明。既有workspace.mjs的Vite peer扩展与保护逻辑保持。操作步骤见[Monorepo](MONOREPO.md)，源码和当前公开0.1.4保持同一默认行为。
+
+## 混合语言批量样例
+
+examples/mixed-language.batch.json沿用version=1和原batch执行链，使用Vue JS/Element Plus/Tailwind及React TS/Ant Design/UnoCSS两套独立配置。没有新增生成器参数或自维护模板；根与成员继续委托官方入口。verify-examples会自动发现此样例并以真实CLI dry-run验证，规划成功与实际创建/构建/浏览器证据在项目状态分开记录。

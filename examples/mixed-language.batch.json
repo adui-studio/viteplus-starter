@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "batch-mixed",
+  "apps": [
+    {
+      "name": "vue-js",
+      "framework": "vue",
+      "language": "js",
+      "ui": "element-plus",
+      "css": "tailwindcss",
+      "screen": true
+    },
+    {
+      "name": "react-ts",
+      "framework": "react",
+      "language": "ts",
+      "ui": "antd",
+      "css": "unocss",
+      "screen": true
+    }
+  ]
+}
