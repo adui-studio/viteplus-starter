@@ -407,3 +407,9 @@ verify-repeat-guards的内部函数新增可选cli路径参数，默认仍为工
 非模型场景在生成显式UI页后调用verify-ui-build，使用/ui-check/部署base构建正式页和UI页，随后运行根ready与构建后check；结果增加uiBuilds和languages，重复保护继续比较全部源文件内容/修改时间。不启动浏览器，不将双入口构建视为点击验收，也不把验证工具打进npm运行时。
 
 models:true与vue:js/react:ts复用同一入口及保护逻辑，Vue固定embedded、React固定external，不增加运行时选项。模型场景先由官方模板创建带AdScreen成员，再补Three及保护；与UI/CSS场景分开。verify-model-app用唯一临时配置构建index/model双入口、校验部署base和.adui原文字节，finally移除临时配置。整轮在各自自建临时根清理，原包及侧车清单保留；说明与验收见HARNESS和V1_ACCEPTANCE。
+
+## 正式首页外置密钥重试提示
+
+application-home生成SceneView时，Vue/React的unlock在文件、场景及models[0]有效后、异步读取密钥前重置message；取消文件选择保持当前提示。沿用keyring.unlock及loadBundledModel的原流程，错误仍通过onError或catch展示，await后的场景身份检查继续阻止卸载/替换后的迟到结果。无需新增状态管理或修改共享加解密模块。
+
+application-unlock测试直接执行生成的JS事件处理器，以适配器实际的onError加false返回契约模拟认证失败，验证错误密钥→正确密钥清除提示、取消无调用、新错误保留及迟到解锁不加载替换场景；修复前两框架均失败。实际生成的Vue JS与React TS external仍需生产构建和浏览器重试验收，公开包和当前源码分别记录。

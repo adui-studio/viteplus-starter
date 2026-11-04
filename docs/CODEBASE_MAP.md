@@ -276,6 +276,7 @@ engine-prompts.test.mjs：多选解析、摘要/取消、Three 保护提示；ve
 - packages/create/src/application-output.mjs：官方 App 快照、最终文件计划、完整预检、归档、定向格式化及已知暂存文件清理。
 - cli.mjs / multi-engine.mjs：新建流程最后阶段接入，后者延后子阶段整理；batch 与 applicationInvocations 传递 smokePages。workspace-inspect 根据生成器标记识别新布局。
 - application-output.test.mjs：四种框架语言/三个引擎的路径与正式接入、可选独立页、多引擎、KEY 保持、占用/未知文件/junction/首页变更保护及格式失败保留。
+- application-unlock.test.mjs：执行Vue/React正式页生成的解锁处理器，验证错误密钥后正确重试清除旧提示、取消/新错误及迟到场景保护；application-home仅在有效解锁开始时重置提示。
 - docs/PROJECT_LAYOUT.md：默认目录、正式入口、独立页选项及已有工程边界。
 
 ## 补装插件归档与包名（2026-11-02）

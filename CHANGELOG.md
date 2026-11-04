@@ -4,7 +4,9 @@
 
 ## [Unreleased]
 
-暂无新增变更。
+### Fixed
+
+- Vue/React 新建应用的外置密钥模型解锁重试会清除旧错误提示，避免正确模型已显示但仍提示认证失败；已有应用不会自动改写。
 
 ## [0.1.3] - 2026-11-04
 
@@ -52,7 +54,7 @@
 - 提供已有应用补装、JSON批量创建、只读结构检查及明确边界的恢复操作。
 - 默认导入本地静态 normalize.css，统一 ADui Studio Logo 与 favicon。
 
-[Unreleased]: https://github.com/adui-studio/viteplus-starter/compare/v0.1.2...main
+[Unreleased]: https://github.com/adui-studio/viteplus-starter/compare/v0.1.3...main
 [0.1.2]: https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.2
 [0.1.1]: https://www.npmjs.com/package/@adui/viteplus-starter/v/0.1.1
 [0.1.0]: https://www.npmjs.com/package/@adui/viteplus-starter/v/0.1.0

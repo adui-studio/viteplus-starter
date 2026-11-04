@@ -301,3 +301,15 @@ node --input-type=module -e "import {verifyCliPackage} from './scripts/verify-cl
 工具经官方入口创建带AdScreen的Vue JS、React TS成员，再分别补装Three与embedded/external模型保护。每组先受控模拟首次依赖安装返回23，确认文件未改写，再用真实安装命令重试。最小自包含GLB仅用于构建管线：verify-model-app检查正式页/模型页双入口、/model-check/部署base、.adui解密字节一致以及产物不含原模型或原始KEY字面量。
 
 工作区ready/check后，重复模型补装、切换密钥模式、重复Three页及空补装共8项检查须零子进程、全部源文件哈希和修改时间保持；最终JSON应含modelBuilds=2、uiBuilds=0及两项controlledInstallFailures。KEY、备份和业务App包含在文件保护范围内。该结果不代表真实GLB浏览器加载、WebGL交互、不可逆向提取或Mac同组合通过。
+
+### Windows真实模型浏览器检查
+
+通过官方模板入口创建带AdScreen、Three和smokePages:true的Vue JS embedded、React TS external应用，把自包含GLB复制到各自src/models。先运行工作区ready，再执行verify-model-app生成双入口产物：ready中的普通build会清空dist，须在它之后完成用于浏览器的dist/model-verify构建。仅从该产物目录通过本机回环HTTP地址提供/model-check/，不把.env.local或解锁文件加入静态服务目录。
+
+独立解锁文件使用仓库工具导出（该独立CLI不包含在npm创建器归档中），输出路径必须在网站目录之外：
+
+```powershell
+node packages/model-security/bin/cli.mjs export-unlock --env-file 'C:\path\to\app\.env.local' --out 'C:\private\unlock.json'
+```
+
+正式首页点击“加载场景”，embedded应直接显示模型；external首次只显示场景，选择解锁文件后显示模型。额外检查错误密钥→正确密钥：错误需可见，成功后旧提示应清除。模型页需观察model=ready及modelMeshes>0，external“锁定并清除”应变为empty、加载按钮禁用；刷新后仍锁定。记录浏览器实际错误和警告，不能把着色器警告写成无警告通过。截图、模型哈希和HTTP记录留在忽略目录，清理前比对工程文件及原始GLB未变；公开0.1.3与源码修复后结果分开。
