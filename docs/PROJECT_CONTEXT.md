@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：0.1.4已公开发布至npm public/latest及GitHub Release；README已按要求去掉品牌实现说明并精简。公开归档与正式包逐字节一致，标签固定验收源码c32afa0；候选及历史平台证据保留原范围。
+- 当前阶段：0.1.4已公开发布至npm public/latest及GitHub Release，标签固定验收源码c32afa0。V1交付清单已核对，核心流程具备代表证据；验证缺口、未实现扩展与排除范围分别列于[V1清单](V1_ACCEPTANCE.md)，不宣称全部组合通过。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4的单应用、混合Monorepo、批量创建及中断恢复代表流程已验收。下一步核对V1交付清单与剩余验证缺口，保持官方模板和已有文件保护，不重复扩展已通过组合。
+1. V1交付清单已核对。下一步将公开0.1.4用于实际项目；有可复现问题时按具体配置定位修复，并补该路径的检查、构建或浏览器证据。保持官方模板和已有文件保护，不重复已通过组合。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1180,3 +1180,15 @@ Vue JS选择Element Plus/Tailwind，React TS选择Ant Design/UnoCSS，两者均�
 最终inspect/plan均通过，重复execute返回completed为空、skipped为全部3个应用，子进程0，包含产物的156份文件及45个目录保持。整轮8次只读/拒绝/空操作调用由spawn/exec/fork等探针核验，没有安装或格式化子进程。本轮不做新浏览器验收，不操作用户现有test-starter；临时根与隔离安装已清理。证据位于忽略目录dist/verification中以public-recovery-开头的日志和结果JSON。
 
 未发现需修改生成器的缺陷，补充公开包恢复步骤及验收记录，不升级依赖、修改版本或发布。下一步核对V1交付清单与真实剩余缺口，避免重复已通过组合。
+
+## 2026-11-04 V1交付清单与路线核对
+
+重新读取npm registry及GitHub Release，公开version/latest均为0.1.4，Release为非草稿正式v0.1.4。从发布验收源码c32afa0到本轮开始的80b367d，packages、scripts、根package.json及锁文件无差异；发布后的新增内容为文档和样例，不需要为本轮核对升级版本或重发归档。核对记录位于忽略目录dist/verification/v1-delivery-audit.json。
+
+逐项复核FR-001至FR-016和NFR，统一需求、验收清单、生成器状态、分发、架构及索引中的当前口径，保留带日期的历史版本和验收范围。当前新建插件归档src/plugins/build/plugins并接入main/App；旧路径和早期独立页面描述标为历史，已有业务入口继续受保护。
+
+分别列出验证缺口（未穷举组合、Mac其余组合、真实断网/断电）、未实现扩展（FBX/OBJ、外部资源/压缩解码器、自定义工作区布局等）与排除范围（CI/CD、自动发布部署、服务端授权、业务查看器、覆盖式恢复）。没有将原扩展目标改称已完成，也没有自动将排除项转为下一阶段任务。
+
+本轮仅核对与整理文档，不操作用户test-starter或创建新工程；重新执行的仓库检查结果见下段。下一步以实际项目使用及可复现反馈驱动修复，按需要验证对应平台/插件配置；新增能力另行明确范围。
+
+本轮Windows仓库node --test为305/305、无跳过；文档静态校验及vp check通过（229份格式文件、164份代码文件无lint警告/错误）。9个JSON样例、22个应用计划及462项矩阵计划通过，二者actualBuilds均为0；没有将计划校验扩大为真实安装、构建或浏览器验收。按历史中文emoji格式分步提交推送，不修改运行时代码、依赖或版本，不执行npm/Release发布。
