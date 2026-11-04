@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. 公开0.1.4的Windows交互创建及Vue TS/Element Plus/UnoCSS/AdScreen/Three首页、真实GLB加密构建和生产页加载已验收；下一步验证公开包React对应组合的创建与正式首页，或根据实际项目反馈修复生成器问题。
+1. 公开0.1.4的Windows交互创建、Vue TS和React TS代表组合的真实GLB加密构建及生产首页已验收；下一步验证公开包Monorepo内Vue/React多应用独立配置与构建，或根据实际项目反馈修复生成器问题。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1118,3 +1118,13 @@ src/models当前为空，本轮只验收空模型场景，不声明真实GLB加�
 公开包生成的embedded插件在正常vp run build中自动输出1份.adui，解密字节与原模型一致。扫描整个dist未发现glb/gltf/fbx/obj/mtl文件、完整原模型明文或原始KEY字面量；仅在内存中读取私有env用于核验，没有打印或保存密钥值。生产构建1610模块成功，Three分块576.98 kB仍提示超过500 kB；模型加入后vp check通过53份格式及39份代码类型文件。
 
 Chrome实际访问生产preview，点击首页Element Plus按钮后自动解密显示带贴图的头盔，页面错误状态为空，捕获的warn/error为空。生产页截图、构建日志和字节/保护核验记录位于忽略目录dist/verification中以v014-user-helmet-和v014-user-model-开头的文件；本轮预览服务已停止。该结果仅覆盖Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded，不等同其他框架、引擎或外置密钥已验证。下一步回到公开包React对应组合的创建和正式首页验收，无新增查看器功能或发布。
+
+## 2026-11-04 公开0.1.4 React TS向导与真实GLB生产页
+
+用户提供同名test-starter重新创建为React TS/Ant Design/Tailwind CSS/AdScreen/Three/embedded的完整向导日志，约3分52.5秒。当前本机为该React工程，未由代理覆盖旧Vue工程；此前Vue证据保持历史范围。实际依赖为Ant Design6.6.8、Tailwind4.3.4、Three0.186.1及types0.186.0；依赖清单与锁文件未改。
+
+将用户指定DamagedHelmet.glb以拒绝覆盖方式复制到空src/models，原件与副本均3773916字节，SHA-256为a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8。正常vp check通过52份格式、35份代码类型文件，vp run build两项任务成功。模型插件自动产出1份.adui，解密与原件逐字节一致，整个dist无原模型文件、完整模型明文和原始KEY字面量；原有79份文件内容及mtime保持，包含.env.local、业务入口和配置。模型副本保留本机，未提交模型或密钥。
+
+Chrome生产preview首页Ant Design主按钮点击后自动解密显示带贴图头盔，页面错误状态及捕获warn/error为空。Tailwind的.p-6规则已生成；2560×1271视口中1920×1080大屏HUD等比缩放1.17685。src/plugins及build/plugins统一接入正式main/App，无默认smoke页或中间备份。Three分块576.98 kB超过500 kB和Tailwind构建回调耗时提示保留，未通过改变阈值或升级依赖消除。
+
+预览服务已停止，生产截图、构建日志、字节与保护核验见忽略目录dist/verification中以v014-react-开头的文件。当前只覆盖本组React embedded，不扩大外置密钥、其他引擎或跨平台范围；下一步继续公开包Monorepo的Vue/React多应用独立配置与构建验收。

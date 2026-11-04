@@ -318,3 +318,9 @@ Chrome 两个开发首页 Count is 0→1；Vue 样式顺序为 normalize、Tailw
 在用户交互创建的Vue TS/Element Plus/UnoCSS/AdScreen/Three/embedded应用中，仅向src/models复制DamagedHelmet.glb，正常构建自动产出1份.adui。解密与原件逐字节一致，dist无原模型文件、完整模型明文及原始KEY字面量；原件与原有81份文件内容/mtime保持。构建通过，Three 576.98 kB体积提示保留；check为53份格式和39份代码类型文件通过。
 
 Chrome生产preview首页点击按钮后自动解密显示带贴图头盔，页面错误状态及捕获warn/error为空。模型副本留在本机工程，未提交模型或密钥；证据与边界见[项目状态](PROJECT_CONTEXT.md)。此为公开0.1.4该Vue组合的生产浏览器验收，不扩大此前React或其他引擎范围。
+
+## 公开0.1.4 React TS完整组合（2026-11-04）
+
+用户通过公开0.1.4向导创建React TS/Ant Design/Tailwind CSS/AdScreen/Three/embedded，随后本机在不改源码配置的情况下复制DamagedHelmet.glb，check通过52份格式/35份代码类型文件，生产构建成功。1份.adui解密与原模型一致，产物无原模型文件、完整明文或原始KEY字面量；原件及原有79份文件内容/mtime保持。
+
+Chrome生产首页主按钮点击后自动显示带贴图头盔，Ant Design按钮、Tailwind规则及当前视口大屏适配通过，页面错误状态与捕获warn/error为空。Three 576.98 kB分块及Tailwind构建回调耗时提示保留。模型副本留在本机工程，证据与版本边界见[项目状态](PROJECT_CONTEXT.md)；本轮不改变生成器或发布新版本。
