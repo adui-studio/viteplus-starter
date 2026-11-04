@@ -14,13 +14,13 @@
   <a href="#安装后使用">安装与使用</a> ·
   <a href="#常用操作">常用操作</a> ·
   <a href="#项目结构">项目结构</a> ·
+  <a href="#加密模型加载">加密模型</a> ·
   <a href="#文档">文档</a> ·
   <a href="https://github.com/adui-studio/viteplus-starter/releases">Releases</a> ·
   <a href="LICENSE">MIT</a>
 </p>
 
-> [!NOTE]
-> **项目生成 CLI · v0.1.3**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`；支持 Vite+、pnpm、npm、GitHub 和本地 tgz 入口。Windows/Linux已有实际安装与构建代表验收；M1 Max Mac的原生创建、检查、构建及界面/Three用户验收通过。详细范围见 [跨平台指南](docs/MACOS_LINUX.md)。
+支持 **Windows、macOS、Linux**。包名 `@adui/viteplus-starter`，命令名 `viteplus-starter`，可通过 Vite+、pnpm 或 npm 启动。
 
 ## 功能
 
@@ -39,46 +39,32 @@
 
 ## 快速开始
 
-**环境**：Windows / PowerShell，macOS、Linux / sh或zsh；Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`，可运行的 Vite+ `vp` 与 pnpm。首次创建需要网络或完整的模板、依赖缓存。以下命令块使用PowerShell，macOS/Linux操作见 [指南](docs/MACOS_LINUX.md)。
+**环境**：Node.js `^22.18.0 || ^24.11.0 || >=26.0.0`、Vite+ `vp` 与 pnpm。首次创建需要网络或完整的模板、依赖缓存。
 
 ### 1. 启动配置向导
 
-**从 GitHub 下载。** 在项目父目录执行，工具目录 `viteplus-starter` 须不存在：
+在项目父目录任选一种方式，无需全局安装或添加项目依赖：
 
-```powershell
-vp create github:adui-studio/viteplus-starter
-Set-Location -LiteralPath viteplus-starter
-vp run create
-```
-
-也支持 `vp create https://github.com/adui-studio/viteplus-starter`。GitHub 命令下载生成器仓库，`vp run create` 才会启动配置向导，新应用与工具仓库并列生成。
-
-**已有本地 tgz：直接运行。** 在项目父目录任选一种，替换为实际包路径：
-
-```powershell
-vp dlx -- 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
-# 或
-pnpm dlx 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz'
-```
-
-<details>
-<summary>使用 npm 运行本地 tgz</summary>
-
-```powershell
-npm exec --yes --package 'C:\Downloads\adui-viteplus-starter-0.1.2.tgz' -- viteplus-starter
-```
-
-</details>
-
-**按包名直接运行。** 以下三种方式任选一种，无需全局安装或添加项目依赖：
-
-```powershell
+```sh
 vp dlx -- @adui/viteplus-starter
 # 或
 pnpm dlx @adui/viteplus-starter
 # 或
 npm exec --yes --package @adui/viteplus-starter -- viteplus-starter
 ```
+
+<details>
+<summary>从 GitHub 下载生成器</summary>
+
+```sh
+vp create github:adui-studio/viteplus-starter
+cd viteplus-starter
+vp run create
+```
+
+也支持 `vp create https://github.com/adui-studio/viteplus-starter`。目标工具目录须不存在；下载后运行 `vp run create` 启动向导，新应用与工具仓库并列生成。
+
+</details>
 
 ### 2. 选择项目配置
 
@@ -94,18 +80,18 @@ npm exec --yes --package @adui/viteplus-starter -- viteplus-starter
 
 假设项目名为 `my-app`，根据入口进入对应目录：
 
-| 创建入口                   | 项目位置         | 进入应用                              |
-| -------------------------- | ---------------- | ------------------------------------- |
-| 工具仓库内 `vp run create` | 工具仓库的父目录 | `Set-Location -LiteralPath ..\my-app` |
-| dlx / 已安装的 CLI         | 当前调用目录     | `Set-Location -LiteralPath .\my-app`  |
+| 创建入口                   | 项目位置         | 进入应用       |
+| -------------------------- | ---------------- | -------------- |
+| 工具仓库内 `vp run create` | 工具仓库的父目录 | `cd ../my-app` |
+| dlx / 已安装的 CLI         | 当前调用目录     | `cd ./my-app`  |
 
-```powershell
+```sh
 vp check
 vp run build
 vp dev
 ```
 
-Monorepo 在工作区根运行 `vp run ready`。完整步骤见 [Windows 操作指南](docs/WINDOWS_GUIDE.md)。
+Monorepo 在工作区根运行 `vp run ready`。
 
 ## 安装后使用
 
@@ -123,7 +109,7 @@ Monorepo 在工作区根运行 `vp run ready`。完整步骤见 [Windows 操作�
 <details>
 <summary>通过 vp dlx / pnpm dlx 传入帮助与预览参数</summary>
 
-```powershell
+```sh
 vp dlx -- @adui/viteplus-starter --help
 vp dlx -- @adui/viteplus-starter --name my-vue-app --type application --framework vue --ui element-plus --css tailwindcss --dry-run
 pnpm dlx @adui/viteplus-starter --name my-vue-app --type application --framework vue --ui element-plus --css tailwindcss --dry-run
@@ -139,7 +125,7 @@ pnpm dlx @adui/viteplus-starter --name my-vue-app --type application --framework
 
 ### 创建 Vue / React 应用
 
-```powershell
+```sh
 # Vue + TypeScript + Element Plus + Tailwind CSS
 vp run create --name my-vue-app --type application --framework vue --ui element-plus --css tailwindcss
 
@@ -155,7 +141,7 @@ vp run create --name my-screen --type application --framework vue --screen --eng
 <details>
 <summary>创建 Monorepo，并添加独立配置的应用</summary>
 
-```powershell
+```sh
 vp run create --name my-workspace --type monorepo
 vp run create --workspace ./my-workspace --name admin --type application --framework vue --ui tdesign --css unocss
 vp run create --workspace ./my-workspace --name portal --type application --framework react --language js --ui antd --css tailwindcss
@@ -168,7 +154,7 @@ vp run create --workspace ./my-workspace --name portal --type application --fram
 <details>
 <summary>使用 JSON 批量创建混合工作区</summary>
 
-```powershell
+```sh
 vp run create --config ./viteplus-starter/examples/monorepo.batch.json --dry-run
 vp run create --config ./viteplus-starter/examples/monorepo.batch.json
 ```
@@ -180,7 +166,7 @@ vp run create --config ./viteplus-starter/examples/monorepo.batch.json
 <details>
 <summary>为已有 Vue 应用补装 UI / CSS</summary>
 
-```powershell
+```sh
 vp run create --name existing-vue --type application --framework vue --ui element-plus --css tailwindcss --apply-existing
 ```
 
@@ -209,6 +195,162 @@ Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App
 
 模型保护默认将自包含 GLB 加密为 `.adui`，提供 `models:keygen` / `models:keyrotate`。客户端内置密钥用于提高直接复用门槛，不保证无法逆向提取，边界见 [模型构建指南](docs/MODEL_BUILD.md)。
 
+## 加密模型加载
+
+创建时选择大屏、目标引擎与模型保护，将自包含 GLB 放入应用的 `src/models/`。`vp dev` 和构建会自动生成 `.adui` 资源；浏览器通过模型目录获取密文并解密，无需手动改名或直接导入 GLB。
+
+```sh
+vp run models:keygen     # KEY 缺失时生成，已有 KEY 不覆盖
+vp run models:keyrotate  # 备份后轮换；随后重新构建
+vp run build
+```
+
+KEY 保存在被 Git 忽略的 `.env.local`，每个模型的 IV 自动随机生成。模型须为自包含 GLB，单文件不超过 32 MiB；外部贴图和额外压缩解码器暂不支持。
+
+以下是**生成后应用内**的使用代码，选择与已安装引擎对应的一份，保存为 `src/model-view.ts`。JavaScript 项目使用 `.js` 并去掉 `host: HTMLElement` 的类型标注。容器需有明确宽高，例如 `width: 100%; height: 600px`。
+
+### Three.js
+
+```ts
+import models from "virtual:adui-models";
+import { authorize } from "virtual:adui-model-key";
+import { createLazyScene } from "./plugins/three/lazy.mjs";
+
+export function mountModel(host: HTMLElement) {
+  const asset = models.find((model) => model.name === "DamagedHelmet");
+  if (!asset) throw new Error("请将 DamagedHelmet.glb 放入 src/models");
+
+  const scene = createLazyScene(host, { onError: console.error });
+  void scene.loadBundledModel(asset, { authorize });
+  return () => scene.destroy();
+}
+```
+
+### CesiumJS
+
+```ts
+import models from "virtual:adui-models";
+import { authorize } from "virtual:adui-model-key";
+import { createLazyGlobe } from "./plugins/cesium/lazy.mjs";
+
+export function mountModel(host: HTMLElement) {
+  const asset = models.find((model) => model.name === "DamagedHelmet");
+  if (!asset) throw new Error("请将 DamagedHelmet.glb 放入 src/models");
+
+  const globe = createLazyGlobe(host, { onError: console.error });
+  void globe.loadBundledModel(asset, { authorize });
+  return () => globe.destroy();
+}
+```
+
+Cesium 的静态资源目录和部署 base 由生成的插件配置处理，不需要在业务代码中单独设置资源路径。
+
+### Babylon.js
+
+```ts
+import models from "virtual:adui-models";
+import { authorize } from "virtual:adui-model-key";
+import { createLazyScene } from "./plugins/babylon/lazy.mjs";
+
+export function mountModel(host: HTMLElement) {
+  const asset = models.find((model) => model.name === "DamagedHelmet");
+  if (!asset) throw new Error("请将 DamagedHelmet.glb 放入 src/models");
+
+  const scene = createLazyScene(host, { onError: console.error });
+  void scene.loadBundledModel(asset, { authorize });
+  return () => scene.destroy();
+}
+```
+
+三种适配器都会按需初始化引擎、加载目录中的 `.adui` 并交给对应引擎解析。`loadBundledModel` 返回 `Promise<boolean>`，错误通过 `onError` 提供；组件卸载时调用返回的清理函数，取消请求并释放场景。
+
+<details>
+<summary>在 Vue / React 组件中挂载与清理</summary>
+
+Vue（`src/components/ModelView.vue`）：
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { mountModel } from "../model-view";
+
+const host = ref<HTMLElement | null>(null);
+let dispose: (() => void) | undefined;
+onMounted(() => {
+  if (host.value) dispose = mountModel(host.value);
+});
+onBeforeUnmount(() => dispose?.());
+</script>
+
+<template><div ref="host" style="width: 100%; height: 600px" /></template>
+```
+
+React（`src/components/ModelView.tsx`）：
+
+```tsx
+import { useEffect, useRef } from "react";
+import { mountModel } from "../model-view";
+
+export default function ModelView() {
+  const host = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (host.current) return mountModel(host.current);
+  }, []);
+  return <div ref={host} style={{ width: "100%", height: 600 }} />;
+}
+```
+
+</details>
+
+<details>
+<summary>外置密钥模式：通过独立文件解锁</summary>
+
+创建时选择 `--model-protection external`。下面以 Three.js 为例替换内置密钥版本；Cesium/Babylon 使用各自目录的 `createOfflineKeyring` 和上述场景工厂，不导入 `virtual:adui-model-key`。
+
+```ts
+import models from "virtual:adui-models";
+import { createLazyScene } from "./plugins/three/lazy.mjs";
+import { createOfflineKeyring } from "./plugins/three/offline-keyring.mjs";
+
+export function mountProtectedModel(host: HTMLElement) {
+  const keyring = createOfflineKeyring();
+  const scene = createLazyScene(host, { onError: console.error });
+  return {
+    async unlock(file: File) {
+      const asset = models.find((model) => model.name === "DamagedHelmet");
+      if (!asset || !(await keyring.unlock(file))) return false;
+      return scene.loadBundledModel(asset, { authorize: keyring.authorize });
+    },
+    lock() {
+      keyring.lock();
+      scene.clearModel();
+    },
+    destroy() {
+      keyring.lock();
+      scene.destroy();
+    },
+  };
+}
+```
+
+`file` 来自文件选择控件。解锁 JSON 为 `{ "version": 1, "keyId": "项目密钥标识", "key": "32字节KEY的Base64值" }`，须与该构建的 `.env.local` 匹配，通过网站之外的渠道交付。组件卸载时调用 `destroy()`；刷新后需重新解锁，密钥不写入浏览器存储。
+
+</details>
+
+内置密钥模式用于提高文件直接复用门槛，不保证无法逆向提取。更多配置见 [模型构建](docs/MODEL_BUILD.md)、[Three.js](docs/THREE_SMOKE.md)、[Cesium](docs/CESIUM.md) 与 [Babylon](docs/BABYLON.md)。
+
+## 本地候选包
+
+当前源码准备 **0.1.4 本地候选**，包含外置密钥解锁重试提示及 Cesium 依赖兼容修复；尚未发布到 npm。包名命令运行 npm 已发布版本。将下方路径替换为 tgz 的实际绝对路径：
+
+```sh
+vp dlx -- '/absolute/path/adui-viteplus-starter-0.1.4.tgz'
+# 或
+pnpm dlx '/absolute/path/adui-viteplus-starter-0.1.4.tgz'
+# 或
+npm exec --yes --package '/absolute/path/adui-viteplus-starter-0.1.4.tgz' -- viteplus-starter
+```
+
 ## 文档
 
 | 主题       | 指南                                                                                                                                                   |
@@ -220,14 +362,12 @@ Vue 在 main 注册插件、App 使用组件；React 保留 createRoot，在 App
 | 交付范围   | [当前能力](docs/GENERATOR_STATUS.md) · [验收范围](docs/V1_ACCEPTANCE.md) · [首发准备](docs/NPM_RELEASE.md)                                             |
 | 开发维护   | [协作规范](AGENTS.md) · [架构](docs/ARCHITECTURE.md) · [代码索引](docs/CODEBASE_MAP.md) · [本地验证](docs/HARNESS.md)                                  |
 
-当前验证覆盖Windows代表组合及Linux x64的创建、补装和完整构建；M1 Max Mac用户日志确认darwin arm64上的Vue TS/TDesign/UnoCSS/大屏/Three/embedded创建、检查和构建通过，用户反馈界面/Three正常且无控制台错误。跨平台命令与边界见[macOS/Linux指南](docs/MACOS_LINUX.md)，其他组合范围以验收文档为准。
-
 <details>
 <summary>本地开发与 CLI 打包</summary>
 
-```powershell
+```sh
 git clone https://github.com/adui-studio/viteplus-starter.git
-Set-Location -LiteralPath viteplus-starter
+cd viteplus-starter
 vp install --frozen-lockfile
 node packages/create/bin/cli.mjs --help
 node --test --test-concurrency=1
@@ -235,15 +375,12 @@ node scripts/validate-docs.mjs
 vp check
 ```
 
-在生成器根目录打包，再切换到项目父目录启动：
+在生成器根目录打包：
 
-```powershell
-$bundle = npm --silent run cli:pack | ConvertFrom-Json
-if ($LASTEXITCODE -ne 0) { throw 'CLI 打包失败' }
-Set-Location ..
-vp dlx -- $bundle.tarball
+```sh
+npm run cli:pack
 ```
 
-打包结果包含 tgz 及内容清单。源码或包内 README 更新后须重新打包，旧 tgz 不会自动更新。直接调用 CLI 源文件时输出相对于当前调用目录；`vp run create` 始终以工具父目录为基准。详见 [CLI 分发说明](docs/CLI_DISTRIBUTION.md)。
+输出 JSON 提供 `tarball` 绝对路径及内容清单。切换到新项目的父目录，再用 `vp dlx -- '<tarball绝对路径>'` 启动。源码或包内 README 更新后须重新打包，旧 tgz 不会自动更新。直接调用 CLI 源文件时输出相对于当前调用目录；`vp run create` 始终以工具父目录为基准。详见 [CLI 分发说明](docs/CLI_DISTRIBUTION.md)。
 
 </details>

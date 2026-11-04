@@ -6,6 +6,14 @@
 
 本文中的本地项目路径和“现场/产物保留”描述记录各轮验收当时的状态，不要求测试工程永久保留。用户于 2026-11-02 要求清理之前创建的测试项目，后续目录清理情况见 [项目状态](PROJECT_CONTEXT.md)；清理不表示重新执行或扩大此前的验收范围。
 
+## 0.1.4本地候选（2026-11-04）
+
+根与npm README统一平台用法，补齐Three/Cesium/Babylon加密GLB、Vue/React生命周期及外置密钥示例；用户仅授权本地候选。实际示例构建触发Cesium1.146.0与engine26.5的缺失导出，预设调整1.147.0且继续拒绝自动升级旧项目。最终归档92文件、104966字节，两端SHA-512相同，具体身份见[候选记录](CANDIDATE_0_1_4.md)。
+
+最终tgz在Windows/Linux隔离安装，包内CLI实际生成Vue JS/React TS官方工作区并补Three及embedded/external；各两组模型双入口/base/解密、ready 8/8、126格式/84代码类型check及8项重复保护通过，179份文件内容/mtime保持。源码两端各305项测试通过。Windows另从包内README取三个引擎与框架代码，实际创建Vue TS多引擎/React TS external并构建，ready 9/9、两组真实GLB解密、193格式/141代码类型check及Cesium静态资源通过。
+
+本轮不计为新增浏览器渲染，不把初轮失败的相对路径或旧Cesium归档列为可交付候选；公开latest仍0.1.3，无0.1.4发布、标签或Release。
+
 ## Windows真实GLB与外置密钥重试（2026-11-04）
 
 从公开0.1.3下载并核对正式SHA-512后隔离安装，使用官方入口创建Vue JS embedded、React TS external的AdScreen/Three工程及独立模型页。用户DamagedHelmet.glb为3773916字节，SHA-256为a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8，原件未改。每组1份.adui解密与原GLB一致、双入口及/model-check/部署base通过，根ready无缓存8/8、check为136份格式和90份代码/类型文件。

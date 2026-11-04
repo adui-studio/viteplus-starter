@@ -228,7 +228,7 @@ Ant Design Vue 当前依赖 core-js，pnpm 12 会拒绝未审查的安装脚本�
 
 engine.mjs 统一引擎计划供 CLI/批量调用；Cesium 对应独立增量安装器。四种框架/语言复用 lazy 与场景源码，组件只管理挂载/卸载并放入 AdScreen 原生像素引擎层。lazy 不导入引擎，点击前不创建 Viewer；异步导入晚于卸载时丢弃，失败可重试，销毁断开 ResizeObserver 并调用 Viewer.destroy。模块级缓存不宣称逐实例释放。
 
-固定 Cesium 1.146.0/static-copy 4.1.1，catalog: 只核对本应用已安装元数据，不执行入口。配置在安装前后复核并 wx 备份，增量插入 aduiCesium；不改 base 或正式构建入口。插件从应用依赖图定位四类资源，按 Cesium 资源根重建路径，避免静态复制插件 4 保留 node_modules 相对层级。资源冲突报错。运行时先计算部署 BASE_URL，再动态导入 Cesium 和样式；最小椭球关闭在线图层与地形，不需要 Token。Cesium 已支持 .adui 与 embedded/external 自动构建，设计见下文。验证及限制见 [CESIUM](CESIUM.md)。
+固定 Cesium 1.147.0/static-copy 4.1.1，catalog: 只核对本应用已安装元数据，不执行入口。配置在安装前后复核并 wx 备份，增量插入 aduiCesium；不改 base 或正式构建入口。插件从应用依赖图定位四类资源，按 Cesium 资源根重建路径，避免静态复制插件 4 保留 node_modules 相对层级。资源冲突报错。运行时先计算部署 BASE_URL，再动态导入 Cesium 和样式；最小椭球关闭在线图层与地形，不需要 Token。Cesium 已支持 .adui 与 embedded/external 自动构建，设计见下文。验证及限制见 [CESIUM](CESIUM.md)。
 
 ## Babylon 首期生成设计
 
@@ -413,3 +413,11 @@ models:true与vue:js/react:ts复用同一入口及保护逻辑，Vue固定embedd
 application-home生成SceneView时，Vue/React的unlock在文件、场景及models[0]有效后、异步读取密钥前重置message；取消文件选择保持当前提示。沿用keyring.unlock及loadBundledModel的原流程，错误仍通过onError或catch展示，await后的场景身份检查继续阻止卸载/替换后的迟到结果。无需新增状态管理或修改共享加解密模块。
 
 application-unlock测试直接执行生成的JS事件处理器，以适配器实际的onError加false返回契约模拟认证失败，验证错误密钥→正确密钥清除提示、取消无调用、新错误保留及迟到解锁不加载替换场景；修复前两框架均失败。实际生成的Vue JS与React TS external仍需生产构建和浏览器重试验收，公开包和当前源码分别记录。
+
+## 0.1.4候选与README示例
+
+根README与包README保留相同操作/模型代码，包文档将仓库相对链接转换为GitHub绝对链接。默认embedded示例从virtual:adui-models取目录、从virtual:adui-model-key取authorize，分别调用各引擎lazy适配器的loadBundledModel；Vue/React生命周期销毁句柄。external示例使用同引擎offline-keyring，不导入内置虚拟密钥。
+
+候选源版本仅调整packages/create清单，打包边界及依赖安装器保持；按实际归档比较0.1.3差异，包名命令继续使用公开版本，本地tgz明确绝对路径。示例验证从已安装归档README提取代码，放入官方Vue TS多引擎与React TS external成员，真实构建而非只匹配文档文本。
+
+Cesium预设1.146.0的^26.4.0依赖会解析到26.5.0，但其聚合入口还从engine导出已移入gltf的符号，三引擎示例真实构建因此失败。1.147.0官方包匹配engine26.5/widgets16.3.1/gltf；仅同步cesiumDependencies与私有peer，不引入全局overrides或修改用户锁文件。现有版本预检保持，cesium测试覆盖旧1.146.0在零安装调用前拒绝且清单、配置原字节不变。

@@ -2,6 +2,8 @@
 
 包名为 [`@adui/viteplus-starter`](https://www.npmjs.com/package/@adui/viteplus-starter)，命令名为 `viteplus-starter`。**当前公开版本为0.1.3，latest指向0.1.3**；[GitHub Release v0.1.3](https://github.com/adui-studio/viteplus-starter/releases/tag/v0.1.3) 已公开。0.1.0于2026-11-03首发。CLI清单为private:false，开发工作区根继续保留0.0.0/private。
 
+当前源码另准备0.1.4本地候选，用户仅授权README整理、示例和安装生成验收，未授权本次npm/Release发布。具体归档、SHA-512和验证结果见[0.1.4候选记录](CANDIDATE_0_1_4.md)；包名入口仍取得公开版本，试用候选使用tgz绝对路径。
+
 2026-11-03，源码仓库迁至 [adui-studio/viteplus-starter](https://github.com/adui-studio/viteplus-starter)，0.1.2公开包已同步新地址及作者ADui。npm包名保持不变；0.1.1及以前的元信息和归档保持发布时内容。
 
 ## 0.1.3 正式包准备（2026-11-04）

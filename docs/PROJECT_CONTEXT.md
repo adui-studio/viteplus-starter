@@ -8,7 +8,7 @@
 
 - 仓库：`adui-studio/viteplus-starter`。Vite+ 官方 `vite:application` / `vite:monorepo` 是唯一基础工程来源，Vue/React Application 按语言选 `vue` / `vue-ts` / `react` / `react-ts`。
 - 已实现：基础 CLI 交互与参数模式、Application UI/CSS 集成、旧项目补装及 `--repair-existing`、UI Smoke、通过 `--workspace` 逐个添加及通过 JSON 批量新建 Monorepo 应用、本地单元测试与文档检查。
-- 当前阶段：公开0.1.3的Windows真实GLB浏览器补验发现正式页外置密钥重试残留旧提示，当前源码已修复并在Vue JS、React TS复验；npm仍为0.1.3，修复尚未发布。Windows/Linux代表构建与文件保护、Mac Vue TS用户确认保留各自证据范围。
+- 当前阶段：0.1.4本地候选已准备，README统一平台入口并补三个引擎加密模型示例；包含解锁提示及Cesium依赖兼容修复，实际安装、生成和示例构建已验收。npm仍为0.1.3，候选未发布；平台与历史浏览器证据保留各自范围。
 - 严格要求：**不得添加任何 CI/CD、自动发布或部署工作流**；仅人工本地测试。
 
 ## 用户 Windows 实机验收（已确认）
@@ -35,7 +35,7 @@
 
 ## 下一步
 
-1. Windows真实GLB补验与外置密钥重试提示修复已完成，源码修复和公开0.1.3分开记录。下一步准备包含该修复的0.1.4本地候选包，核对打包内容、隔离安装和生成输出；准备候选不等于发布授权。不扩展查看器功能，Mac仍保持已确认的Vue TS范围。
+1. 0.1.4本地候选的README、实际安装/生成和三个引擎示例构建已验收，归档见CANDIDATE_0_1_4。下一步审阅候选并由用户明确决定是否发布npm及GitHub Release；当前不上传、不创建标签。不扩展查看器功能。
 2. 默认本地 normalize.css、独立应用与 Monorepo 的 UI/CSS 联用已完成代表验收；官方模板和文件保护边界继续保留。
 3. 新需求明确后再调整范围；不能将代表组合通过视为完整矩阵通过，不推进其他系统或发布流程。
 
@@ -1074,3 +1074,15 @@ Windows Chrome从回环地址访问生产产物：Vue首页按需加载后自动
 application-home的Vue/React外置密钥解锁在输入有效时先清除旧提示，保留取消、新错误及迟到场景保护。新增两项生成处理器行为回归，修复前均失败、修复后通过；Windows和Linux仓库各305/305通过，无跳过。通过当前源码再次调用官方入口新建两组external工程，真实GLB、双入口构建、ready 8/8和136/90 check通过；两端正式页错密钥后正确重试均显示模型且提示为空。这里的“两端”指Vue/React浏览器页面，浏览器实测仅Windows；Linux仅执行源码检查。
 
 浏览器记录未见运行时error；Vue标签记录到一条Three.WebGLProgram的X4122着色器精度warning，未消除或改报无警告。两轮HTTP记录只取得.adui模型资源、未请求GLB；公开包现场与源码修复现场分别183份源文件的哈希/mtime保持。日志、截图及摘要位于忽略目录dist/verification/model-browser-*，模型和密钥不提交。测试服务已停止、标签页已关闭，临时工程核对精确路径后已移入回收站，专用Linux容器核对身份和只读挂载后已删除，未操作其他进程或容器。两端文档校验及vp check通过（226份格式文件、164份代码文件）；npm、版本和标签未修改。
+
+## 2026-11-04 README与0.1.4候选
+
+用户要求不再在README单列操作系统待验收提示，统一Windows/macOS/Linux用法，并增加各引擎加密GLB代码后准备0.1.4本地候选。已按create-readme Skill整理根和包README，包文档使用绝对仓库链接；三种lazy适配器、Vue/React挂载销毁及external keyring示例来自实际源码接口，不把KEY或GLB放入npm包。
+
+归档入口实测发现相对tgz经vp/pnpm缓存目录解析失败，改为绝对路径。三引擎示例还发现Cesium1.146.0的宽依赖范围解析到engine26.5.0后缺失25项导出；核对官方元信息后仅将Cesium预设及私有peer同步1.147.0，其他依赖和根锁文件保持。预检继续拒绝已有1.146.0自动升级，受控回归核对零安装及清单/配置字节保持。
+
+最终候选pack-WMNmBe/adui-viteplus-starter-0.1.4.tgz为92文件、104966字节，SHA-512详见[CANDIDATE_0_1_4](CANDIDATE_0_1_4.md)；Windows/Linux重打包一致，与公开0.1.3仅4份文件改变、88份原字节不变。两端实际隔离安装后包内CLI创建官方Vue JS/React TS工作区，模型双入口/base解密、无缓存ready 8/8及126格式/84代码类型check通过；各8项重复保护零子进程、179份文件内容/mtime保持。两端仓库各305/305测试通过，无跳过。
+
+Windows另从最终包README提取三个引擎和框架生命周期代码，生成官方Vue TS三引擎embedded与React TS Three external工程；真实DamagedHelmet的两组双入口/base/.adui解密、ready 9/9、193格式/141代码类型check及Cesium四类静态资源通过，候选生成的SceneView包含提示修复。该轮仅构建而非新增浏览器渲染。vp dlx、pnpm dlx、npm exec使用本地绝对tgz的帮助通过，调用目录无工程写入。
+
+候选CLI版本0.1.4，根仍0.0.0/private；registry只读核对latest仍0.1.3且无0.1.4。本轮未调用publish、未创建标签或Release。受控临时工程已由工具清理，原模型未变，日志在忽略目录dist/verification/v014-*；两端文档校验及vp check通过（227份格式文件、164份代码文件）。专用容器核对身份、官方镜像和源码只读挂载后已删除，未操作其他容器。

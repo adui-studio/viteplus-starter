@@ -1,5 +1,7 @@
 # 生成器能力与验收范围
 
+2026-11-04候选进度：CLI源码0.1.4本地候选已完成README与三个引擎加密模型示例整理，包含正式页解锁重试和Cesium1.147.0依赖兼容修复。Windows/Linux实际tgz安装、官方生成/补装、模型构建和重复保护通过；Windows另验证包内README代码参与三引擎及框架组件构建。源码两端305项测试通过，公开npm仍0.1.3，详见[0.1.4候选](CANDIDATE_0_1_4.md)；当前未授权发布。
+
 2026-11-04浏览器补验：Windows Chrome以真实DamagedHelmet验证公开0.1.3的Vue JS内置密钥加载及React TS外置文件解锁，发现正式页错误密钥后正确重试残留旧提示。当前源码已修复并重新生成Vue JS/React TS external工程完成构建与浏览器复验；Windows/Linux源码各305项测试通过。npm仍为0.1.3，修复尚未发布；浏览器存在已记录的Three着色器精度warning，详情见[V1清单](V1_ACCEPTANCE.md)。
 
 2026-11-04当前状态：公开版本为0.1.3，Windows/Linux仓库各303项测试通过。公开包Vue JS/React TS已分别完成UI/CSS/AdScreen与Three/模型保护的代表创建、补装、双入口构建及重复保护；模型场景分别embedded/external，未合并宣称两类场景同时验收。Mac M1 Max的Vue TS/Three/embedded创建、构建、界面及真实GLB已有用户确认，其他组合仍需原生证据。当前结论见[V1清单](V1_ACCEPTANCE.md)及[项目状态](PROJECT_CONTEXT.md)，下文日期内容保留历史范围；后续版本不自动发布。
